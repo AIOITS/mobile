@@ -27,7 +27,7 @@ const TextInputField = ({
       {isPassword ? (
         <View style={tw('flex flex-row justify-center items-center')}>
           <TextInput
-            placeholder="Password"
+            placeholder={placeholder}
             style={tw(
               'bg-secondary-white border-2 flex-1 border-disable py-2 rounded-lg px-4',
             )}

@@ -3,7 +3,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RegisByEmail from '../screens/Regis/RegisByEmail';
 import RegisByPhone from '../screens/Regis/RegisByPhone';
-import OtpScreen from '../screens/OTP/OtpScreen';
+import OTPScreen from '../screens/OTP/OTPScreen';
+import SuccessScreen from '../screens/Success/SuccessScreen';
 
 const RootStack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const RootNavigator = () => {
         <RootStack.Screen
           options={{
             headerShown: false,
+            animation: 'none',
           }}
           name="RegisterByEmail"
           component={RegisByEmail}
@@ -29,6 +31,7 @@ const RootNavigator = () => {
         <RootStack.Screen
           options={{
             headerShown: false,
+            animation: 'none',
           }}
           name="RegisterByPhone"
           component={RegisByPhone}
@@ -36,9 +39,18 @@ const RootNavigator = () => {
         <RootStack.Screen
           options={{
             headerShown: false,
+            presentation: 'containedModal',
           }}
           name="OTP"
-          component={OtpScreen}
+          component={OTPScreen}
+        />
+        <RootStack.Screen
+          options={{
+            headerShown: false,
+            presentation: 'containedModal',
+          }}
+          name="RegisterSuccess"
+          component={SuccessScreen}
         />
       </RootStack.Group>
     </RootStack.Navigator>

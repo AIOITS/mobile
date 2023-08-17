@@ -1,14 +1,13 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { useTailwind } from 'tailwind-rn';
+import RegistrationScreen from './RegistrationScreen';
 
 const RegisByPhone = () => {
-  const tw = useTailwind();
-
   return (
-    <View>
-      <Text>RegisByPhone</Text>
-    </View>
+    <RegistrationScreen
+      title="Nomor Telepon"
+      placeholder="081234567898"
+    />
   );
 };
 
