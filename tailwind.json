@@ -24,6 +24,11 @@
       "bottom": 0
     }
   },
+  "bottom-5": {
+    "style": {
+      "bottom": 20
+    }
+  },
   "left-0": {
     "style": {
       "left": 0
@@ -37,16 +42,6 @@
   "top-0": {
     "style": {
       "top": 0
-    }
-  },
-  "bottom-4": {
-    "style": {
-      "bottom": 16
-    }
-  },
-  "bottom-5": {
-    "style": {
-      "bottom": 20
     }
   },
   "z-10": {
@@ -84,6 +79,11 @@
       "marginBottom": 20
     }
   },
+  "-mt-12": {
+    "style": {
+      "marginTop": -48
+    }
+  },
   "-mt-2": {
     "style": {
       "marginTop": -8
@@ -112,6 +112,11 @@
   "mr-5": {
     "style": {
       "marginRight": 20
+    }
+  },
+  "mt-0": {
+    "style": {
+      "marginTop": 0
     }
   },
   "block": {
@@ -164,11 +169,6 @@
   "items-start": {
     "style": {
       "alignItems": "flex-start"
-    }
-  },
-  "items-end": {
-    "style": {
-      "alignItems": "flex-end"
     }
   },
   "items-center": {

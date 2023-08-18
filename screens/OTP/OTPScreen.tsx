@@ -18,10 +18,14 @@ const OTPScreen = () => {
       subHeader="Silahkan masukkan kode OTP yang telah dikirimkan"
       backgroundImageSource={require('../../assets/bg/bg-medium-2.png')}>
       <View style={tw('flex flex-col')}>
+        {/* sending start */}
         <View style={tw('items-center mb-7')}>
           <Text>Kode verifikasi dikirimkan ke</Text>
           <Text style={tw('font-bold')}>tiarasa@gmail.com</Text>
         </View>
+        {/* sending end */}
+
+        {/* otp start */}
         <View
           style={[
             tw('flex flex-row items-stretch justify-around mb-7'),
@@ -32,6 +36,9 @@ const OTPScreen = () => {
           <BoxInputField />
           <BoxInputField />
         </View>
+        {/* otp end */}
+
+        {/* re-send code start */}
         <View style={tw('flex flex-row items-start')}>
           <Text style={tw('mr-1')}>Belum mendapat kode?</Text>
           <TouchableOpacity>
@@ -40,7 +47,10 @@ const OTPScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
+        {/* re-send code end */}
       </View>
+
+      {/* button start */}
       <View>
         <Button
           onPress={() => navigation.navigate('RegisterSuccess')}
@@ -48,6 +58,7 @@ const OTPScreen = () => {
           buttonStyle={tw('bg-primary-light-blue rounded-lg py-2')}
         />
       </View>
+      {/* button end */}
     </BackgroundLargeHeader>
   );
 };

@@ -1,12 +1,16 @@
-import { View, Text } from 'react-native';
 import React from 'react';
-import RegistrationScreen from './RegistrationScreen';
+import AuthScreen from '../../components/Auth/AuthScreen';
 
 const RegisByEmail = () => {
   return (
-    <RegistrationScreen
+    <AuthScreen
+      header="Daftar"
+      subHeader="Pastikan data diri sesuai"
       title="Email"
       placeholder="Example@gmail.com"
+      register
+      navigateToOne="RegisterByEmail"
+      navigateToTwo="RegisterByPhone"
     />
   );
 };
