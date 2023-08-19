@@ -1,5 +1,5 @@
 import React from 'react';
-import ConfirmMessage from '../../components/ConfirmMessage';
+import ConfirmMessage from '../../components/Info/ConfirmMessage';
 import { useTailwind } from 'tailwind-rn';
 import CARDSVG from '../../assets/card-2.svg';
 

@@ -3,22 +3,23 @@ import React from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
 import { Button } from '@rneui/themed';
-import BoxInputField from '../../components/BoxInputField';
+import BoxInputField from '../../components/Input/BoxInputField';
 import { useNavigation } from '@react-navigation/native';
-import { RegisByEmailNavigationProps } from '../../navigator/Auth/RegisByEmailNavigationProps';
-import ButtonComponent from '../../components/ButtonComponent';
+import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';
+import ButtonBlueComponent from '../../components/Button/ButtonBlueComponent';
 
 const OTPScreen = () => {
   const tw = useTailwind();
-  const navigation = useNavigation<RegisByEmailNavigationProps>();
+  const navigation = useNavigation<RegisNavigationProps>();
 
   return (
     <BackgroundLargeHeader
       backButton
+      onBackClick={() => navigation.goBack()}
       header="OTP"
       subHeader="Silahkan masukkan kode OTP yang telah dikirimkan"
       backgroundImageSource={require('../../assets/bg/bg-medium-2.png')}>
-      <View style={tw('flex flex-col')}>
+      <View style={tw('flex flex-col my-auto')}>
         {/* sending start */}
         <View style={tw('items-center mb-7')}>
           <Text>Kode verifikasi dikirimkan ke</Text>
@@ -52,10 +53,10 @@ const OTPScreen = () => {
       </View>
 
       {/* button start */}
-      <View style={tw('bottom-0 left-0 right-0')}>
-        <ButtonComponent
+      <View style={tw('bottom-0 left-0 absolute right-0')}>
+        <ButtonBlueComponent
           buttonTitle="Lanjutkan"
-          navigateTo="RegisterSuccess"
+          onNavigationClick={() => navigation.navigate('RegisterSuccess')}
         />
       </View>
       {/* button end */}

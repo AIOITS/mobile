@@ -10,6 +10,7 @@ interface Props {
   subTitleStyle?: string;
   info?: string;
   detailInfo?: string;
+  gap?: number;
 }
 
 const InfoBlockDisplay = ({
@@ -19,22 +20,19 @@ const InfoBlockDisplay = ({
   subTitleStyle,
   detailInfo,
   info,
+  gap,
 }: Props) => {
   const tw = useTailwind();
 
   return (
-    <View style={[tw('flex flex-col'), { gap: info ? 3 : -3 }]}>
+    <View style={[tw('flex flex-col'), { gap: info ? 3 : gap ? gap : -3 }]}>
       <Text style={tw(titleStyle || 'text-white text-xs')}>{title}</Text>
       <View
         style={[
           tw(`${info ? 'flex flex-row items-center justify-center' : ''}`),
           { gap: info ? 3 : 0 },
         ]}>
-        <Text
-          style={[
-            tw('text-base font-bold'),
-            tw(subTitleStyle || 'text-white'),
-          ]}>
+        <Text style={[tw('font-bold'), tw(subTitleStyle || 'text-white')]}>
           {subTitle}
         </Text>
         {info && (

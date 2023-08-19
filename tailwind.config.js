@@ -14,6 +14,7 @@ module.exports = {
       'secondary-white': '#F6F9FF',
       white: '#FFFFFF',
       golden: '#D5A419',
+      'strong-pink': '#AD3B6F',
     },
   },
   plugins: [],

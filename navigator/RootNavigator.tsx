@@ -10,6 +10,7 @@ import LoginByPhone from '../screens/Login/LoginByPhone';
 import NotActivated from '../screens/Aktivasi/NotActivated';
 import BottomNavigator from './BottomNavigator';
 import Subsidi from '../screens/SI-Subsidi/Subsidi';
+import RiwayatPengisian from '../screens/SI-Subsidi/RiwayatPengisian';
 
 const RootStack = createNativeStackNavigator();
 
@@ -162,6 +163,10 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="Subsidi"
           component={Subsidi}
+        />
+        <RootStack.Screen
+          name="RiwayatPengisian"
+          component={RiwayatPengisian}
         />
       </RootStack.Group>
     </RootStack.Navigator>

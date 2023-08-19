@@ -8,6 +8,7 @@ interface Props {
   header: string;
   subHeader: string;
   titleButton: string;
+  onNavigationClick: () => void;
 }
 
 const ConfirmMessage = ({
@@ -15,6 +16,7 @@ const ConfirmMessage = ({
   header,
   subHeader,
   titleButton,
+  onNavigationClick,
 }: Props) => {
   const tw = useTailwind();
 
@@ -31,6 +33,7 @@ const ConfirmMessage = ({
       </View>
       <View style={tw('w-full bottom-5 self-end absolute')}>
         <Button
+          onPress={onNavigationClick}
           title={titleButton}
           titleStyle={tw('text-primary-light-blue')}
           buttonStyle={tw('bg-white rounded-lg py-2 mx-3')}

@@ -19,6 +19,8 @@ interface BackgroundLargeHeaderProps {
   backButton?: boolean;
   reverseHeader?: boolean;
   main?: boolean;
+  bell?: boolean;
+  onBackClick?: () => void;
 }
 
 const BackgroundLargeHeader = ({
@@ -29,6 +31,8 @@ const BackgroundLargeHeader = ({
   backButton,
   reverseHeader,
   main,
+  bell,
+  onBackClick,
 }: BackgroundLargeHeaderProps) => {
   const tw = useTailwind();
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
@@ -48,7 +52,7 @@ const BackgroundLargeHeader = ({
         {/* <View style={[tw('absolute left-0 top-0 right-0 bottom-0')]}> */}
         <View
           style={[
-            tw('mx-3 pt-8 flex-1 flex flex-col justify-between items-stretch'),
+            tw('mx-3 pt-8 flex-1 flex flex-col justify-start items-stretch'),
             { minHeight: main ? screenHeight : 728, gap: main ? 25 : 0 },
           ]}>
           {/* title start */}
@@ -58,7 +62,7 @@ const BackgroundLargeHeader = ({
               { gap: 5 },
             ]}>
             {backButton && (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={onBackClick}>
                 <Icon
                   name="left"
                   type="antdesign"
@@ -85,6 +89,16 @@ const BackgroundLargeHeader = ({
                 {subHeader}
               </Text>
             </View>
+            {bell && (
+              <TouchableOpacity style={tw('right-2 absolute')}>
+                <Icon
+                  name="bell"
+                  type="material-community"
+                  size={30}
+                  color="white"
+                />
+              </TouchableOpacity>
+            )}
           </View>
           {/* title end */}
 

@@ -1,8 +1,8 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
-import InfoBlockDisplay from './InfoBlockDisplay';
-import MotorcycleSVG from '../assets/motorcycle-card.svg';
+import InfoBlockDisplay from '../Info/InfoBlockDisplay';
+import MotorcycleCardSVG from '../../assets/motorcycle-card.svg';
 
 interface Props {
   vehicleName: string;
@@ -38,7 +38,7 @@ const VehicleCard = ({
         />
       </View>
       <View>
-        <MotorcycleSVG height={100} />
+        <MotorcycleCardSVG height={100} />
       </View>
     </View>
   );

@@ -2,13 +2,13 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { useState } from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
-import { RegisByEmailNavigationProps } from '../../navigator/Auth/RegisByEmailNavigationProps';
+import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';
 import BackgroundLargeHeader from '../BackgroundLargeHeader';
-import TextInputField from '../TextInputField';
+import TextInputField from '../Input/TextInputField';
 import { Button, Divider } from '@rneui/themed';
 import { AuthScreenParamList } from '../../navigator/RootNavigator';
-import ButtonComponent from '../ButtonComponent';
-import ButtonOutlineComponent from '../ButtonOutlineComponent';
+import ButtonBlueComponent from '../Button/ButtonBlueComponent';
+import ButtonOutlineComponent from '../Button/ButtonOutlineComponent';
 
 interface AuthComponentProps {
   header: string;
@@ -33,7 +33,7 @@ const AuthComponent = ({
   const [NIK, setNIK] = useState<string>('');
   const [input, setInput] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const navigation = useNavigation<RegisByEmailNavigationProps>();
+  const navigation = useNavigation<RegisNavigationProps>();
   const route = useRoute();
   const isEmailActive = route.name === navigateToOne;
   const isPhoneActive = route.name === navigateToTwo;
@@ -46,9 +46,7 @@ const AuthComponent = ({
       {/* navigation start */}
       <View
         style={tw(
-          `bg-secondary-white mb-4 flex flex-row items-center justify-evenly w-full rounded-lg p-1 ${
-            register ? 'mt-0' : '-mt-12'
-          }`,
+          'bg-secondary-white mb-4 flex flex-row items-center justify-evenly w-full rounded-lg p-1 mt-6',
         )}>
         <TouchableOpacity
           onPress={() => navigation.navigate(navigateToOne)}
@@ -106,16 +104,16 @@ const AuthComponent = ({
       {/* form input end */}
 
       {/* button start */}
-      <View style={tw('flex bottom-0 left-0 right-0 flex-col')}>
+      <View style={tw('flex bottom-0 absolute left-0 right-0 flex-col')}>
         {/* button bottom */}
         {register ? (
-          <ButtonComponent
-            navigateTo="OTP"
+          <ButtonBlueComponent
+            onNavigationClick={() => navigation.navigate('OTP')}
             buttonTitle="Buat Akun"
           />
         ) : (
-          <ButtonComponent
-            navigateTo="NotActivated"
+          <ButtonBlueComponent
+            onNavigationClick={() => navigation.navigate('NotActivated')}
             buttonTitle="Masuk"
           />
         )}
@@ -138,12 +136,12 @@ const AuthComponent = ({
         {register ? (
           <ButtonOutlineComponent
             buttonTitle="Masuk"
-            navigateTo="LoginByEmail"
+            onNavigationClick={() => navigation.navigate('LoginByEmail')}
           />
         ) : (
           <ButtonOutlineComponent
             buttonTitle="Daftar"
-            navigateTo="RegisterByEmail"
+            onNavigationClick={() => navigation.navigate('RegisterByEmail')}
           />
         )}
       </View>

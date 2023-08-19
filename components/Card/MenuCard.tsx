@@ -2,8 +2,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import React, { ReactNode } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import { useNavigation } from '@react-navigation/native';
-import { MenuScreenNavigationProp } from '../navigator/Menu/Menu';
-import { MenuScreenParamList } from '../navigator/RootNavigator';
+import { MenuScreenNavigationProp } from '../../navigator/Menu/Menu';
+import { MenuScreenParamList } from '../../navigator/RootNavigator';
 
 interface Props {
   title: string;
