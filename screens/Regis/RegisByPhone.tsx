@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import AuthScreen from '../../components/Auth/AuthScreen';
+import AuthComponent from '../../components/Auth/AuthComponent';
 
 const RegisByPhone = () => {
   return (
-    <AuthScreen
+    <AuthComponent
       header="Daftar"
       subHeader="Pastikan data diri sesuai"
       title="Nomor Telepon"

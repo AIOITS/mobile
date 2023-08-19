@@ -5,6 +5,8 @@ import {
   ImageBackground,
   Dimensions,
   TouchableOpacity,
+  ScrollView,
+  Image,
 } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
 import { Icon } from '@rneui/themed';
@@ -15,6 +17,8 @@ interface BackgroundLargeHeaderProps {
   backgroundImageSource: any;
   children: ReactNode;
   backButton?: boolean;
+  reverseHeader?: boolean;
+  main?: boolean;
 }
 
 const BackgroundLargeHeader = ({
@@ -23,28 +27,36 @@ const BackgroundLargeHeader = ({
   backgroundImageSource,
   children,
   backButton,
+  reverseHeader,
+  main,
 }: BackgroundLargeHeaderProps) => {
   const tw = useTailwind();
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
   return (
-    <View style={tw('bg-white flex-1')}>
+    <ScrollView style={tw('bg-white flex-1')}>
       <ImageBackground
         source={backgroundImageSource}
         style={[
-          tw('absolute left-0 top-0'),
-          { height: screenHeight, width: screenWidth },
+          // tw('absolute left-0 top-0 right-0 bottom-0'),
+          { minHeight: main ? screenHeight : 728, width: screenWidth },
         ]}
         imageStyle={{
           resizeMode: 'cover',
           alignSelf: 'flex-end',
         }}>
+        {/* <View style={[tw('absolute left-0 top-0 right-0 bottom-0')]}> */}
         <View
-          style={tw(
-            'mx-3 pt-8 flex-1 flex flex-col items-stretch justify-between',
-          )}>
+          style={[
+            tw('mx-3 pt-8 flex-1 flex flex-col justify-between items-stretch'),
+            { minHeight: main ? screenHeight : 728, gap: main ? 25 : 0 },
+          ]}>
           {/* title start */}
-          <View style={[tw('my-3 flex flex-row items-start'), { gap: 5 }]}>
+          <View
+            style={[
+              tw(`my-3 flex flex-row items-start ${main ? 'mb-20' : 'mb-0'}`),
+              { gap: 5 },
+            ]}>
             {backButton && (
               <TouchableOpacity>
                 <Icon
@@ -55,9 +67,21 @@ const BackgroundLargeHeader = ({
                 />
               </TouchableOpacity>
             )}
-            <View>
-              <Text style={tw('text-3xl text-white font-bold')}>{header}</Text>
-              <Text style={tw('text-sm text-white flex-shrink mr-5')}>
+            <View style={[tw('flex flex-col'), { gap: 2 }]}>
+              <Text
+                style={tw(
+                  `text-white ${
+                    reverseHeader ? 'text-sm' : 'text-3xl font-bold'
+                  }`,
+                )}>
+                {header}
+              </Text>
+              <Text
+                style={tw(
+                  `text-white flex-shrink mr-5 ${
+                    reverseHeader ? 'text-3xl font-bold' : 'text-sm'
+                  }`,
+                )}>
                 {subHeader}
               </Text>
             </View>
@@ -68,8 +92,9 @@ const BackgroundLargeHeader = ({
           {children}
           {/* content end */}
         </View>
+        {/* </View> */}
       </ImageBackground>
-    </View>
+    </ScrollView>
   );
 };
 

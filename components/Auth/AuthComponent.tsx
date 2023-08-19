@@ -2,13 +2,15 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { useState } from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
-import { RegisByEmailNavigationProps } from '../../navigator/Register/RegisByEmailNavigationProps';
+import { RegisByEmailNavigationProps } from '../../navigator/Auth/RegisByEmailNavigationProps';
 import BackgroundLargeHeader from '../BackgroundLargeHeader';
 import TextInputField from '../TextInputField';
 import { Button, Divider } from '@rneui/themed';
 import { AuthScreenParamList } from '../../navigator/RootNavigator';
+import ButtonComponent from '../ButtonComponent';
+import ButtonOutlineComponent from '../ButtonOutlineComponent';
 
-interface AuthScreenProps {
+interface AuthComponentProps {
   header: string;
   subHeader: string;
   title: string;
@@ -18,7 +20,7 @@ interface AuthScreenProps {
   register?: boolean;
 }
 
-const AuthScreen = ({
+const AuthComponent = ({
   title,
   placeholder,
   register,
@@ -26,7 +28,7 @@ const AuthScreen = ({
   navigateToTwo,
   header,
   subHeader,
-}: AuthScreenProps) => {
+}: AuthComponentProps) => {
   const tw = useTailwind();
   const [NIK, setNIK] = useState<string>('');
   const [input, setInput] = useState<string>('');
@@ -104,19 +106,17 @@ const AuthScreen = ({
       {/* form input end */}
 
       {/* button start */}
-      <View style={tw('flex bottom-0 left-0 self-end flex-col')}>
+      <View style={tw('flex bottom-0 left-0 right-0 flex-col')}>
         {/* button bottom */}
         {register ? (
-          <Button
-            onPress={() => navigation.navigate('OTP')}
-            title="Buat Akun"
-            buttonStyle={tw('bg-primary-light-blue rounded-lg py-2')}
+          <ButtonComponent
+            navigateTo="OTP"
+            buttonTitle="Buat Akun"
           />
         ) : (
-          <Button
-            onPress={() => navigation.navigate('NotActivated')}
-            title="Masuk"
-            buttonStyle={tw('bg-primary-light-blue rounded-lg py-2')}
+          <ButtonComponent
+            navigateTo="NotActivated"
+            buttonTitle="Masuk"
           />
         )}
 
@@ -136,24 +136,14 @@ const AuthScreen = ({
 
         {/* button bottom */}
         {register ? (
-          <Button
-            onPress={() => navigation.navigate('LoginByEmail')}
-            title="Masuk"
-            buttonStyle={tw(
-              'bg-secondary-white rounded-lg border-primary-light-blue border-2 py-2',
-            )}
-            type="outline"
-            titleStyle={tw('text-primary-light-blue')}
+          <ButtonOutlineComponent
+            buttonTitle="Masuk"
+            navigateTo="LoginByEmail"
           />
         ) : (
-          <Button
-            onPress={() => navigation.navigate('RegisterByEmail')}
-            title="Daftar"
-            buttonStyle={tw(
-              'bg-secondary-white rounded-lg border-primary-light-blue border-2 py-2',
-            )}
-            type="outline"
-            titleStyle={tw('text-primary-light-blue')}
+          <ButtonOutlineComponent
+            buttonTitle="Daftar"
+            navigateTo="RegisterByEmail"
           />
         )}
       </View>
@@ -162,4 +152,4 @@ const AuthScreen = ({
   );
 };
 
-export default AuthScreen;
+export default AuthComponent;

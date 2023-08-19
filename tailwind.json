@@ -34,6 +34,11 @@
       "left": 0
     }
   },
+  "right-0": {
+    "style": {
+      "right": 0
+    }
+  },
   "right-4": {
     "style": {
       "right": 16
@@ -99,6 +104,11 @@
       "marginBottom": 16
     }
   },
+  "mb-5": {
+    "style": {
+      "marginBottom": 20
+    }
+  },
   "mb-7": {
     "style": {
       "marginBottom": 28
@@ -119,6 +129,31 @@
       "marginTop": 0
     }
   },
+  "mb-0": {
+    "style": {
+      "marginBottom": 0
+    }
+  },
+  "mb-10": {
+    "style": {
+      "marginBottom": 40
+    }
+  },
+  "mb-16": {
+    "style": {
+      "marginBottom": 64
+    }
+  },
+  "mb-20": {
+    "style": {
+      "marginBottom": 80
+    }
+  },
+  "mb-14": {
+    "style": {
+      "marginBottom": 56
+    }
+  },
   "block": {
     "style": {
       "display": "block"
@@ -137,6 +172,11 @@
   "hidden": {
     "style": {
       "display": "none"
+    }
+  },
+  "h-24": {
+    "style": {
+      "height": 96
     }
   },
   "w-full": {
@@ -166,6 +206,11 @@
       "flexDirection": "column"
     }
   },
+  "flex-wrap": {
+    "style": {
+      "flexWrap": "wrap"
+    }
+  },
   "items-start": {
     "style": {
       "alignItems": "flex-start"
@@ -179,6 +224,11 @@
   "items-stretch": {
     "style": {
       "alignItems": "stretch"
+    }
+  },
+  "justify-start": {
+    "style": {
+      "justifyContent": "flex-start"
     }
   },
   "justify-center": {
@@ -214,6 +264,34 @@
       "borderBottomLeftRadius": 8
     }
   },
+  "rounded-md": {
+    "style": {
+      "borderTopLeftRadius": 6,
+      "borderTopRightRadius": 6,
+      "borderBottomRightRadius": 6,
+      "borderBottomLeftRadius": 6
+    }
+  },
+  "rounded-bl-lg": {
+    "style": {
+      "borderBottomLeftRadius": 8
+    }
+  },
+  "rounded-br-lg": {
+    "style": {
+      "borderBottomRightRadius": 8
+    }
+  },
+  "rounded-tl-lg": {
+    "style": {
+      "borderTopLeftRadius": 8
+    }
+  },
+  "rounded-tr-lg": {
+    "style": {
+      "borderTopRightRadius": 8
+    }
+  },
   "border": {
     "style": {
       "borderTopWidth": 1,
@@ -228,6 +306,21 @@
       "borderRightWidth": 2,
       "borderBottomWidth": 2,
       "borderLeftWidth": 2
+    }
+  },
+  "border-b-2": {
+    "style": {
+      "borderBottomWidth": 2
+    }
+  },
+  "border-l-2": {
+    "style": {
+      "borderLeftWidth": 2
+    }
+  },
+  "border-t-2": {
+    "style": {
+      "borderTopWidth": 2
     }
   },
   "border-disable": {
@@ -252,6 +345,12 @@
     "style": {
       "--tw-bg-opacity": 1,
       "backgroundColor": "rgb(42 85 121 / var(--tw-bg-opacity))"
+    }
+  },
+  "bg-golden": {
+    "style": {
+      "--tw-bg-opacity": 1,
+      "backgroundColor": "rgb(213 164 25 / var(--tw-bg-opacity))"
     }
   },
   "bg-primary-light-blue": {
@@ -294,6 +393,12 @@
       "paddingRight": 8
     }
   },
+  "px-3": {
+    "style": {
+      "paddingLeft": 12,
+      "paddingRight": 12
+    }
+  },
   "px-4": {
     "style": {
       "paddingLeft": 16,
@@ -304,6 +409,12 @@
     "style": {
       "paddingTop": 8,
       "paddingBottom": 8
+    }
+  },
+  "py-3": {
+    "style": {
+      "paddingTop": 12,
+      "paddingBottom": 12
     }
   },
   "pt-8": {
@@ -322,6 +433,18 @@
       "lineHeight": 36
     }
   },
+  "text-base": {
+    "style": {
+      "fontSize": 16,
+      "lineHeight": 24
+    }
+  },
+  "text-lg": {
+    "style": {
+      "fontSize": 18,
+      "lineHeight": 28
+    }
+  },
   "text-sm": {
     "style": {
       "fontSize": 14,
@@ -334,9 +457,20 @@
       "lineHeight": 28
     }
   },
+  "text-xs": {
+    "style": {
+      "fontSize": 12,
+      "lineHeight": 16
+    }
+  },
   "font-bold": {
     "style": {
       "fontWeight": "700"
+    }
+  },
+  "font-semibold": {
+    "style": {
+      "fontWeight": "600"
     }
   },
   "uppercase": {
@@ -347,6 +481,17 @@
   "capitalize": {
     "style": {
       "textTransform": "capitalize"
+    }
+  },
+  "italic": {
+    "style": {
+      "fontStyle": "italic"
+    }
+  },
+  "text-cape-storm": {
+    "style": {
+      "--tw-text-opacity": 1,
+      "color": "rgb(60 72 86 / var(--tw-text-opacity))"
     }
   },
   "text-disable": {
@@ -365,6 +510,11 @@
     "style": {
       "--tw-text-opacity": 1,
       "color": "rgb(255 255 255 / var(--tw-text-opacity))"
+    }
+  },
+  "[a-zA-Z0-9:_-]": {
+    "style": {
+      "aZA-Z09": "-"
     }
   }
 }

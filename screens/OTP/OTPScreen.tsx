@@ -5,7 +5,8 @@ import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
 import { Button } from '@rneui/themed';
 import BoxInputField from '../../components/BoxInputField';
 import { useNavigation } from '@react-navigation/native';
-import { RegisByEmailNavigationProps } from '../../navigator/Register/RegisByEmailNavigationProps';
+import { RegisByEmailNavigationProps } from '../../navigator/Auth/RegisByEmailNavigationProps';
+import ButtonComponent from '../../components/ButtonComponent';
 
 const OTPScreen = () => {
   const tw = useTailwind();
@@ -51,11 +52,10 @@ const OTPScreen = () => {
       </View>
 
       {/* button start */}
-      <View>
-        <Button
-          onPress={() => navigation.navigate('RegisterSuccess')}
-          title="Lanjutkan"
-          buttonStyle={tw('bg-primary-light-blue rounded-lg py-2')}
+      <View style={tw('bottom-0 left-0 right-0')}>
+        <ButtonComponent
+          buttonTitle="Lanjutkan"
+          navigateTo="RegisterSuccess"
         />
       </View>
       {/* button end */}

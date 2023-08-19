@@ -13,6 +13,7 @@ module.exports = {
       disable: '#A6ABBD',
       'secondary-white': '#F6F9FF',
       white: '#FFFFFF',
+      golden: '#D5A419',
     },
   },
   plugins: [],

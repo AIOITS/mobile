@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
-import AuthScreen from '../../components/Auth/AuthScreen';
+import AuthComponent from '../../components/Auth/AuthComponent';
 
 const LoginByEmail = () => {
   return (
-    <AuthScreen
+    <AuthComponent
       header="Masuk"
       subHeader="Isi data yang telah didaftarkan"
       title="Email"

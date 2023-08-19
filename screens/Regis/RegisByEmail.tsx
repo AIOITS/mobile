@@ -1,9 +1,9 @@
 import React from 'react';
-import AuthScreen from '../../components/Auth/AuthScreen';
+import AuthComponent from '../../components/Auth/AuthComponent';
 
 const RegisByEmail = () => {
   return (
-    <AuthScreen
+    <AuthComponent
       header="Daftar"
       subHeader="Pastikan data diri sesuai"
       title="Email"
