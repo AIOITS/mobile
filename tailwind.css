@@ -144,6 +144,10 @@
   height: 6rem;
 }
 
+.w-fit {
+  width: fit-content;
+}
+
 .w-full {
   width: 100%;
 }
@@ -276,6 +280,11 @@
 .bg-secondary-white {
   --tw-bg-opacity: 1;
   background-color: rgb(246 249 255 / var(--tw-bg-opacity));
+}
+
+.bg-strong-pink {
+  --tw-bg-opacity: 1;
+  background-color: rgb(173 59 111 / var(--tw-bg-opacity));
 }
 
 .bg-white {

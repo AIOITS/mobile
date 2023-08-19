@@ -1,8 +1,7 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
-import { Button } from '@rneui/themed';
 import BoxInputField from '../../components/Input/BoxInputField';
 import { useNavigation } from '@react-navigation/native';
 import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';

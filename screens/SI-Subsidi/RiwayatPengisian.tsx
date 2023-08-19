@@ -7,6 +7,8 @@ import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigatio
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import TextInputField from '../../components/Input/TextInputField';
 import { Icon } from '@rneui/themed';
+import InfoPengisianBox from '../../components/Box/InfoPengisianBox';
+import SearchBar from '../../components/Input/SearchBar';
 
 const RiwayatPengisian = () => {
   const tw = useTailwind();
@@ -42,63 +44,29 @@ const RiwayatPengisian = () => {
       {/* info end */}
 
       {/* search start */}
-      <View>
-        <View style={tw('flex flex-row justify-center items-center')}>
-          <View style={tw('absolute z-10 left-3')}>
-            <Icon
-              name={'search'}
-              type="feather"
-              size={25}
-              color="gray"
-            />
-          </View>
-          <TextInput
-            placeholder="Cari data pengisian"
-            style={tw(
-              'bg-secondary-white border-2 flex-1 border-disable py-2 rounded-lg px-4 pl-12 text-base',
-            )}
-          />
-          <View style={tw('ml-3')}>
-            <Icon
-              name={'filter'}
-              type="font-awesome-5"
-              size={25}
-              color="#00A0F3"
-            />
-          </View>
-        </View>
-      </View>
+      <SearchBar filter />
       {/* search end */}
 
       {/* riwayat start */}
       <View
         style={[tw('flex flex-col items-start justify-center'), { gap: 5 }]}>
-        <View
-          style={[[tw('flex flex-col items-start justify-start'), { gap: 3 }]]}>
-          <Text style={tw('text-lg text-cape-storm font-semibold')}>
-            Oktober
-          </Text>
-          <View
-            style={[
-              tw('flex flex-row items-center justify-start w-full'),
-              { gap: 8 },
-            ]}>
-            <Text
-              style={tw(
-                'bg-primary-light-blue text-xs rounded-md p-1 text-white font-light',
-              )}>
-              Non Subsidi
-            </Text>
-            <InfoBlockDisplay
-              title="SPBU Surabaya Soetomo"
-              subTitle="10 Oktober 2022"
-              titleStyle="text-cape-storm text-base"
-              subTitleStyle="text-cape-storm text-xs font-normal"
-              gap={1}
-            />
-            <Text style={tw('text-lg text-right flex-1')}>1.9 L</Text>
-          </View>
-        </View>
+        <InfoPengisianBox
+          month="Oktober"
+          data={[
+            {
+              title: 'SPBU Surabaya Soetomo',
+              date: '10 Oktober 2022',
+              volume: '1.9L',
+              subsidi: true,
+            },
+            {
+              title: 'SPBU Surabaya Soetomo',
+              date: '10 Oktober 2022',
+              volume: '1.9L',
+              subsidi: false,
+            },
+          ]}
+        />
       </View>
       {/* riwayat end */}
     </BackgroundLargeHeader>

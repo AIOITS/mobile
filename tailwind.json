@@ -180,6 +180,11 @@
       "height": 96
     }
   },
+  "w-fit": {
+    "style": {
+      "width": "fit-content"
+    }
+  },
   "w-full": {
     "style": {
       "width": "100%"
@@ -364,6 +369,12 @@
     "style": {
       "--tw-bg-opacity": 1,
       "backgroundColor": "rgb(246 249 255 / var(--tw-bg-opacity))"
+    }
+  },
+  "bg-strong-pink": {
+    "style": {
+      "--tw-bg-opacity": 1,
+      "backgroundColor": "rgb(173 59 111 / var(--tw-bg-opacity))"
     }
   },
   "bg-white": {
