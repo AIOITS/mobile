@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
-import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
 import { useNavigation } from '@react-navigation/native';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
@@ -23,10 +23,9 @@ const DetailRiwayatPengajuan = () => {
   };
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       header="Riwayat Pengajuan"
       subHeader="Pengajuan Subsidi yang telah dilakukan"
-      backgroundImageSource={require('../../assets/bg/bg-medium.png')}
       backButton
       main
       onBackClick={() => navigation.goBack()}
@@ -88,7 +87,7 @@ const DetailRiwayatPengajuan = () => {
         </View>
         {/* dokumen end */}
       </View>
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 

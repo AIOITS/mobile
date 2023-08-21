@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
-import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
 import { BottomTabNavProp } from '../../navigator/Menu/Menu';
 import SISubsidi from '../../assets/menu/si-subsidi.svg';
@@ -27,11 +27,10 @@ const NotifyScreen = () => {
   const navigation = useNavigation<BottomTabNavProp>();
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       main
       header="Notifikasi"
       subHeader="Pemberitahuan menunggumu"
-      backgroundImageSource={require('../../assets/bg/bg-medium.png')}
       backButton
       onBackClick={() => navigation.goBack()}>
       <View style={[tw('flex flex-col'), { gap: 10 }]}>
@@ -73,7 +72,7 @@ const NotifyScreen = () => {
           <Text>Tidak ada notifikasi</Text>
         )}
       </View>
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 

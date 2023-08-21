@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
 import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';
-import BackgroundLargeHeader from '../BackgroundLargeHeader';
+import BackgroundWithHeader from '../BackgroundWithHeader';
 import TextInputField from '../Input/TextInputField';
 import { Button, Divider } from '@rneui/themed';
 import { AuthScreenParamList } from '../../navigator/RootNavigator';
@@ -39,10 +39,9 @@ const AuthComponent = ({
   const isPhoneActive = route.name === navigateToTwo;
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       header={header}
-      subHeader={subHeader}
-      backgroundImageSource={require('../../assets/bg/bg-large.png')}>
+      subHeader={subHeader}>
       {/* navigation start */}
       <View
         style={tw(
@@ -146,7 +145,7 @@ const AuthComponent = ({
         )}
       </View>
       {/* button end */}
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 

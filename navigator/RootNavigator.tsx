@@ -100,7 +100,7 @@ export type ActivatedScreenParamList =
   | 'ValidateComplete';
 
 const RootNavigator = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
     <RootStack.Navigator>

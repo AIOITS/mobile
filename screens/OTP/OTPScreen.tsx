@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
-import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import BoxInputField from '../../components/Input/BoxInputField';
 import { useNavigation } from '@react-navigation/native';
 import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';
@@ -12,12 +12,11 @@ const OTPScreen = () => {
   const navigation = useNavigation<RegisNavigationProps>();
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       backButton
       onBackClick={() => navigation.goBack()}
       header="OTP"
-      subHeader="Silahkan masukkan kode OTP yang telah dikirimkan"
-      backgroundImageSource={require('../../assets/bg/bg-medium-2.png')}>
+      subHeader="Silahkan masukkan kode OTP yang telah dikirimkan">
       <View style={tw('flex flex-col my-auto')}>
         {/* sending start */}
         <View style={tw('items-center mb-7')}>
@@ -59,7 +58,7 @@ const OTPScreen = () => {
         />
       </View>
       {/* button end */}
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 

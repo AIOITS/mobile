@@ -1,7 +1,7 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
-import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
 import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
 import { Icon } from '@rneui/themed';
@@ -13,14 +13,13 @@ const AjukanSubsidi = () => {
   const navigation = useNavigation<SubsidiNavigationProps>();
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       header="Ajukan Subsidi"
       subHeader="Isi data untuk pengajuan penambahan subsidi"
       main
       bell
       backButton
-      onBackClick={() => navigation.goBack()}
-      backgroundImageSource={require('../../assets/bg/bg-medium.png')}>
+      onBackClick={() => navigation.goBack()}>
       {/* text start */}
       <Text style={tw('text-disable text-sm')}>
         Dokumen pengajuan dapat berupa Surat Keterangan Tidak Mampu, atau
@@ -78,7 +77,7 @@ const AjukanSubsidi = () => {
         />
       </View>
       {/* button end */}
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 

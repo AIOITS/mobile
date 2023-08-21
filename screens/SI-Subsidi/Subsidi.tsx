@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
-import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import ButtonBlueComponent from '../../components/Button/ButtonBlueComponent';
 import ButtonOutlineComponent from '../../components/Button/ButtonOutlineComponent';
 import { useTailwind } from 'tailwind-rn';
@@ -14,14 +14,13 @@ const Subsidi = () => {
   const navigation = useNavigation<SubsidiNavigationProps>();
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       header="Si Subsidi"
       backButton
       onBackClick={() => navigation.goBack()}
       main
       bell
-      subHeader="Pengelolaan subsidi tepat guna"
-      backgroundImageSource={require('../../assets/bg/bg-medium.png')}>
+      subHeader="Pengelolaan subsidi tepat guna">
       {/* button start */}
       <View
         style={[tw('flex flex-row items-stretch justify-between'), { gap: 5 }]}>
@@ -61,7 +60,7 @@ const Subsidi = () => {
         </CardElevation>
       </View>
       {/* riwayat end */}
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 

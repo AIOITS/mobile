@@ -13,10 +13,9 @@ import { Icon } from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { NotifyNavigationProps } from '../navigator/Menu/Menu';
 
-interface BackgroundLargeHeaderProps {
+interface BackgroundWithHeaderProps {
   header: string;
   subHeader: string;
-  backgroundImageSource: any;
   children: ReactNode;
   backButton?: boolean;
   reverseHeader?: boolean;
@@ -25,17 +24,16 @@ interface BackgroundLargeHeaderProps {
   onBackClick?: () => void;
 }
 
-const BackgroundLargeHeader = ({
+const BackgroundWithHeader = ({
   header,
   subHeader,
-  backgroundImageSource,
   children,
   backButton,
   reverseHeader,
   main,
   bell,
   onBackClick,
-}: BackgroundLargeHeaderProps) => {
+}: BackgroundWithHeaderProps) => {
   const tw = useTailwind();
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
   const navigation = useNavigation<NotifyNavigationProps>();
@@ -44,13 +42,18 @@ const BackgroundLargeHeader = ({
   return (
     <ScrollView style={tw('bg-white flex-1')}>
       <ImageBackground
-        source={backgroundImageSource}
+        source={
+          main
+            ? require('../assets/bg/bg-medium.png')
+            : require('../assets/bg/bg-large.png')
+        }
         style={[
           { position: 'absolute', zIndex: -1, width: screenWidth, height: 728 },
         ]}
         imageStyle={{
           resizeMode: 'cover',
-        }}></ImageBackground>
+        }}
+      />
       <View
         style={[
           tw('mx-3 pt-8 flex-1 flex flex-col justify-start items-stretch'),
@@ -121,4 +124,4 @@ const BackgroundLargeHeader = ({
   );
 };
 
-export default BackgroundLargeHeader;
+export default BackgroundWithHeader;

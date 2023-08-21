@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useTailwind } from 'tailwind-rn';
 import SiIdentitasSVG from '../../assets/menu/si-identitas.svg';
 import SITilangSVG from '../../assets/menu/si-tilang.svg';
@@ -18,12 +18,11 @@ const ServiceScreen = () => {
   const tw = useTailwind();
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       header="Layanan"
       subHeader="Pilih layanan yang ingin digunakan"
       bell
-      main
-      backgroundImageSource={require('../../assets/bg/bg-medium.png')}>
+      main>
       <View
         style={[
           tw('flex flex-row items-center flex-wrap justify-start'),
@@ -80,7 +79,7 @@ const ServiceScreen = () => {
           <SILakaSVG width={48} />
         </MenuCard>
       </View>
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 

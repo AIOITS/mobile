@@ -1,7 +1,7 @@
 import { View, Text, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
-import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
 import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
@@ -16,14 +16,13 @@ const RiwayatPengisian = () => {
   const [search, setSearch] = useState<string>('');
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       header="Riwayat Pengisian"
       backButton
       onBackClick={() => navigation.goBack()}
       bell
       main
-      subHeader="Riwayat Pengisian BBM"
-      backgroundImageSource={require('../../assets/bg/bg-medium.png')}>
+      subHeader="Riwayat Pengisian BBM">
       {/* info start */}
       <View style={tw('flex flex-row justify-between items-center')}>
         <InfoBlockDisplay
@@ -79,7 +78,7 @@ const RiwayatPengisian = () => {
         />
       </View>
       {/* riwayat end */}
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 

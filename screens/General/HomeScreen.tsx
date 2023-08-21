@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
 import React from 'react';
-import BackgroundLargeHeader from '../../components/BackgroundLargeHeader';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useTailwind } from 'tailwind-rn';
 import VehicleCard from '../../components/Card/VehicleCard';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
@@ -19,13 +19,12 @@ const HomeScreen = () => {
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
   return (
-    <BackgroundLargeHeader
+    <BackgroundWithHeader
       header="Selamat Datang"
       subHeader="Tiara Asa"
       main
       bell
-      reverseHeader
-      backgroundImageSource={require('../../assets/bg/bg-medium.png')}>
+      reverseHeader>
       {/* kendaraan start */}
       <ScrollView horizontal={true}>
         <View style={[tw('flex flex-row'), { gap: 10 }]}>
@@ -145,7 +144,7 @@ const HomeScreen = () => {
         </View>
       </View>
       {/* lalu lintas end */}
-    </BackgroundLargeHeader>
+    </BackgroundWithHeader>
   );
 };
 
