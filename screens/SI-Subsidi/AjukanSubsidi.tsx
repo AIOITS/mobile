@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
 import { Icon } from '@rneui/themed';
 import ButtonBlueComponent from '../../components/Button/ButtonBlueComponent';
+import ButtonIcon from '../../components/Button/ButtonIcon';
 
 const AjukanSubsidi = () => {
   const tw = useTailwind();
@@ -58,19 +59,14 @@ const AjukanSubsidi = () => {
       {/* dokumen start */}
       <View style={[tw('flex flex-col'), { gap: 8 }]}>
         <Text style={tw('text-cape-storm')}>Dokumen pendukung</Text>
-        <TouchableOpacity
-          style={[tw('bg-secondary-white px-4 py-3 rounded-lg')]}>
-          <View
-            style={[tw('flex flex-row items-start justify-start'), { gap: 5 }]}>
-            <Icon
-              name={'upload'}
-              type="font-awesome"
-              size={25}
-              color="#00A0F3"
-            />
-            <Text>Tambahkan file</Text>
-          </View>
-        </TouchableOpacity>
+        <ButtonIcon titleButton="Tambahkan file">
+          <Icon
+            name={'upload'}
+            type="font-awesome"
+            size={25}
+            color="#00A0F3"
+          />
+        </ButtonIcon>
       </View>
       {/* dokumen end */}
 

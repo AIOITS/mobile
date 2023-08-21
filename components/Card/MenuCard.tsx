@@ -4,6 +4,7 @@ import { useTailwind } from 'tailwind-rn';
 import { useNavigation } from '@react-navigation/native';
 import { MenuScreenNavigationProp } from '../../navigator/Menu/Menu';
 import { MenuScreenParamList } from '../../navigator/RootNavigator';
+import CardElevation from './CardElevation';
 
 interface Props {
   title: string;
@@ -24,17 +25,11 @@ const MenuCard = ({ title, children, navigateTo }: Props) => {
           gap: 5,
         },
       ]}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate(navigateTo)}
-        style={[
-          tw('px-2 py-3 bg-white rounded-lg'),
-          {
-            shadowColor: '#171717',
-            elevation: 1.5,
-          },
-        ]}>
+      <CardElevation
+        onCardClick={() => navigation.navigate(navigateTo)}
+        cardStyle="px-2 py-3">
         {children}
-      </TouchableOpacity>
+      </CardElevation>
       <Text
         style={tw(
           'text-center font-semibold text-cape-storm text-xs uppercase',

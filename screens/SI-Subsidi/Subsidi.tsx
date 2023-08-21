@@ -7,6 +7,7 @@ import { useTailwind } from 'tailwind-rn';
 import MotorcycleSVG from '../../assets/motorcycle.svg';
 import { useNavigation } from '@react-navigation/native';
 import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
+import CardElevation from '../../components/Card/CardElevation';
 
 const Subsidi = () => {
   const tw = useTailwind();
@@ -26,7 +27,7 @@ const Subsidi = () => {
         style={[tw('flex flex-row items-stretch justify-between'), { gap: 5 }]}>
         <ButtonOutlineComponent
           buttonTitle="Riwayat Ajuan"
-          onNavigationClick={() => navigation.navigate('Subsidi')}
+          onNavigationClick={() => navigation.navigate('RiwayatPengajuan')}
           width={'px-7'}
           height={'py-3'}
         />
@@ -41,13 +42,9 @@ const Subsidi = () => {
 
       {/* riwayat start */}
       <View style={tw('flex flex-col justify-center items-stretch')}>
-        <TouchableOpacity
-          style={[
-            tw(
-              'flex flex-row justify-between items-stretch w-full px-3 py-4 bg-white rounded-lg',
-            ),
-            { elevation: 2, shadowColor: '#171717' },
-          ]}>
+        <CardElevation
+          cardStyle="flex flex-row justify-between items-stretch w-full px-3 py-4"
+          elevation={2}>
           <MotorcycleSVG height={100} />
           <View style={[tw('flex flex-col justify-center'), { gap: 5 }]}>
             <Text style={tw('text-disable text-xs')}>Honda Vario 125</Text>
@@ -61,7 +58,7 @@ const Subsidi = () => {
               height={'py-2.5'}
             />
           </View>
-        </TouchableOpacity>
+        </CardElevation>
       </View>
       {/* riwayat end */}
     </BackgroundLargeHeader>

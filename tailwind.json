@@ -378,12 +378,26 @@
       "backgroundColor": "rgb(255 255 255 / var(--tw-bg-opacity))"
     }
   },
+  "bg-light-green": {
+    "style": {
+      "--tw-bg-opacity": 1,
+      "backgroundColor": "rgb(0 181 149 / var(--tw-bg-opacity))"
+    }
+  },
   "p-1": {
     "style": {
       "paddingTop": 4,
       "paddingRight": 4,
       "paddingBottom": 4,
       "paddingLeft": 4
+    }
+  },
+  "p-3": {
+    "style": {
+      "paddingTop": 12,
+      "paddingRight": 12,
+      "paddingBottom": 12,
+      "paddingLeft": 12
     }
   },
   "p-5": {
@@ -446,6 +460,12 @@
     "style": {
       "paddingTop": 16,
       "paddingBottom": 16
+    }
+  },
+  "px-1": {
+    "style": {
+      "paddingLeft": 4,
+      "paddingRight": 4
     }
   },
   "pl-12": {
@@ -522,6 +542,11 @@
   "font-semibold": {
     "style": {
       "fontWeight": "600"
+    }
+  },
+  "font-medium": {
+    "style": {
+      "fontWeight": "500"
     }
   },
   "uppercase": {

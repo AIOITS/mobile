@@ -13,6 +13,8 @@ import Subsidi from '../screens/SI-Subsidi/Subsidi';
 import RiwayatPengisian from '../screens/SI-Subsidi/RiwayatPengisian';
 import AjukanSubsidi from '../screens/SI-Subsidi/AjukanSubsidi';
 import SuccessAjukanSubsidi from '../screens/SI-Subsidi/SuccessAjukanSubsidi';
+import RiwayatPengajuan from '../screens/SI-Subsidi/RiwayatPengajuan';
+import DetailRiwayatPengajuan from '../screens/SI-Subsidi/DetailRiwayatPengajuan';
 
 const RootStack = createNativeStackNavigator();
 
@@ -177,6 +179,14 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="SuccessAjukanSubsidi"
           component={SuccessAjukanSubsidi}
+        />
+        <RootStack.Screen
+          name="RiwayatPengajuan"
+          component={RiwayatPengajuan}
+        />
+        <RootStack.Screen
+          name="DetailRiwayatPengajuan"
+          component={DetailRiwayatPengajuan}
         />
       </RootStack.Group>
     </RootStack.Navigator>
