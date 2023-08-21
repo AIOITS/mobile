@@ -16,6 +16,8 @@ import SuccessAjukanSubsidi from '../screens/SI-Subsidi/SuccessAjukanSubsidi';
 import RiwayatPengajuan from '../screens/SI-Subsidi/RiwayatPengajuan';
 import DetailRiwayatPengajuan from '../screens/SI-Subsidi/DetailRiwayatPengajuan';
 import NotifyScreen from '../screens/Notif/NotifyScreen';
+import Identitas from '../screens/SI-Identitas/Identitas';
+import DetailSim from '../screens/SI-Identitas/DetailSim';
 
 const RootStack = createNativeStackNavigator();
 
@@ -50,6 +52,11 @@ export type SubsidiStackParamList = {
   SuccessAjukanSubsidi: undefined;
   RiwayatPengajuan: undefined;
   DetailRiwayatPengajuan: undefined;
+};
+
+export type IdentitasStackParamList = {
+  Identitas: undefined;
+  DetailSim: undefined;
 };
 
 export type MenuParamList = {
@@ -100,7 +107,7 @@ export type ActivatedScreenParamList =
   | 'ValidateComplete';
 
 const RootNavigator = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
 
   return (
     <RootStack.Navigator>
@@ -200,6 +207,18 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="Notification"
           component={NotifyScreen}
+        />
+      </RootStack.Group>
+
+      {/* for si-identitas */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Identitas"
+          component={Identitas}
+        />
+        <RootStack.Screen
+          name="DetailSim"
+          component={DetailSim}
         />
       </RootStack.Group>
     </RootStack.Navigator>
