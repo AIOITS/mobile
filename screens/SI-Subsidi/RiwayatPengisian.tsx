@@ -8,7 +8,7 @@ import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import TextInputField from '../../components/Input/TextInputField';
 import { Icon } from '@rneui/themed';
 import InfoPengisianBox from '../../components/Box/InfoPengisianBox';
-import SearchBar from '../../components/Input/SearchBar';
+import IconTextInputField from '../../components/Input/IconTextInputField';
 
 const RiwayatPengisian = () => {
   const tw = useTailwind();
@@ -44,7 +44,17 @@ const RiwayatPengisian = () => {
       {/* info end */}
 
       {/* search start */}
-      <SearchBar filter />
+      <IconTextInputField
+        placeholderStyle="text-base"
+        filter
+        placeholder="Cari data pengisian">
+        <Icon
+          name={'search'}
+          type="feather"
+          size={25}
+          color="gray"
+        />
+      </IconTextInputField>
       {/* search end */}
 
       {/* riwayat start */}

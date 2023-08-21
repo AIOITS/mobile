@@ -180,11 +180,6 @@
       "height": 96
     }
   },
-  "w-fit": {
-    "style": {
-      "width": "fit-content"
-    }
-  },
   "w-full": {
     "style": {
       "width": "100%"

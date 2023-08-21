@@ -21,6 +21,13 @@ export type TabStackParamList = {
   Setting: undefined;
 };
 
+export type TabScreenParamList =
+  | 'Home'
+  | 'Service'
+  | 'Emergency'
+  | 'Help'
+  | 'Setting';
+
 const Tab = createBottomTabNavigator<TabStackParamList>();
 
 const BottomNavigator = () => {

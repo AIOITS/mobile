@@ -11,6 +11,8 @@ import NotActivated from '../screens/Aktivasi/NotActivated';
 import BottomNavigator from './BottomNavigator';
 import Subsidi from '../screens/SI-Subsidi/Subsidi';
 import RiwayatPengisian from '../screens/SI-Subsidi/RiwayatPengisian';
+import AjukanSubsidi from '../screens/SI-Subsidi/AjukanSubsidi';
+import SuccessAjukanSubsidi from '../screens/SI-Subsidi/SuccessAjukanSubsidi';
 
 const RootStack = createNativeStackNavigator();
 
@@ -167,6 +169,14 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="RiwayatPengisian"
           component={RiwayatPengisian}
+        />
+        <RootStack.Screen
+          name="AjukanSubsidi"
+          component={AjukanSubsidi}
+        />
+        <RootStack.Screen
+          name="SuccessAjukanSubsidi"
+          component={SuccessAjukanSubsidi}
         />
       </RootStack.Group>
     </RootStack.Navigator>

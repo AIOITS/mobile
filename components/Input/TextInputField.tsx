@@ -9,6 +9,7 @@ type Props = {
   value: string;
   onChangeValue: (text: string) => void;
   isPassword?: boolean;
+  gap?: number;
 };
 
 const TextInputField = ({
@@ -16,13 +17,14 @@ const TextInputField = ({
   placeholder,
   value,
   onChangeValue,
+  gap,
   isPassword,
 }: Props) => {
   const tw = useTailwind();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
-    <View style={tw('my-2')}>
+    <View style={[tw('my-2'), { gap: gap ? gap : 0 }]}>
       <Text style={tw('mb-2')}>{label}</Text>
       {isPassword ? (
         <View style={tw('flex flex-row justify-center items-center')}>

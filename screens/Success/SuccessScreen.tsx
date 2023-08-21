@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon } from '@rneui/themed';
+import { Icon } from '@rneui/themed';
 import ConfirmMessage from '../../components/Info/ConfirmMessage';
 import { useNavigation } from '@react-navigation/native';
 import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';
