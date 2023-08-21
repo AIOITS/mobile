@@ -23,6 +23,7 @@ const HomeScreen = () => {
       header="Selamat Datang"
       subHeader="Tiara Asa"
       main
+      bell
       reverseHeader
       backgroundImageSource={require('../../assets/bg/bg-medium.png')}>
       {/* kendaraan start */}

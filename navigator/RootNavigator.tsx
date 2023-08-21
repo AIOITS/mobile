@@ -15,6 +15,7 @@ import AjukanSubsidi from '../screens/SI-Subsidi/AjukanSubsidi';
 import SuccessAjukanSubsidi from '../screens/SI-Subsidi/SuccessAjukanSubsidi';
 import RiwayatPengajuan from '../screens/SI-Subsidi/RiwayatPengajuan';
 import DetailRiwayatPengajuan from '../screens/SI-Subsidi/DetailRiwayatPengajuan';
+import NotifyScreen from '../screens/Notif/NotifyScreen';
 
 const RootStack = createNativeStackNavigator();
 
@@ -26,6 +27,10 @@ export type AuthStackParamList = {
   LoginByEmail: undefined;
   LoginByPhone: undefined;
   NotActivated: undefined;
+};
+
+export type NotifyStackParamList = {
+  Notification: undefined;
 };
 
 export type ActivateStackParamList = {
@@ -187,6 +192,14 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="DetailRiwayatPengajuan"
           component={DetailRiwayatPengajuan}
+        />
+      </RootStack.Group>
+
+      {/* for notif */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Notification"
+          component={NotifyScreen}
         />
       </RootStack.Group>
     </RootStack.Navigator>
