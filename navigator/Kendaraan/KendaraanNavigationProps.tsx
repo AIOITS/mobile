@@ -11,3 +11,8 @@ export type ConfirmPinjamSTNKRouteProp = RouteProp<
   KendaraanStackParamList,
   'ConfirmPinjamSTNK'
 >;
+
+export type DetailRiwayatSTNKRouteProp = RouteProp<
+  KendaraanStackParamList,
+  'DetailRiwayatSTNK'
+>;

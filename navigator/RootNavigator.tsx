@@ -25,6 +25,8 @@ import SuccessTambahSTNK from '../screens/SI-Kendaraan/TambahSTNK/SuccessTambahS
 import PinjamkanSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/PinjamkanSTNK';
 import ConfirmPinjamSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/ConfirmPinjamSTNK';
 import SuccessPinjamSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/SuccessPinjamSTNK';
+import RiwayatPinjamSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/RiwayatPinjamSTNK';
+import DetailRiwayatSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/DetailRiwayatSTNK';
 
 const RootStack = createNativeStackNavigator();
 
@@ -173,6 +175,14 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="SuccessPinjamSTNK"
           component={SuccessPinjamSTNK}
+        />
+        <RootStack.Screen
+          name="RiwayatPinjamSTNK"
+          component={RiwayatPinjamSTNK}
+        />
+        <RootStack.Screen
+          name="DetailRiwayatSTNK"
+          component={DetailRiwayatSTNK}
         />
       </RootStack.Group>
     </RootStack.Navigator>

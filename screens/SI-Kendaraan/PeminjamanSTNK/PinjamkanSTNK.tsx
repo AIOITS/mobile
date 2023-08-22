@@ -6,10 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { KendaraanNavigationProps } from '../../../navigator/Kendaraan/KendaraanNavigationProps';
 import HistorySVG from '../../../assets/kartu/history.svg';
 import ButtonBlueWithIcon from '../../../components/Button/ButtonBlueWithIcon';
-import VehicleCard from '../../../components/Card/VehicleCard';
-import CardElevation from '../../../components/Card/CardElevation';
-import PersonSVG from '../../../assets/person.svg';
-import InfoBlockDisplay from '../../../components/Info/InfoBlockDisplay';
+import PinjamSTNKContent from '../../../components/Kendaraan/PinjamSTNKContent';
 
 const data = [
   {
@@ -21,11 +18,29 @@ const data = [
         nama: 'nurul sofia',
         alamat:
           'Jl. Teknik Kimia, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60111',
+        status: 0,
+        pengajuan: '08:00 11 Oktober 2022',
       },
       {
         nama: 'Fernando Sibarani',
         alamat:
           'Jl. Teknik Kimia, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60111',
+        status: 0,
+        pengajuan: '08:00 11 Oktober 2022',
+      },
+      {
+        nama: 'Fernando Sibarani',
+        alamat:
+          'Jl. Teknik Kimia, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60111',
+        status: 1,
+        pengajuan: '08:00 11 Oktober 2022',
+      },
+      {
+        nama: 'Fernando Sibarani',
+        alamat:
+          'Jl. Teknik Kimia, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60111',
+        status: 2,
+        pengajuan: '08:00 11 Oktober 2022',
       },
     ],
   },
@@ -61,75 +76,7 @@ const PinjamkanSTNK = () => {
       </View>
       {/* riwayat button end */}
 
-      {/* list kendaraan start */}
-      <ScrollView
-        horizontal={true}
-        style={{ maxHeight: 100 }}>
-        <View style={[tw('flex flex-row'), { gap: 10 }]}>
-          {data.map((item, index) => (
-            <VehicleCard
-              key={index}
-              selected={selected === index}
-              onSelected={() => setSelected(index)}
-              vehicleName={item.kendaraan}
-              engineSpec={item.mesin}
-              reminderTitle="Status Pajak"
-              reminderDate={item.pajak ? 'Lunas' : 'Belum Lunas'}
-            />
-          ))}
-        </View>
-      </ScrollView>
-      {/* list kendaraan end */}
-
-      {/* list peminjam start */}
-      {data[selected].peminjam.length > 0 ? (
-        <View style={[tw('flex flex-col mb-10'), { gap: 13 }]}>
-          <Text style={tw('font-semibold')}>Menunggu Persetujuan</Text>
-
-          {/* card start */}
-          {data[selected].peminjam.map((peminjam, index) => (
-            <CardElevation
-              onCardClick={() =>
-                navigation.navigate('ConfirmPinjamSTNK', {
-                  nama: peminjam.nama,
-                  alamat: peminjam.alamat,
-                })
-              }
-              key={index}
-              cardStyle="py-3">
-              <View style={[tw('flex flex-row px-3'), { gap: 15 }]}>
-                <PersonSVG width={70} />
-                <View
-                  style={[
-                    tw('flex flex-col w-fit'),
-                    { gap: 5, maxWidth: '75%' },
-                  ]}>
-                  <InfoBlockDisplay
-                    title="Nama"
-                    subTitle={peminjam.nama}
-                    titleStyle="text-xs text-disable"
-                    subTitleStyle="text-sm text-cape-storm capitalize"
-                    gap={2}
-                  />
-                  <InfoBlockDisplay
-                    title="Alamat"
-                    subTitle={peminjam.alamat}
-                    titleStyle="text-xs text-disable"
-                    subTitleStyle="text-sm text-cape-storm capitalize max-w-full"
-                    gap={2}
-                  />
-                </View>
-              </View>
-            </CardElevation>
-          ))}
-          {/* card end */}
-        </View>
-      ) : (
-        <Text style={tw('text-center text-disable font-bold')}>
-          Belum ada yang melakukan peminjaman pada kendaraan ini
-        </Text>
-      )}
-      {/* list peminjam end */}
+      <PinjamSTNKContent data={data} />
     </BackgroundWithHeader>
   );
 };

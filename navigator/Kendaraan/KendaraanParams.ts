@@ -12,6 +12,13 @@ export type KendaraanStackParamList = {
     alamat: string;
   };
   SuccessPinjamSTNK: undefined;
+  DetailRiwayatSTNK: {
+    nama: string;
+    alamat: string;
+    mesin: string;
+    pengajuan: string;
+    status: number;
+  };
 };
 
 export type KendaraanScreenParamList =
@@ -24,4 +31,5 @@ export type KendaraanScreenParamList =
   | 'PinjamkanSTNK'
   | 'RiwayatPinjamSTNK'
   | 'ConfirmPinjamSTNK'
-  | 'SuccessPinjamSTNK';
+  | 'SuccessPinjamSTNK'
+  | 'DetailRiwayatSTNK';
