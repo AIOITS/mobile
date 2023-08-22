@@ -5,7 +5,7 @@ import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import BoxInputField from '../../components/Input/BoxInputField';
 import { useNavigation } from '@react-navigation/native';
 import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';
-import ButtonBlueComponent from '../../components/Button/ButtonBlueComponent';
+import ButtonComponent from '../../components/Button/ButtonComponent';
 
 const OTPScreen = () => {
   const tw = useTailwind();
@@ -52,7 +52,7 @@ const OTPScreen = () => {
 
       {/* button start */}
       <View style={tw('bottom-0 left-0 absolute right-0')}>
-        <ButtonBlueComponent
+        <ButtonComponent
           buttonTitle="Lanjutkan"
           onNavigationClick={() => navigation.navigate('RegisterSuccess')}
         />

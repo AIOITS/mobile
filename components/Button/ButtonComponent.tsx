@@ -8,14 +8,16 @@ interface Props {
   height?: number | string;
   buttonStyle?: string;
   onNavigationClick: () => void;
+  color?: string;
 }
 
-const ButtonBlueComponent = ({
+const ButtonComponent = ({
   buttonTitle,
   width,
   height,
   onNavigationClick,
   buttonStyle,
+  color,
 }: Props) => {
   const tw = useTailwind();
 
@@ -25,13 +27,13 @@ const ButtonBlueComponent = ({
       title={buttonTitle}
       buttonStyle={[
         tw(
-          `bg-primary-light-blue rounded-lg ${height ? height : 'py-2'} ${
-            width ? width : ''
-          } ${buttonStyle ? buttonStyle : ''}`,
+          `${color ? color : 'bg-primary-light-blue'} rounded-lg ${
+            height ? height : 'py-2'
+          } ${width ? width : ''} ${buttonStyle ? buttonStyle : ''}`,
         ),
       ]}
     />
   );
 };
 
-export default ButtonBlueComponent;
+export default ButtonComponent;

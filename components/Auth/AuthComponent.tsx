@@ -7,7 +7,7 @@ import BackgroundWithHeader from '../BackgroundWithHeader';
 import TextInputField from '../Input/TextInputField';
 import { Button, Divider } from '@rneui/themed';
 import { AuthScreenParamList } from '../../navigator/Auth/RegisParams';
-import ButtonBlueComponent from '../Button/ButtonBlueComponent';
+import ButtonComponent from '../Button/ButtonComponent';
 import ButtonOutlineComponent from '../Button/ButtonOutlineComponent';
 
 interface AuthComponentProps {
@@ -106,12 +106,12 @@ const AuthComponent = ({
       <View style={tw('flex bottom-0 absolute left-0 right-0 flex-col')}>
         {/* button bottom */}
         {register ? (
-          <ButtonBlueComponent
+          <ButtonComponent
             onNavigationClick={() => navigation.navigate('OTP')}
             buttonTitle="Buat Akun"
           />
         ) : (
-          <ButtonBlueComponent
+          <ButtonComponent
             onNavigationClick={() => navigation.navigate('NotActivated')}
             buttonTitle="Masuk"
           />

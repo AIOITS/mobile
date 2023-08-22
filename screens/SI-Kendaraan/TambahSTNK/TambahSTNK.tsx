@@ -5,7 +5,7 @@ import BackgroundWithHeader from '../../../components/BackgroundWithHeader';
 import IconTextInputField from '../../../components/Input/IconTextInputField';
 import { Icon } from '@rneui/themed';
 import TextInputField from '../../../components/Input/TextInputField';
-import ButtonBlueComponent from '../../../components/Button/ButtonBlueComponent';
+import ButtonComponent from '../../../components/Button/ButtonComponent';
 import { useNavigation } from '@react-navigation/native';
 import { KendaraanNavigationProps } from '../../../navigator/Kendaraan/KendaraanNavigationProps';
 
@@ -50,7 +50,7 @@ const TambahSTNK = () => {
 
       {/* button start */}
       <View style={tw('bottom-0 left-0 absolute right-0')}>
-        <ButtonBlueComponent
+        <ButtonComponent
           buttonTitle="Lanjutkan"
           onNavigationClick={() => navigation.navigate('SuccessTambahSTNK')}
         />

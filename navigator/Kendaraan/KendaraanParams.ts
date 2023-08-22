@@ -7,6 +7,11 @@ export type KendaraanStackParamList = {
   SuccessTambahSTNK: undefined;
   PinjamkanSTNK: undefined;
   RiwayatPinjamSTNK: undefined;
+  ConfirmPinjamSTNK: {
+    nama: string;
+    alamat: string;
+  };
+  SuccessPinjamSTNK: undefined;
 };
 
 export type KendaraanScreenParamList =
@@ -17,4 +22,6 @@ export type KendaraanScreenParamList =
   | 'TambahSTNK'
   | 'SuccessTambahSTNK'
   | 'PinjamkanSTNK'
-  | 'RiwayatPinjamSTNK';
+  | 'RiwayatPinjamSTNK'
+  | 'ConfirmPinjamSTNK'
+  | 'SuccessPinjamSTNK';

@@ -85,8 +85,16 @@ const PinjamkanSTNK = () => {
       {data[selected].peminjam.length > 0 ? (
         <View style={[tw('flex flex-col mb-10'), { gap: 13 }]}>
           <Text style={tw('font-semibold')}>Menunggu Persetujuan</Text>
+
+          {/* card start */}
           {data[selected].peminjam.map((peminjam, index) => (
             <CardElevation
+              onCardClick={() =>
+                navigation.navigate('ConfirmPinjamSTNK', {
+                  nama: peminjam.nama,
+                  alamat: peminjam.alamat,
+                })
+              }
               key={index}
               cardStyle="py-3">
               <View style={[tw('flex flex-row px-3'), { gap: 15 }]}>
@@ -114,6 +122,7 @@ const PinjamkanSTNK = () => {
               </View>
             </CardElevation>
           ))}
+          {/* card end */}
         </View>
       ) : (
         <Text style={tw('text-center text-disable font-bold')}>

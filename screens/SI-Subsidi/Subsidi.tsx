@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
-import ButtonBlueComponent from '../../components/Button/ButtonBlueComponent';
+import ButtonComponent from '../../components/Button/ButtonComponent';
 import ButtonOutlineComponent from '../../components/Button/ButtonOutlineComponent';
 import { useTailwind } from 'tailwind-rn';
 import MotorcycleSVG from '../../assets/motorcycle.svg';
@@ -30,7 +30,7 @@ const Subsidi = () => {
           width={'px-7'}
           height={'py-3'}
         />
-        <ButtonBlueComponent
+        <ButtonComponent
           buttonTitle="Ajukan Subsidi"
           width={'px-7'}
           height={'py-3.5'}

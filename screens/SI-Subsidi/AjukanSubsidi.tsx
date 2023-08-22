@@ -5,7 +5,7 @@ import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
 import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
 import { Icon } from '@rneui/themed';
-import ButtonBlueComponent from '../../components/Button/ButtonBlueComponent';
+import ButtonComponent from '../../components/Button/ButtonComponent';
 import ButtonIcon from '../../components/Button/ButtonIcon';
 
 const AjukanSubsidi = () => {
@@ -71,7 +71,7 @@ const AjukanSubsidi = () => {
 
       {/* button start */}
       <View style={tw('absolute bottom-0 right-0 left-0')}>
-        <ButtonBlueComponent
+        <ButtonComponent
           buttonTitle="Ajukan"
           onNavigationClick={() => navigation.navigate('SuccessAjukanSubsidi')}
         />

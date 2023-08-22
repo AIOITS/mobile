@@ -6,7 +6,7 @@ import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import TableField from '../../components/Table/TableField';
 import { Divider } from '@rneui/themed';
 import ButtonOutlineComponent from '../../components/Button/ButtonOutlineComponent';
-import ButtonBlueComponent from '../../components/Button/ButtonBlueComponent';
+import ButtonComponent from '../../components/Button/ButtonComponent';
 import { useNavigation } from '@react-navigation/native';
 import { KendaraanNavigationProps } from '../../navigator/Kendaraan/KendaraanNavigationProps';
 
@@ -194,7 +194,7 @@ const DetailSTNK = () => {
           />
         </View>
         <View style={{ width: '48%' }}>
-          <ButtonBlueComponent
+          <ButtonComponent
             buttonTitle="Bayar Pajak"
             height={'py-2.5'}
             onNavigationClick={() => navigation.navigate('BayarPajak')}

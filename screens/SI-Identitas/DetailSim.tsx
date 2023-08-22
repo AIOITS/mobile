@@ -7,7 +7,7 @@ import { IdentitasNavigationProps } from '../../navigator/Identitas/IdentitasNav
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import PersonSVG from '../../assets/person.svg';
 import { Divider } from '@rneui/themed';
-import ButtonBlueComponent from '../../components/Button/ButtonBlueComponent';
+import ButtonComponent from '../../components/Button/ButtonComponent';
 
 const data = {
   tgl_berlaku: '21 Januari 2024',
@@ -114,7 +114,7 @@ const DetailSim = () => {
           gap={2}
         />
         <View style={tw('bottom-0 right-0 left-0 w-full mt-5')}>
-          <ButtonBlueComponent
+          <ButtonComponent
             buttonTitle="Perpanjang SIM"
             onNavigationClick={() => navigation.navigate('DetailSim')}
           />

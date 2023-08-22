@@ -329,6 +329,14 @@
       "borderBottomLeftRadius": 6
     }
   },
+  "rounded-full": {
+    "style": {
+      "borderTopLeftRadius": 9999,
+      "borderTopRightRadius": 9999,
+      "borderBottomRightRadius": 9999,
+      "borderBottomLeftRadius": 9999
+    }
+  },
   "rounded-bl-lg": {
     "style": {
       "borderBottomLeftRadius": 8
