@@ -51,7 +51,13 @@ const RiwayatPengajuan = () => {
         {data ? (
           data.map((item, index) => (
             <CardElevation
-              onCardClick={() => navigation.navigate('DetailRiwayatPengajuan')}
+              onCardClick={() =>
+                navigation.navigate('DetailRiwayatPengajuan', {
+                  tanggal: item.tanggal,
+                  jumlah: item.jumlah,
+                  status: item.status,
+                })
+              }
               key={index}
               cardStyle="flex flex-row justify-between items-center p-3"
               elevation={2}>

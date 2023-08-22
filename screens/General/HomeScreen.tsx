@@ -5,7 +5,7 @@ import { useTailwind } from 'tailwind-rn';
 import VehicleCard from '../../components/Card/VehicleCard';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import SiIdentitasSVG from '../../assets/menu/si-identitas.svg';
-import SITilangSVG from '../../assets/menu/si-tilang.svg';
+import SIKendaraan from '../../assets/menu/si-kendaraan.svg';
 import MenuCard from '../../components/Card/MenuCard';
 import SIMoneySVG from '../../assets/menu/si-money.svg';
 import SISubsidi from '../../assets/menu/si-subsidi.svg';
@@ -91,9 +91,9 @@ const HomeScreen = () => {
           <SiIdentitasSVG width={48} />
         </MenuCard>
         <MenuCard
-          title="si-tilang"
-          navigateTo="Tilang">
-          <SITilangSVG width={48} />
+          title="si-kendaraan"
+          navigateTo="Kendaraan">
+          <SIKendaraan width={48} />
         </MenuCard>
         <MenuCard
           title="si-money"

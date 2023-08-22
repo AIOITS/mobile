@@ -2,7 +2,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { TabScreenParamList, TabStackParamList } from '../BottomNavigator';
-import { MenuParamList, NotifyStackParamList } from '../RootNavigator';
+import { MenuParamList } from './MenuParams';
+import { NotifyStackParamList } from './NotifyParams';
 
 export type MenuScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamList, 'Home'>,

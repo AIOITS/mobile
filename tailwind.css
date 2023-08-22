@@ -80,6 +80,11 @@
   margin-bottom: auto;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .-mt-2 {
   margin-top: -0.5rem;
 }
@@ -128,12 +133,12 @@
   margin-top: 0.75rem;
 }
 
-.mt-6 {
-  margin-top: 1.5rem;
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem;
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .block {
@@ -148,6 +153,10 @@
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .hidden {
   display: none;
 }
@@ -160,18 +169,16 @@
   width: 100%;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
 
 .flex-shrink {
   flex-shrink: 1;
-}
-
-.border-spacing-1 {
-  --tw-border-spacing-x: 0.25rem;
-  --tw-border-spacing-y: 0.25rem;
-  border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
 }
 
 .flex-row {
@@ -190,6 +197,10 @@
   align-items: flex-start;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
@@ -200,6 +211,10 @@
 
 .justify-start {
   justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -216,10 +231,6 @@
 
 .justify-evenly {
   justify-content: space-evenly;
-}
-
-.self-auto {
-  align-self: auto;
 }
 
 .self-end {
@@ -274,10 +285,6 @@
   border-top-width: 2px;
 }
 
-.border-dotted {
-  border-style: dotted;
-}
-
 .border-disable {
   --tw-border-opacity: 1;
   border-color: rgb(166 171 189 / var(--tw-border-opacity));
@@ -286,11 +293,6 @@
 .border-primary-light-blue {
   --tw-border-opacity: 1;
   border-color: rgb(0 160 243 / var(--tw-border-opacity));
-}
-
-.border-l-primary-light-blue {
-  --tw-border-opacity: 1;
-  border-left-color: rgb(0 160 243 / var(--tw-border-opacity));
 }
 
 .bg-breonne-blue {
@@ -385,12 +387,21 @@
   padding-bottom: 1rem;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .pl-12 {
   padding-left: 3rem;
 }
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
@@ -467,6 +478,11 @@
 .text-disable {
   --tw-text-opacity: 1;
   color: rgb(166 171 189 / var(--tw-text-opacity));
+}
+
+.text-golden {
+  --tw-text-opacity: 1;
+  color: rgb(213 164 25 / var(--tw-text-opacity));
 }
 
 .text-primary-light-blue {

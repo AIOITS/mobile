@@ -34,8 +34,8 @@ const ServiceScreen = () => {
           <SiIdentitasSVG width={48} />
         </MenuCard>
         <MenuCard
-          title="si-kendaraa"
-          navigateTo="Identitas">
+          title="si-kendaraan"
+          navigateTo="Kendaraan">
           <SIKendaraan width={48} />
         </MenuCard>
         <MenuCard

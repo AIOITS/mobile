@@ -6,7 +6,7 @@ import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps'
 import BackgroundWithHeader from '../BackgroundWithHeader';
 import TextInputField from '../Input/TextInputField';
 import { Button, Divider } from '@rneui/themed';
-import { AuthScreenParamList } from '../../navigator/RootNavigator';
+import { AuthScreenParamList } from '../../navigator/Auth/RegisParams';
 import ButtonBlueComponent from '../Button/ButtonBlueComponent';
 import ButtonOutlineComponent from '../Button/ButtonOutlineComponent';
 

@@ -3,8 +3,9 @@ import React, { ReactNode } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import { useNavigation } from '@react-navigation/native';
 import { MenuScreenNavigationProp } from '../../navigator/Menu/Menu';
-import { MenuScreenParamList } from '../../navigator/RootNavigator';
+import { MenuScreenParamList } from '../../navigator/Menu/MenuParams';
 import CardElevation from './CardElevation';
+import { normalize } from '@rneui/themed';
 
 interface Props {
   title: string;
@@ -31,9 +32,10 @@ const MenuCard = ({ title, children, navigateTo }: Props) => {
         {children}
       </CardElevation>
       <Text
-        style={tw(
-          'text-center font-semibold text-cape-storm text-xs uppercase',
-        )}>
+        style={[
+          tw('text-center font-semibold text-cape-storm uppercase'),
+          { fontSize: normalize(10) },
+        ]}>
         {title}
       </Text>
     </View>

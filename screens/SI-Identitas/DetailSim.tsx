@@ -35,7 +35,7 @@ const DetailSim = () => {
       bell>
       <View
         style={[
-          tw('flex flex-col justify-center items-start mb-20'),
+          tw('flex flex-col justify-center items-start mb-5'),
           { gap: 5 },
         ]}>
         <InfoBlockDisplay
@@ -113,12 +113,12 @@ const DetailSim = () => {
           subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />
-        {/* <View style={tw('absolute bottom-0 right-0 left-0 z-10')}>
+        <View style={tw('bottom-0 right-0 left-0 w-full mt-5')}>
           <ButtonBlueComponent
             buttonTitle="Perpanjang SIM"
             onNavigationClick={() => navigation.navigate('DetailSim')}
           />
-        </View> */}
+        </View>
       </View>
     </BackgroundWithHeader>
   );

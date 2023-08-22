@@ -2,8 +2,11 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
-import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
-import { useNavigation } from '@react-navigation/native';
+import {
+  DetailRiwayatPengajuanRouteProp,
+  SubsidiNavigationProps,
+} from '../../navigator/Subsidi/SubsidiNavigationProps';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import ButtonIcon from '../../components/Button/ButtonIcon';
 import { Icon } from '@rneui/themed';
@@ -11,6 +14,9 @@ import { Icon } from '@rneui/themed';
 const DetailRiwayatPengajuan = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
+  const {
+    params: { tanggal, jumlah, status },
+  } = useRoute<DetailRiwayatPengajuanRouteProp>();
 
   const color = (status: string): string => {
     if (status === 'diproses') {
@@ -36,8 +42,9 @@ const DetailRiwayatPengajuan = () => {
           <Text style={tw('text-lg text-cape-storm font-bold')}>
             Data Ajuan
           </Text>
-          <Text style={tw('bg-golden text-white text-sm rounded-md p-1')}>
-            Diproses
+          <Text
+            style={tw(`text-white text-sm rounded-md p-1 ${color(status)}`)}>
+            {status}
           </Text>
         </View>
         {/* status end */}
@@ -46,7 +53,7 @@ const DetailRiwayatPengajuan = () => {
         <InfoBlockDisplay
           title="Jumlah Subsidi"
           titleStyle="text-disable text-xs"
-          subTitle="3 Liter"
+          subTitle={jumlah}
           subTitleStyle="text-cape-storm font-normal text-sm"
           gap={3}
         />

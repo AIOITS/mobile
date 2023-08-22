@@ -18,93 +18,10 @@ import DetailRiwayatPengajuan from '../screens/SI-Subsidi/DetailRiwayatPengajuan
 import NotifyScreen from '../screens/Notif/NotifyScreen';
 import Identitas from '../screens/SI-Identitas/Identitas';
 import DetailSim from '../screens/SI-Identitas/DetailSim';
+import Kendaraan from '../screens/SI-Kendaraan/Kendaraan';
+import DetailSTNK from '../screens/SI-Kendaraan/DetailSTNK';
 
 const RootStack = createNativeStackNavigator();
-
-export type AuthStackParamList = {
-  RegisterByEmail: undefined;
-  RegisterByPhone: undefined;
-  OTP: undefined;
-  RegisterSuccess: undefined;
-  LoginByEmail: undefined;
-  LoginByPhone: undefined;
-  NotActivated: undefined;
-};
-
-export type NotifyStackParamList = {
-  Notification: undefined;
-};
-
-export type ActivateStackParamList = {
-  Activated: undefined;
-  KTPPhoto: undefined;
-  KTPPhotoWithImage: undefined;
-  FacePhoto: undefined;
-  FacePhotoWithImage: undefined;
-  Validate: undefined;
-  ValidateComplete: undefined;
-};
-
-export type SubsidiStackParamList = {
-  Subsidi: undefined;
-  RiwayatPengisian: undefined;
-  AjukanSubsidi: undefined;
-  SuccessAjukanSubsidi: undefined;
-  RiwayatPengajuan: undefined;
-  DetailRiwayatPengajuan: undefined;
-};
-
-export type IdentitasStackParamList = {
-  Identitas: undefined;
-  DetailSim: undefined;
-};
-
-export type MenuParamList = {
-  Subsidi: undefined;
-  Identitas: undefined;
-  Tilang: undefined;
-  Money: undefined;
-  Laka: undefined;
-  Lalin: undefined;
-  Edukasi: undefined;
-  Other: undefined;
-};
-
-export type MenuScreenParamList =
-  | 'Subsidi'
-  | 'Identitas'
-  | 'Tilang'
-  | 'Money'
-  | 'Laka'
-  | 'Lalin'
-  | 'Edukasi'
-  | 'Other';
-
-export type SubsidiScreenParamList =
-  | 'Subsidi'
-  | 'RiwayatPengisian'
-  | 'AjukanSubsidi'
-  | 'SuccessAjukanSubsidi'
-  | 'RiwayatPengajuan'
-  | 'DetailRiwayatPengajuan';
-
-export type AuthScreenParamList =
-  | 'RegisterByEmail'
-  | 'RegisterByPhone'
-  | 'OTP'
-  | 'RegisterSuccess'
-  | 'LoginByEmail'
-  | 'LoginByPhone'
-  | 'NotActivated';
-
-export type ActivatedScreenParamList =
-  | 'Activated'
-  | 'KTPPhoto'
-  | 'KTPPhotoWithImage'
-  | 'FacePhoto'
-  | 'FacePhotoWithImage'
-  | 'Validate'
-  | 'ValidateComplete';
 
 const RootNavigator = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
@@ -219,6 +136,18 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="DetailSim"
           component={DetailSim}
+        />
+      </RootStack.Group>
+
+      {/* for si-kendaraan */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Kendaraan"
+          component={Kendaraan}
+        />
+        <RootStack.Screen
+          name="DetailSTNK"
+          component={DetailSTNK}
         />
       </RootStack.Group>
     </RootStack.Navigator>
