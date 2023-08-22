@@ -5,6 +5,8 @@ export type KendaraanStackParamList = {
   GantiPlat: undefined;
   TambahSTNK: undefined;
   SuccessTambahSTNK: undefined;
+  PinjamkanSTNK: undefined;
+  RiwayatPinjamSTNK: undefined;
 };
 
 export type KendaraanScreenParamList =
@@ -13,4 +15,6 @@ export type KendaraanScreenParamList =
   | 'BayarPajak'
   | 'GantiPlat'
   | 'TambahSTNK'
-  | 'SuccessTambahSTNK';
+  | 'SuccessTambahSTNK'
+  | 'PinjamkanSTNK'
+  | 'RiwayatPinjamSTNK';

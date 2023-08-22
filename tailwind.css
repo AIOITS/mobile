@@ -38,20 +38,12 @@
   right: 0.5rem;
 }
 
-.right-3 {
-  right: 0.75rem;
-}
-
 .right-4 {
   right: 1rem;
 }
 
 .top-0 {
   top: 0px;
-}
-
-.right-7 {
-  right: 1.75rem;
 }
 
 .z-10 {
@@ -149,6 +141,10 @@
   margin-top: 1.5rem;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .block {
   display: block;
 }
@@ -175,6 +171,14 @@
 
 .w-full {
   width: 100%;
+}
+
+.w-fit {
+  width: fit-content;
+}
+
+.max-w-full {
+  max-width: 100%;
 }
 
 .flex-1 {
@@ -400,12 +404,12 @@
   padding-left: 3rem;
 }
 
-.pt-8 {
-  padding-top: 2rem;
-}
-
 .pl-5 {
   padding-left: 1.25rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
 }
 
 .text-left {

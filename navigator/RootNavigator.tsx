@@ -22,6 +22,7 @@ import Kendaraan from '../screens/SI-Kendaraan/Kendaraan';
 import DetailSTNK from '../screens/SI-Kendaraan/DetailSTNK';
 import TambahSTNK from '../screens/SI-Kendaraan/TambahSTNK/TambahSTNK';
 import SuccessTambahSTNK from '../screens/SI-Kendaraan/TambahSTNK/SuccessTambahSTNK';
+import PinjamkanSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/PinjamkanSTNK';
 
 const RootStack = createNativeStackNavigator();
 
@@ -158,6 +159,10 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="SuccessTambahSTNK"
           component={SuccessTambahSTNK}
+        />
+        <RootStack.Screen
+          name="PinjamkanSTNK"
+          component={PinjamkanSTNK}
         />
       </RootStack.Group>
     </RootStack.Navigator>

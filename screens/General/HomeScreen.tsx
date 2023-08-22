@@ -33,12 +33,14 @@ const HomeScreen = () => {
             engineSpec="L 1150 CC"
             reminderDate="Jatuh Tempo"
             reminderTitle="10 Jan 2023"
+            disabled={true}
           />
           <VehicleCard
             vehicleName="Honda Vario 125"
             engineSpec="L 1150 CC"
             reminderDate="Jatuh Tempo"
             reminderTitle="10 Jan 2023"
+            disabled={true}
           />
         </View>
       </ScrollView>

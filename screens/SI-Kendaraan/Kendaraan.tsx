@@ -8,6 +8,7 @@ import SimCardSVG from '../../assets/kartu/sim-card-small.svg';
 import STNKSVG from '../../assets/kartu/stnk.svg';
 import CardElevation from '../../components/Card/CardElevation';
 import NewCard from '../../components/Card/NewCard';
+import ButtonBlueWithIcon from '../../components/Button/ButtonBlueWithIcon';
 
 const Kendaraan = () => {
   const tw = useTailwind();
@@ -22,16 +23,12 @@ const Kendaraan = () => {
       main
       bell>
       <View style={tw('items-end justify-end')}>
-        <TouchableOpacity
-          style={[
-            tw(
-              'flex flex-row items-center justify-center rounded-lg py-3 bg-primary-light-blue',
-            ),
-            { width: '50%', gap: 10 },
-          ]}>
-          <Text style={tw('text-white font-semibold text-sm')}>Pinjamkan</Text>
+        <ButtonBlueWithIcon
+          onNavigationClick={() => navigation.navigate('PinjamkanSTNK')}
+          titleButton="Pinjamkan"
+          width={'50%'}>
           <SimCardSVG width={20} />
-        </TouchableOpacity>
+        </ButtonBlueWithIcon>
       </View>
       <View style={[tw('flex flex-col'), { gap: 10 }]}>
         <CardElevation onCardClick={() => navigation.navigate('DetailSTNK')}>
