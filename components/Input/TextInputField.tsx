@@ -10,6 +10,7 @@ type Props = {
   onChangeValue: (text: string) => void;
   isPassword?: boolean;
   gap?: number;
+  labelStyle?: string;
 };
 
 const TextInputField = ({
@@ -19,20 +20,24 @@ const TextInputField = ({
   onChangeValue,
   gap,
   isPassword,
+  labelStyle,
 }: Props) => {
   const tw = useTailwind();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
     <View style={[tw('my-2'), { gap: gap ? gap : 0 }]}>
-      <Text style={tw('mb-2')}>{label}</Text>
+      <Text style={tw(`mb-2 ${labelStyle ? labelStyle : ''}`)}>{label}</Text>
       {isPassword ? (
         <View style={tw('flex flex-row justify-center items-center')}>
           <TextInput
             placeholder={placeholder}
-            style={tw(
-              'bg-secondary-white border-2 flex-1 border-disable py-2 rounded-lg px-4',
-            )}
+            style={[
+              tw(
+                'bg-secondary-white flex-1 border-disable py-2 rounded-lg px-4',
+              ),
+              { borderWidth: 1 },
+            ]}
           />
           <TouchableOpacity
             style={tw('absolute right-4')}
@@ -50,9 +55,10 @@ const TextInputField = ({
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeValue}
-          style={tw(
-            'bg-secondary-white border-2 border-disable py-2 rounded-lg px-4',
-          )}
+          style={[
+            tw('bg-secondary-white border-disable py-2 rounded-lg px-4'),
+            { borderWidth: 1 },
+          ]}
         />
       )}
     </View>

@@ -7,12 +7,14 @@ interface Props {
   placeholder: string;
   children: ReactNode;
   filter?: boolean;
+  right?: boolean;
   placeholderStyle?: string;
 }
 
 const IconTextInputField = ({
   filter,
   children,
+  right,
   placeholder,
   placeholderStyle,
 }: Props) => {
@@ -20,15 +22,19 @@ const IconTextInputField = ({
 
   return (
     <View style={tw('flex flex-row justify-center items-center')}>
-      <View style={tw('absolute z-10 left-3')}>{children}</View>
+      {!right && <View style={tw('absolute z-10 left-3')}>{children}</View>}
       <TextInput
         placeholder={placeholder}
-        style={tw(
-          `bg-secondary-white border-2 flex-1 border-disable py-2 rounded-lg px-4 pl-12 ${
-            placeholderStyle ? placeholderStyle : ''
-          }`,
-        )}
+        style={[
+          tw(
+            `bg-secondary-white flex-1 border-disable py-2 rounded-lg px-4 ${
+              right ? 'pl-5' : 'pl-12'
+            } ${placeholderStyle ? placeholderStyle : ''}`,
+          ),
+          { borderWidth: 1 },
+        ]}
       />
+      {right && <View style={tw('absolute z-10 right-4')}>{children}</View>}
       {filter && (
         <View style={tw('ml-3')}>
           <Icon

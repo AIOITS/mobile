@@ -20,6 +20,8 @@ import Identitas from '../screens/SI-Identitas/Identitas';
 import DetailSim from '../screens/SI-Identitas/DetailSim';
 import Kendaraan from '../screens/SI-Kendaraan/Kendaraan';
 import DetailSTNK from '../screens/SI-Kendaraan/DetailSTNK';
+import TambahSTNK from '../screens/SI-Kendaraan/TambahSTNK/TambahSTNK';
+import SuccessTambahSTNK from '../screens/SI-Kendaraan/TambahSTNK/SuccessTambahSTNK';
 
 const RootStack = createNativeStackNavigator();
 
@@ -148,6 +150,14 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="DetailSTNK"
           component={DetailSTNK}
+        />
+        <RootStack.Screen
+          name="TambahSTNK"
+          component={TambahSTNK}
+        />
+        <RootStack.Screen
+          name="SuccessTambahSTNK"
+          component={SuccessTambahSTNK}
         />
       </RootStack.Group>
     </RootStack.Navigator>

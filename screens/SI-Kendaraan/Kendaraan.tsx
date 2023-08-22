@@ -38,6 +38,7 @@ const Kendaraan = () => {
           <STNKSVG width={'100%'} />
         </CardElevation>
         <NewCard
+          onCardClick={() => navigation.navigate('TambahSTNK')}
           title="Tambah STNK Sementara"
           height={170}
         />

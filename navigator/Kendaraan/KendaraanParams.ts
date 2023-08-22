@@ -3,10 +3,14 @@ export type KendaraanStackParamList = {
   DetailSTNK: undefined;
   BayarPajak: undefined;
   GantiPlat: undefined;
+  TambahSTNK: undefined;
+  SuccessTambahSTNK: undefined;
 };
 
 export type KendaraanScreenParamList =
   | 'Kendaraan'
   | 'DetailSTNK'
   | 'BayarPajak'
-  | 'GantiPlat';
+  | 'GantiPlat'
+  | 'TambahSTNK'
+  | 'SuccessTambahSTNK';

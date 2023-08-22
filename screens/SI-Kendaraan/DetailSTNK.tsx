@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
@@ -13,6 +13,7 @@ import { KendaraanNavigationProps } from '../../navigator/Kendaraan/KendaraanNav
 const DetailSTNK = () => {
   const tw = useTailwind();
   const navigation = useNavigation<KendaraanNavigationProps>();
+  const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
   return (
     <BackgroundWithHeader
@@ -184,7 +185,7 @@ const DetailSTNK = () => {
       {/* detail end */}
 
       {/* button start */}
-      <View style={tw('flex flex-row justify-between mb-5')}>
+      <View style={[tw('flex flex-row justify-between mb-5')]}>
         <View style={{ width: '48%' }}>
           <ButtonOutlineComponent
             buttonTitle="Ganti Plat"

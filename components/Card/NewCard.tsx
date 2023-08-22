@@ -6,13 +6,16 @@ import { Icon } from '@rneui/themed';
 interface Props {
   title: string;
   height: number;
+  onCardClick?: () => void;
 }
 
-const NewCard = ({ title, height }: Props) => {
+const NewCard = ({ title, height, onCardClick }: Props) => {
   const tw = useTailwind();
 
   return (
-    <TouchableOpacity style={[{ height: height, overflow: 'hidden' }]}>
+    <TouchableOpacity
+      style={[{ height: height, overflow: 'hidden' }]}
+      onPress={onCardClick}>
       <View
         style={[
           {
