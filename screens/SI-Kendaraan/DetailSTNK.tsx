@@ -190,14 +190,18 @@ const DetailSTNK = () => {
           <ButtonOutlineComponent
             buttonTitle="Ganti Plat"
             height={'py-2'}
-            onNavigationClick={() => navigation.navigate('GantiPlat')}
+            onNavigationClick={() =>
+              navigation.navigate('MetodeBayarGantiPlat')
+            }
           />
         </View>
         <View style={{ width: '48%' }}>
           <ButtonComponent
             buttonTitle="Bayar Pajak"
             height={'py-2.5'}
-            onNavigationClick={() => navigation.navigate('BayarPajak')}
+            onNavigationClick={() =>
+              navigation.navigate('MetodePembayaranPajak')
+            }
           />
         </View>
       </View>

@@ -16,3 +16,13 @@ export type DetailRiwayatSTNKRouteProp = RouteProp<
   KendaraanStackParamList,
   'DetailRiwayatSTNK'
 >;
+
+export type MetodeBayarGantiPlatRouteProp = RouteProp<
+  KendaraanStackParamList,
+  'MetodeBayarGantiPlat'
+>;
+
+export type BayarGantiPlatRouteProp = RouteProp<
+  KendaraanStackParamList,
+  'BayarGantiPlat'
+>;

@@ -27,6 +27,13 @@ import ConfirmPinjamSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/ConfirmPin
 import SuccessPinjamSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/SuccessPinjamSTNK';
 import RiwayatPinjamSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/RiwayatPinjamSTNK';
 import DetailRiwayatSTNK from '../screens/SI-Kendaraan/PeminjamanSTNK/DetailRiwayatSTNK';
+import MetodeBayarPajak from '../screens/SI-Kendaraan/Pajak/MetodeBayarPajak';
+import BayarPajak from '../screens/SI-Kendaraan/Pajak/BayarPajak';
+import SuccessBayarPajak from '../screens/SI-Kendaraan/Pajak/SuccessBayarPajak';
+import MetodeBayarGantiPlat from '../screens/SI-Kendaraan/GantiPlat/MetodeBayarGantiPlat';
+import BayarGantiPlat from '../screens/SI-Kendaraan/GantiPlat/BayarGantiPlat';
+import SuccessGantiPlat from '../screens/SI-Kendaraan/GantiPlat/SuccessGantiPlat';
+import CekKendaraan from '../screens/SI-Kendaraan/GantiPlat/CekKendaraan';
 
 const RootStack = createNativeStackNavigator();
 
@@ -183,6 +190,36 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="DetailRiwayatSTNK"
           component={DetailRiwayatSTNK}
+        />
+        <RootStack.Screen
+          name="MetodePembayaranPajak"
+          component={MetodeBayarPajak}
+        />
+        <RootStack.Screen
+          name="BayarPajak"
+          component={BayarPajak}
+        />
+        <RootStack.Screen
+          name="SuccessBayarPajak"
+          component={SuccessBayarPajak}
+        />
+        <RootStack.Screen
+          name="MetodeBayarGantiPlat"
+          initialParams={{ data: ['Pembayaran', 'Cek Kendaraan'] }}
+          component={MetodeBayarGantiPlat}
+        />
+        <RootStack.Screen
+          initialParams={{ data: ['Pembayaran', 'Cek Kendaraan'] }}
+          name="BayarGantiPlat"
+          component={BayarGantiPlat}
+        />
+        <RootStack.Screen
+          name="SuccessGantiPlat"
+          component={SuccessGantiPlat}
+        />
+        <RootStack.Screen
+          name="CekKendaraan"
+          component={CekKendaraan}
         />
       </RootStack.Group>
     </RootStack.Navigator>

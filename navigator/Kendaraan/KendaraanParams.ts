@@ -1,7 +1,9 @@
 export type KendaraanStackParamList = {
   Kendaraan: undefined;
   DetailSTNK: undefined;
+  MetodePembayaranPajak: undefined;
   BayarPajak: undefined;
+  SuccessBayarPajak: undefined;
   GantiPlat: undefined;
   TambahSTNK: undefined;
   SuccessTambahSTNK: undefined;
@@ -19,12 +21,18 @@ export type KendaraanStackParamList = {
     pengajuan: string;
     status: number;
   };
+  MetodeBayarGantiPlat: undefined;
+  BayarGantiPlat: undefined;
+  SuccessGantiPlat: undefined;
+  CekKendaraan: undefined;
 };
 
 export type KendaraanScreenParamList =
   | 'Kendaraan'
   | 'DetailSTNK'
+  | 'MetodePembayaranPajak'
   | 'BayarPajak'
+  | 'SuccessBayarPajak'
   | 'GantiPlat'
   | 'TambahSTNK'
   | 'SuccessTambahSTNK'
@@ -32,4 +40,8 @@ export type KendaraanScreenParamList =
   | 'RiwayatPinjamSTNK'
   | 'ConfirmPinjamSTNK'
   | 'SuccessPinjamSTNK'
-  | 'DetailRiwayatSTNK';
+  | 'DetailRiwayatSTNK'
+  | 'MetodeBayarGantiPlat'
+  | 'BayarGantiPlat'
+  | 'SuccessGantiPlat'
+  | 'CekKendaraan';
