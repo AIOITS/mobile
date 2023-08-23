@@ -17,6 +17,7 @@ const Identitas = () => {
     <BackgroundWithHeader
       main
       backButton
+      onBackClick={() => navigation.goBack()}
       header="Si Identitas"
       subHeader="Smart SIM Identitas"
       bell>
@@ -29,6 +30,7 @@ const Identitas = () => {
 
         {/* add card start */}
         <NewCard
+          onCardClick={() => navigation.navigate('JenisSIMBaru')}
           title="Tambah SIM Baru"
           height={170}
         />

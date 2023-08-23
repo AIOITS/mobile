@@ -41,6 +41,17 @@ import SoalTPPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/TesPsikologi
 import HasilTPPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/TesPsikologi/HasilTPPerpanjangSIM';
 import PengambilanSIM from '../screens/SI-Identitas/Perpanjang/PengambilanSIM';
 import SuccessPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/SuccessPerpanjangSIM';
+import JenisSIMBaru from '../screens/SI-Identitas/SIMBaru/JenisSIMBaru';
+import MetodePembayaranSIMBaru from '../screens/SI-Identitas/SIMBaru/MetodePembayaranSIMBaru';
+import BayarSIMBaru from '../screens/SI-Identitas/SIMBaru/BayarSIMBaru';
+import InstruksiUTSIMBaru from '../screens/SI-Identitas/SIMBaru/UjianTeori/InstruksiUTSIMBaru';
+import SoalUTSIMBaru from '../screens/SI-Identitas/SIMBaru/UjianTeori/SoalUTSIMBaru';
+import HasilUTSIMBaru from '../screens/SI-Identitas/SIMBaru/UjianTeori/HasilUTSIMBaru';
+import InstruksiTPSIMBaru from '../screens/SI-Identitas/SIMBaru/TesPsikologi/InstruksiTPSIMBaru';
+import SoalTPSIMBaru from '../screens/SI-Identitas/SIMBaru/TesPsikologi/SoalTPSIMBaru';
+import HasilTPSIMBaru from '../screens/SI-Identitas/SIMBaru/TesPsikologi/HasilTPSIMBaru';
+import JadwalPraktik from '../screens/SI-Identitas/SIMBaru/JadwalPraktik';
+import SuccessSIMBaru from '../screens/SI-Identitas/SIMBaru/SuccessSIMBaru';
 
 const RootStack = createNativeStackNavigator();
 
@@ -259,6 +270,54 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="SuccessPerpanjangSIM"
           component={SuccessPerpanjangSIM}
+        />
+      </RootStack.Group>
+
+      {/* for sim-baru */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="JenisSIMBaru"
+          component={JenisSIMBaru}
+        />
+        <RootStack.Screen
+          name="MetodePembayaranSIMBaru"
+          component={MetodePembayaranSIMBaru}
+        />
+        <RootStack.Screen
+          name="BayarSIMBaru"
+          component={BayarSIMBaru}
+        />
+        <RootStack.Screen
+          name="InstruksiUTSIMBaru"
+          component={InstruksiUTSIMBaru}
+        />
+        <RootStack.Screen
+          name="SoalUTSIMBaru"
+          component={SoalUTSIMBaru}
+        />
+        <RootStack.Screen
+          name="HasilUTSIMBaru"
+          component={HasilUTSIMBaru}
+        />
+        <RootStack.Screen
+          name="InstruksiTPSIMBaru"
+          component={InstruksiTPSIMBaru}
+        />
+        <RootStack.Screen
+          name="SoalTPSIMBaru"
+          component={SoalTPSIMBaru}
+        />
+        <RootStack.Screen
+          name="HasilTPSIMBaru"
+          component={HasilTPSIMBaru}
+        />
+        <RootStack.Screen
+          name="JadwalPraktik"
+          component={JadwalPraktik}
+        />
+        <RootStack.Screen
+          name="SuccessSIMBaru"
+          component={SuccessSIMBaru}
         />
       </RootStack.Group>
     </RootStack.Navigator>

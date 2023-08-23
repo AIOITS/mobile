@@ -195,6 +195,18 @@
   height: 6rem;
 }
 
+.h-fit {
+  height: fit-content;
+}
+
+.h-40 {
+  height: 10rem;
+}
+
+.h-36 {
+  height: 9rem;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -433,6 +445,11 @@
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .pl-12 {

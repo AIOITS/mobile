@@ -5,7 +5,7 @@ import BackgroundWithHeader from '../../../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
 import { PerpanjangSIMNavigationProp } from '../../../../navigator/Identitas/PerpanjangSIMNavigationProp';
 import ButtonComponent from '../../../../components/Button/ButtonComponent';
-import { Icon } from '@rneui/themed';
+import Hasil from '../../../../components/Tes/Hasil';
 
 const HasilTPPerpanjangSIM = () => {
   const tw = useTailwind();
@@ -19,24 +19,10 @@ const HasilTPPerpanjangSIM = () => {
       onBackClick={() => navigation.goBack()}
       main
       bell>
-      <View
-        style={[
-          tw('flex flex-col rounded-lg bg-primary-light-blue p-5'),
-          { gap: 10 },
-        ]}>
-        <Icon
-          name="checkcircle"
-          type="antdesign"
-          size={80}
-          color={'white'}
-        />
-        <Text style={tw('text-white font-bold text-lg text-center')}>
-          Selamat, anda lulus tes psikologi
-        </Text>
-        <Text style={tw('text-white text-base text-center font-normal')}>
-          Silahkan lanjutkan untuk melakukan jadwal tes praktik
-        </Text>
-      </View>
+      <Hasil
+        title="Selamat, anda lulus tes psikologi"
+        subTitle="Silahkan lanjutkan untuk melakukan jadwal tes praktik"
+      />
       <View style={tw('absolute bottom-0 w-full')}>
         <ButtonComponent
           buttonTitle="Selanjutnya"

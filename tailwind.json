@@ -246,6 +246,21 @@
       "height": 96
     }
   },
+  "h-fit": {
+    "style": {
+      "height": "fit-content"
+    }
+  },
+  "h-40": {
+    "style": {
+      "height": 160
+    }
+  },
+  "h-36": {
+    "style": {
+      "height": 144
+    }
+  },
   "w-10": {
     "style": {
       "width": 40
@@ -571,6 +586,12 @@
     "style": {
       "paddingTop": 16,
       "paddingBottom": 16
+    }
+  },
+  "py-0": {
+    "style": {
+      "paddingTop": 0,
+      "paddingBottom": 0
     }
   },
   "pl-12": {
