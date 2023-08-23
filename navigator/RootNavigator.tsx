@@ -34,6 +34,13 @@ import MetodeBayarGantiPlat from '../screens/SI-Kendaraan/GantiPlat/MetodeBayarG
 import BayarGantiPlat from '../screens/SI-Kendaraan/GantiPlat/BayarGantiPlat';
 import SuccessGantiPlat from '../screens/SI-Kendaraan/GantiPlat/SuccessGantiPlat';
 import CekKendaraan from '../screens/SI-Kendaraan/GantiPlat/CekKendaraan';
+import MetodePembayaranPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/MetodePembayaranPerpanjangSIM';
+import BayarPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/BayarPerpanjangSIM';
+import InstruksiTesPsikologi from '../screens/SI-Identitas/Perpanjang/TesPsikologi/InstruksiTesPsikologi';
+import SoalTesPsikologi from '../screens/SI-Identitas/Perpanjang/TesPsikologi/SoalTesPsikologi';
+import HasilTesPsikologi from '../screens/SI-Identitas/Perpanjang/TesPsikologi/HasilTesPsikologi';
+import PengambilanSIM from '../screens/SI-Identitas/Perpanjang/PengambilanSIM';
+import SuccessPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/SuccessPerpanjangSIM';
 
 const RootStack = createNativeStackNavigator();
 
@@ -220,6 +227,38 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="CekKendaraan"
           component={CekKendaraan}
+        />
+      </RootStack.Group>
+
+      {/* for perpanjang-sim */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="MetodePembayaranPerpanjangSIM"
+          component={MetodePembayaranPerpanjangSIM}
+        />
+        <RootStack.Screen
+          name="BayarPerpanjangSIM"
+          component={BayarPerpanjangSIM}
+        />
+        <RootStack.Screen
+          name="InstruksiTesPsikologi"
+          component={InstruksiTesPsikologi}
+        />
+        <RootStack.Screen
+          name="SoalTesPsikologi"
+          component={SoalTesPsikologi}
+        />
+        <RootStack.Screen
+          name="HasilTesPsikologi"
+          component={HasilTesPsikologi}
+        />
+        <RootStack.Screen
+          name="PengambilanSIM"
+          component={PengambilanSIM}
+        />
+        <RootStack.Screen
+          name="SuccessPerpanjangSIM"
+          component={SuccessPerpanjangSIM}
         />
       </RootStack.Group>
     </RootStack.Navigator>

@@ -3,11 +3,11 @@ import React from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
-import { IdentitasNavigationProps } from '../../navigator/Identitas/IdentitasNavigationProps';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import PersonSVG from '../../assets/person.svg';
 import { Divider } from '@rneui/themed';
 import ButtonComponent from '../../components/Button/ButtonComponent';
+import { PerpanjangSIMNavigationProp } from '../../navigator/Identitas/PerpanjangSIMNavigationProp';
 
 const data = {
   tgl_berlaku: '21 Januari 2024',
@@ -23,7 +23,7 @@ const data = {
 
 const DetailSim = () => {
   const tw = useTailwind();
-  const navigation = useNavigation<IdentitasNavigationProps>();
+  const navigation = useNavigation<PerpanjangSIMNavigationProp>();
 
   return (
     <BackgroundWithHeader
@@ -116,7 +116,9 @@ const DetailSim = () => {
         <View style={tw('bottom-0 right-0 left-0 w-full mt-5')}>
           <ButtonComponent
             buttonTitle="Perpanjang SIM"
-            onNavigationClick={() => navigation.navigate('DetailSim')}
+            onNavigationClick={() =>
+              navigation.navigate('MetodePembayaranPerpanjangSIM')
+            }
           />
         </View>
       </View>

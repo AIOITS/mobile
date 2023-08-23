@@ -181,6 +181,11 @@
       "marginLeft": 12
     }
   },
+  "ml-5": {
+    "style": {
+      "marginLeft": 20
+    }
+  },
   "mr-1": {
     "style": {
       "marginRight": 4
@@ -566,6 +571,12 @@
     "style": {
       "paddingTop": 16,
       "paddingBottom": 16
+    }
+  },
+  "px-5": {
+    "style": {
+      "paddingLeft": 20,
+      "paddingRight": 20
     }
   },
   "pl-12": {

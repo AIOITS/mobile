@@ -6,20 +6,50 @@ interface Props {
   children: ReactNode;
   titleButton: string;
   gap?: number;
+  right?: boolean;
+  customButton?: string;
+  titleButtonStyle?: string;
+  onButtonClick?: () => void;
 }
 
-const ButtonIcon = ({ children, titleButton, gap }: Props) => {
+const ButtonIcon = ({
+  children,
+  titleButton,
+  gap,
+  right,
+  customButton,
+  titleButtonStyle,
+  onButtonClick,
+}: Props) => {
   const tw = useTailwind();
 
   return (
-    <TouchableOpacity style={[tw('bg-secondary-white px-4 py-3 rounded-lg')]}>
+    <TouchableOpacity
+      onPress={onButtonClick}
+      style={[
+        tw(
+          `px-4 py-3 rounded-lg ${
+            customButton ? customButton : 'bg-secondary-white'
+          }`,
+        ),
+      ]}>
       <View
         style={[
-          tw('flex flex-row items-start justify-start'),
+          tw(
+            `flex flex-row items-center ${
+              right ? 'justify-end' : 'justify-start'
+            }`,
+          ),
           { gap: gap ? gap : 10 },
         ]}>
-        {children}
-        <Text style={tw('text-cape-storm')}>{titleButton}</Text>
+        {!right && children}
+        <Text
+          style={tw(
+            `${titleButtonStyle ? titleButtonStyle : 'text-cape-storm'}`,
+          )}>
+          {titleButton}
+        </Text>
+        {right && children}
       </View>
     </TouchableOpacity>
   );

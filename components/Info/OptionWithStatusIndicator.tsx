@@ -4,12 +4,18 @@ import { useTailwind } from 'tailwind-rn';
 import { Divider } from '@rneui/themed';
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
   title: string;
   selected?: boolean;
+  notdivider?: boolean;
 }
 
-const OptionWithStatusIndicator = ({ children, title, selected }: Props) => {
+const OptionWithStatusIndicator = ({
+  children,
+  title,
+  selected,
+  notdivider,
+}: Props) => {
   const tw = useTailwind();
 
   return (
@@ -41,7 +47,7 @@ const OptionWithStatusIndicator = ({ children, title, selected }: Props) => {
           )}
         </TouchableOpacity>
       </View>
-      <Divider color="gray" />
+      {!notdivider && <Divider color="gray" />}
     </View>
   );
 };

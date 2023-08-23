@@ -2,6 +2,12 @@
 
 Repository for mobile application
 
+# TODO
+
+1. Create dropdown menu
+
+2. Create pembayaran clicked
+
 # How to run this project
 
 1. Open terminal
