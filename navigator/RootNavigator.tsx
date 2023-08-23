@@ -36,9 +36,9 @@ import SuccessGantiPlat from '../screens/SI-Kendaraan/GantiPlat/SuccessGantiPlat
 import CekKendaraan from '../screens/SI-Kendaraan/GantiPlat/CekKendaraan';
 import MetodePembayaranPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/MetodePembayaranPerpanjangSIM';
 import BayarPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/BayarPerpanjangSIM';
-import InstruksiTesPsikologi from '../screens/SI-Identitas/Perpanjang/TesPsikologi/InstruksiTesPsikologi';
-import SoalTesPsikologi from '../screens/SI-Identitas/Perpanjang/TesPsikologi/SoalTesPsikologi';
-import HasilTesPsikologi from '../screens/SI-Identitas/Perpanjang/TesPsikologi/HasilTesPsikologi';
+import InstruksiTPPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/TesPsikologi/InstruksiTPPerpanjangSIM';
+import SoalTPPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/TesPsikologi/SoalTPPerpanjangSIM';
+import HasilTPPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/TesPsikologi/HasilTPPerpanjangSIM';
 import PengambilanSIM from '../screens/SI-Identitas/Perpanjang/PengambilanSIM';
 import SuccessPerpanjangSIM from '../screens/SI-Identitas/Perpanjang/SuccessPerpanjangSIM';
 
@@ -241,16 +241,16 @@ const RootNavigator = () => {
           component={BayarPerpanjangSIM}
         />
         <RootStack.Screen
-          name="InstruksiTesPsikologi"
-          component={InstruksiTesPsikologi}
+          name="InstruksiTPPerpanjangSIM"
+          component={InstruksiTPPerpanjangSIM}
         />
         <RootStack.Screen
-          name="SoalTesPsikologi"
-          component={SoalTesPsikologi}
+          name="SoalTPPerpanjangSIM"
+          component={SoalTPPerpanjangSIM}
         />
         <RootStack.Screen
-          name="HasilTesPsikologi"
-          component={HasilTesPsikologi}
+          name="HasilTPPerpanjangSIM"
+          component={HasilTPPerpanjangSIM}
         />
         <RootStack.Screen
           name="PengambilanSIM"

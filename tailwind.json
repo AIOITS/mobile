@@ -573,12 +573,6 @@
       "paddingBottom": 16
     }
   },
-  "px-5": {
-    "style": {
-      "paddingLeft": 20,
-      "paddingRight": 20
-    }
-  },
   "pl-12": {
     "style": {
       "paddingLeft": 48

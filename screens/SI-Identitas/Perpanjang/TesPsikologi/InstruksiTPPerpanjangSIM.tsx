@@ -37,7 +37,7 @@ const instruksi = [
   },
 ];
 
-const InstruksiTesPsikologi = () => {
+const InstruksiTPPerpanjangSIM = () => {
   const tw = useTailwind();
   const navigation = useNavigation<PerpanjangSIMNavigationProp>();
   const { title, state } = useStepIndicator(data, 1);
@@ -79,7 +79,7 @@ const InstruksiTesPsikologi = () => {
       <View style={tw('absolute bottom-0 w-full')}>
         <ButtonComponent
           buttonTitle="Mulai Tes Psikologi"
-          onNavigationClick={() => navigation.navigate('SoalTesPsikologi')}
+          onNavigationClick={() => navigation.navigate('SoalTPPerpanjangSIM')}
         />
       </View>
       {/* button end */}
@@ -87,4 +87,4 @@ const InstruksiTesPsikologi = () => {
   );
 };
 
-export default InstruksiTesPsikologi;
+export default InstruksiTPPerpanjangSIM;

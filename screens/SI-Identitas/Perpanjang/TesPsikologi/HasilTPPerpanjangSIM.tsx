@@ -7,7 +7,7 @@ import { PerpanjangSIMNavigationProp } from '../../../../navigator/Identitas/Per
 import ButtonComponent from '../../../../components/Button/ButtonComponent';
 import { Icon } from '@rneui/themed';
 
-const HasilTesPsikologi = () => {
+const HasilTPPerpanjangSIM = () => {
   const tw = useTailwind();
   const navigation = useNavigation<PerpanjangSIMNavigationProp>();
 
@@ -47,4 +47,4 @@ const HasilTesPsikologi = () => {
   );
 };
 
-export default HasilTesPsikologi;
+export default HasilTPPerpanjangSIM;

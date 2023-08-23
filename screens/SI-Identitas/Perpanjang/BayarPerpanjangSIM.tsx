@@ -17,7 +17,7 @@ const BayarPerpanjangSIM = () => {
     <Pembayaran
       step
       data={{ title, state }}
-      onButtonClick={() => navigation.navigate('InstruksiTesPsikologi')}
+      onButtonClick={() => navigation.navigate('InstruksiTPPerpanjangSIM')}
     />
   );
 };

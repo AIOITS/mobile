@@ -8,7 +8,7 @@ import OptionWithStatusIndicator from '../../../../components/Info/OptionWithSta
 import ButtonIcon from '../../../../components/Button/ButtonIcon';
 import { Icon } from '@rneui/themed';
 
-const SoalTesPsikologi = () => {
+const SoalTPPerpanjangSIM = () => {
   const tw = useTailwind();
   const navigation = useNavigation<PerpanjangSIMNavigationProp>();
   const numberOfTexts = 30;
@@ -102,7 +102,7 @@ const SoalTesPsikologi = () => {
         </View>
         <View style={{ width: '47%' }}>
           <ButtonIcon
-            onButtonClick={() => navigation.navigate('HasilTesPsikologi')}
+            onButtonClick={() => navigation.navigate('HasilTPPerpanjangSIM')}
             titleButton="Selanjutnya"
             titleButtonStyle="text-white font-semibold"
             customButton="bg-primary-light-blue"
@@ -121,4 +121,4 @@ const SoalTesPsikologi = () => {
   );
 };
 
-export default SoalTesPsikologi;
+export default SoalTPPerpanjangSIM;
