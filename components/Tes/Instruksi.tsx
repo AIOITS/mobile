@@ -29,17 +29,28 @@ const instruksi = [
   },
 ];
 
-const Instruksi = () => {
+interface Props {
+  soal?: {
+    num: string;
+    text: string;
+  }[];
+}
+
+const Instruksi = ({ soal = instruksi }: Props) => {
   const tw = useTailwind();
 
   return (
     <View style={[tw('flex flex-col'), { gap: 8 }]}>
-      <Text style={tw('text-cape-storm font-normal text-lg')}>Instruksi</Text>
+      {!soal && (
+        <Text style={tw('text-cape-storm font-normal text-lg')}>Instruksi</Text>
+      )}
       <Text style={tw('text-cape-storm font-normal text-sm')}>
-        Sebelum pelaksaan ujian SIM online, harap membaca petunjuk berikut :
+        {soal
+          ? 'Ikuti Kriteria berikut :'
+          : 'Sebelum pelaksaan ujian SIM online, harap membaca petunjuk berikut :'}
       </Text>
       <View style={[tw('flex flex-col ml-5 mx-3'), { gap: 5 }]}>
-        {instruksi.map((item, index) => (
+        {soal.map((item, index) => (
           <View
             style={[tw('flex flex-row'), { gap: 3 }]}
             key={index}>

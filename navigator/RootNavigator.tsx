@@ -59,76 +59,92 @@ import BayarTopUp from '../screens/SI-Money/TopUp/BayarTopUp';
 import SuccessTopUp from '../screens/SI-Money/TopUp/SuccessTopUp';
 import CekSaldo from '../screens/SI-Money/CekSaldo';
 import RiwayatSiMoney from '../screens/SI-Money/RiwayatSiMoney';
+import FotoKTP from '../screens/Aktivasi/FotoKTP';
+import FotoWajah from '../screens/Aktivasi/FotoWajah';
+import Validasi from '../screens/Aktivasi/Validasi';
+import SuccessValidasi from '../screens/Aktivasi/SuccessValidasi';
 
 const RootStack = createNativeStackNavigator();
 
 const RootNavigator = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
     <RootStack.Navigator>
-      {!isLoggedIn ? (
-        // for auth
-        <RootStack.Group screenOptions={{ headerShown: false }}>
-          <RootStack.Screen
-            options={{
-              animation: 'none',
-            }}
-            name="RegisterByEmail"
-            component={RegisByEmail}
-          />
-          <RootStack.Screen
-            options={{
-              animation: 'none',
-            }}
-            name="RegisterByPhone"
-            component={RegisByPhone}
-          />
-          <RootStack.Screen
-            options={{
-              presentation: 'containedModal',
-            }}
-            name="OTP"
-            component={OTPScreen}
-          />
-          <RootStack.Screen
-            options={{
-              presentation: 'containedModal',
-            }}
-            name="RegisterSuccess"
-            component={SuccessScreen}
-          />
-          <RootStack.Screen
-            options={{
-              animation: 'none',
-            }}
-            name="LoginByEmail"
-            component={LoginByEmail}
-          />
-          <RootStack.Screen
-            options={{
-              animation: 'none',
-            }}
-            name="LoginByPhone"
-            component={LoginByPhone}
-          />
-          <RootStack.Screen
-            options={{
-              presentation: 'containedModal',
-            }}
-            name="NotActivated"
-            component={NotActivated}
-          />
-        </RootStack.Group>
-      ) : (
-        // for general
-        <RootStack.Group screenOptions={{ headerShown: false }}>
-          <RootStack.Screen
-            name="Main"
-            component={BottomNavigator}
-          />
-        </RootStack.Group>
-      )}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          options={{
+            animation: 'none',
+          }}
+          name="RegisterByEmail"
+          component={RegisByEmail}
+        />
+        <RootStack.Screen
+          options={{
+            animation: 'none',
+          }}
+          name="RegisterByPhone"
+          component={RegisByPhone}
+        />
+        <RootStack.Screen
+          options={{
+            presentation: 'containedModal',
+          }}
+          name="OTP"
+          component={OTPScreen}
+        />
+        <RootStack.Screen
+          options={{
+            presentation: 'containedModal',
+          }}
+          name="RegisterSuccess"
+          component={SuccessScreen}
+        />
+        <RootStack.Screen
+          options={{
+            animation: 'none',
+          }}
+          name="LoginByEmail"
+          component={LoginByEmail}
+        />
+        <RootStack.Screen
+          options={{
+            animation: 'none',
+          }}
+          name="LoginByPhone"
+          component={LoginByPhone}
+        />
+        <RootStack.Screen
+          options={{
+            presentation: 'containedModal',
+          }}
+          name="NotActivated"
+          component={NotActivated}
+        />
+        <RootStack.Screen
+          name="KTPPhoto"
+          component={FotoKTP}
+        />
+        <RootStack.Screen
+          name="FacePhoto"
+          component={FotoWajah}
+        />
+        <RootStack.Screen
+          name="Validate"
+          component={Validasi}
+        />
+        <RootStack.Screen
+          name="ValidateComplete"
+          component={SuccessValidasi}
+        />
+      </RootStack.Group>
+
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Main"
+          component={BottomNavigator}
+        />
+      </RootStack.Group>
 
       {/* for subsidi */}
       <RootStack.Group screenOptions={{ headerShown: false }}>
