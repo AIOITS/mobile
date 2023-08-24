@@ -8,6 +8,8 @@ Repository for mobile application
 
 2. Create pembayaran clicked
 
+3. Create datepicker
+
 # How to run this project
 
 1. Open terminal

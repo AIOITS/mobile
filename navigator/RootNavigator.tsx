@@ -52,6 +52,13 @@ import SoalTPSIMBaru from '../screens/SI-Identitas/SIMBaru/TesPsikologi/SoalTPSI
 import HasilTPSIMBaru from '../screens/SI-Identitas/SIMBaru/TesPsikologi/HasilTPSIMBaru';
 import JadwalPraktik from '../screens/SI-Identitas/SIMBaru/JadwalPraktik';
 import SuccessSIMBaru from '../screens/SI-Identitas/SIMBaru/SuccessSIMBaru';
+import DashboardSiMoney from '../screens/SI-Money/DashboardSiMoney';
+import MetodeTopUp from '../screens/SI-Money/TopUp/MetodeTopUp';
+import NominalTopUp from '../screens/SI-Money/TopUp/NominalTopUp';
+import BayarTopUp from '../screens/SI-Money/TopUp/BayarTopUp';
+import SuccessTopUp from '../screens/SI-Money/TopUp/SuccessTopUp';
+import CekSaldo from '../screens/SI-Money/CekSaldo';
+import RiwayatSiMoney from '../screens/SI-Money/RiwayatSiMoney';
 
 const RootStack = createNativeStackNavigator();
 
@@ -318,6 +325,38 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="SuccessSIMBaru"
           component={SuccessSIMBaru}
+        />
+      </RootStack.Group>
+
+      {/* for si-money */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Money"
+          component={DashboardSiMoney}
+        />
+        <RootStack.Screen
+          name="MetodeTopUp"
+          component={MetodeTopUp}
+        />
+        <RootStack.Screen
+          name="NominalTopUp"
+          component={NominalTopUp}
+        />
+        <RootStack.Screen
+          name="BayarTopUp"
+          component={BayarTopUp}
+        />
+        <RootStack.Screen
+          name="SuccessTopUp"
+          component={SuccessTopUp}
+        />
+        <RootStack.Screen
+          name="CekSaldo"
+          component={CekSaldo}
+        />
+        <RootStack.Screen
+          name="RiwayatSiMoney"
+          component={RiwayatSiMoney}
         />
       </RootStack.Group>
     </RootStack.Navigator>

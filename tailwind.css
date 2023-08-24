@@ -18,6 +18,10 @@
   bottom: 0px;
 }
 
+.bottom-4 {
+  bottom: 1rem;
+}
+
 .bottom-5 {
   bottom: 1.25rem;
 }
@@ -50,8 +54,24 @@
   top: 0.5rem;
 }
 
+.left-2 {
+  left: 0.5rem;
+}
+
+.left-1 {
+  left: 0.25rem;
+}
+
+.top-1 {
+  top: 0.25rem;
+}
+
 .z-10 {
   z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
 }
 
 .m-3 {
@@ -159,6 +179,10 @@
   margin-right: 1.25rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -195,24 +219,24 @@
   height: 6rem;
 }
 
-.h-fit {
-  height: fit-content;
-}
-
-.h-40 {
-  height: 10rem;
-}
-
-.h-36 {
-  height: 9rem;
-}
-
 .w-10 {
   width: 2.5rem;
 }
 
 .w-full {
   width: 100%;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-1\/3 {
+  width: 33.333333%;
 }
 
 .max-w-full {
@@ -397,6 +421,10 @@
   padding: 1.25rem;
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -410,6 +438,11 @@
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .px-7 {
@@ -447,9 +480,14 @@
   padding-bottom: 1rem;
 }
 
-.py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pl-12 {
@@ -504,6 +542,11 @@
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold {

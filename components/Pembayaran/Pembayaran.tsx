@@ -7,6 +7,7 @@ import CardElevation from '../Card/CardElevation';
 import { Divider, Icon } from '@rneui/themed';
 import ButtonOutlineComponent from '../Button/ButtonOutlineComponent';
 import StepCircleIndicator from '../Indicator/StepCircleIndicator';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   onButtonClick: () => void;
@@ -19,6 +20,7 @@ interface Props {
 
 const Pembayaran = ({ onButtonClick, step, data }: Props) => {
   const tw = useTailwind();
+  const navigation = useNavigation();
 
   return (
     <BackgroundWithHeader
@@ -26,6 +28,7 @@ const Pembayaran = ({ onButtonClick, step, data }: Props) => {
       subHeader="Pilih metode pembayaran"
       main
       bell
+      onBackClick={() => navigation.goBack()}
       backButton>
       {step && <StepCircleIndicator data={data} />}
       <View

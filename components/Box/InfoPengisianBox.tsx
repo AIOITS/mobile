@@ -6,7 +6,7 @@ import InfoPengisianText from '../Info/InfoPengisianText';
 interface Props {
   month: string;
   data: {
-    subsidi?: boolean;
+    usage: string;
     title: string;
     date: string;
     volume: string;
@@ -24,7 +24,7 @@ const InfoPengisianBox = ({ month, data }: Props) => {
           key={index}
           title={item.title}
           date={item.date}
-          subsidi={item.subsidi}
+          usage={item.usage}
           volume={item.volume}
         />
       ))}

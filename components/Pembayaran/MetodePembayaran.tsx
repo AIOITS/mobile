@@ -7,43 +7,56 @@ import SIMoneySVG from '../../assets/money/si-money.svg';
 import OptionWithStatusIndicator from '../Info/OptionWithStatusIndicator';
 import ButtonComponent from '../Button/ButtonComponent';
 import StepCircleIndicator from '../Indicator/StepCircleIndicator';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   step?: boolean;
+  title?: string;
   onButtonClick: () => void;
+  withoutTotal?: boolean;
   data?: {
     title: string[];
     state: number[];
   };
 }
 
-const MetodePembayaran = ({ onButtonClick, step, data }: Props) => {
+const MetodePembayaran = ({
+  onButtonClick,
+  step,
+  data,
+  withoutTotal,
+  title,
+}: Props) => {
   const tw = useTailwind();
   const [selected, setSelected] = useState<boolean>(true);
+  const navigation = useNavigation();
 
   return (
     <BackgroundWithHeader
-      header="Pembayaran"
+      header={title ? title : 'Pembayaran'}
       subHeader="Pilih metode pembayaran"
       main
       bell
+      onBackClick={() => navigation.goBack()}
       backButton>
       {/* step start */}
       {step && <StepCircleIndicator data={data} />}
       {/* step end */}
 
       {/* total start */}
-      <View
-        style={tw(
-          'items-center justify-center bg-primary-light-blue rounded-lg py-2',
-        )}>
-        <InfoBlockDisplay
-          title="Total Biaya"
-          titleStyle="text-xs text-center text-white font-light"
-          subTitle="Rp245.000"
-          subTitleStyle="text-center text-lg text-white"
-        />
-      </View>
+      {!withoutTotal && (
+        <View
+          style={tw(
+            'items-center justify-center bg-primary-light-blue rounded-lg py-2',
+          )}>
+          <InfoBlockDisplay
+            title="Total Biaya"
+            titleStyle="text-xs text-center text-white font-light"
+            subTitle="Rp245.000"
+            subTitleStyle="text-center text-lg text-white"
+          />
+        </View>
+      )}
       {/* total end */}
 
       {/* metode start */}

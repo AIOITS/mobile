@@ -4,6 +4,7 @@ import { Button } from '@rneui/themed';
 
 interface Props {
   buttonTitle: string;
+  buttonTitleStyle?: string;
   width?: number | string;
   height?: number | string;
   buttonStyle?: string;
@@ -13,6 +14,7 @@ interface Props {
 
 const ButtonComponent = ({
   buttonTitle,
+  buttonTitleStyle,
   width,
   height,
   onNavigationClick,
@@ -25,6 +27,7 @@ const ButtonComponent = ({
     <Button
       onPress={onNavigationClick}
       title={buttonTitle}
+      titleStyle={tw(`${buttonTitleStyle ? buttonTitleStyle : ''}`)}
       buttonStyle={[
         tw(
           `${color ? color : 'bg-primary-light-blue'} rounded-lg ${
