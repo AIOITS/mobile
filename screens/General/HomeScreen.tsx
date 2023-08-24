@@ -1,4 +1,11 @@
-import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useTailwind } from 'tailwind-rn';
@@ -13,10 +20,12 @@ import SILakaSVG from '../../assets/menu/si-laka.svg';
 import SILalinSVG from '../../assets/menu/si-lalin.svg';
 import SIEdukasiSVG from '../../assets/menu/si-edukasi.svg';
 import OtherSVG from '../../assets/menu/other.svg';
+import { useNavigation } from '@react-navigation/native';
+import { MoneyNavigationProps } from '../../navigator/Money/MoneyNavigationProp';
 
 const HomeScreen = () => {
   const tw = useTailwind();
-  const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+  const navigation = useNavigation<MoneyNavigationProps>();
 
   return (
     <BackgroundWithHeader
@@ -62,7 +71,8 @@ const HomeScreen = () => {
             subTitleStyle="text-cape-storm text-center"
           />
         </View>
-        <View
+        <TouchableOpacity
+          onPress={() => navigation.navigate('CekSaldo')}
           style={[
             tw(
               'bg-primary-light-blue rounded-tr-lg rounded-br-lg justify-center',
@@ -77,7 +87,7 @@ const HomeScreen = () => {
             info="3j lalu"
             detailInfo="Cek Saldo"
           />
-        </View>
+        </TouchableOpacity>
       </View>
       {/* subsidi & saldo end */}
 
