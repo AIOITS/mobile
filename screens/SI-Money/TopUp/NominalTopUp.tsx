@@ -77,7 +77,7 @@ const NominalTopUp = () => {
       {/* input end */}
 
       {/* button start */}
-      <View style={tw('absolute bottom-0 right-0 left-0 w-full')}>
+      <View style={tw('absolute bottom-3 right-0 left-0 w-full')}>
         <ButtonComponent
           buttonTitle="Bayar"
           onNavigationClick={() => navigation.navigate('BayarTopUp')}

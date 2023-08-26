@@ -49,7 +49,7 @@ const TambahSTNK = () => {
       {/* form end */}
 
       {/* button start */}
-      <View style={tw('bottom-0 left-0 absolute right-0')}>
+      <View style={tw('bottom-3 left-0 absolute right-0')}>
         <ButtonComponent
           buttonTitle="Lanjutkan"
           onNavigationClick={() => navigation.navigate('SuccessTambahSTNK')}

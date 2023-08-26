@@ -103,7 +103,7 @@ const AuthComponent = ({
       {/* form input end */}
 
       {/* button start */}
-      <View style={tw('flex bottom-0 absolute left-0 right-0 flex-col')}>
+      <View style={tw('flex bottom-3 absolute left-0 right-0 flex-col')}>
         {/* button bottom */}
         {register ? (
           <ButtonComponent

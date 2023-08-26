@@ -1,11 +1,16 @@
 import { View, Text } from 'react-native';
 import React from 'react';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 
 const SettingScreen = () => {
   return (
-    <View>
-      <Text>SettingScreen</Text>
-    </View>
+    <BackgroundWithHeader
+      header="Pengaturan"
+      subHeader="Pengaturan aplikasi"
+      bell
+      main>
+      <Text>Pengaturan</Text>
+    </BackgroundWithHeader>
   );
 };
 

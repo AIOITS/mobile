@@ -113,7 +113,7 @@ const DetailSim = () => {
           subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />
-        <View style={tw('bottom-0 right-0 left-0 w-full mt-5')}>
+        <View style={tw('bottom-3 right-0 left-0 w-full mt-5')}>
           <ButtonComponent
             buttonTitle="Perpanjang SIM"
             onNavigationClick={() =>

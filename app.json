@@ -19,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo/logo-blue.png",
         "backgroundColor": "#f1f9fd"
-      }
+      },
+      "package": "com.nizz14.aioits"
     },
     "web": {
       "favicon": "./logo/logo-blue.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aefeb37e-b415-4640-aef2-33e44e5c511b"
+      }
     }
   }
 }

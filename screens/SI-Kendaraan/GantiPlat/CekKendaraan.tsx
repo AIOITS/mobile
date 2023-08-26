@@ -51,7 +51,7 @@ const CekKendaraan = () => {
         </IconTextInputField>
       </View>
 
-      <View style={tw('absolute bottom-0 w-full')}>
+      <View style={tw('absolute bottom-3 w-full')}>
         <ButtonComponent
           buttonTitle="Jadwalkan"
           onNavigationClick={() => navigation.navigate('SuccessGantiPlat')}

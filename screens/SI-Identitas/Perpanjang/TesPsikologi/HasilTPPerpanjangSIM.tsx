@@ -23,7 +23,7 @@ const HasilTPPerpanjangSIM = () => {
         title="Selamat, anda lulus tes psikologi"
         subTitle="Silahkan lanjutkan untuk melakukan jadwal tes praktik"
       />
-      <View style={tw('absolute bottom-0 w-full')}>
+      <View style={tw('absolute bottom-3 w-full')}>
         <ButtonComponent
           buttonTitle="Selanjutnya"
           onNavigationClick={() => navigation.navigate('PengambilanSIM')}

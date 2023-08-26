@@ -7,6 +7,7 @@ export type MenuParamList = {
   Laka: undefined;
   Lalin: undefined;
   Edukasi: undefined;
+  Government: undefined;
   Other: undefined;
 };
 
@@ -19,4 +20,5 @@ export type MenuScreenParamList =
   | 'Laka'
   | 'Lalin'
   | 'Edukasi'
+  | 'Government'
   | 'Other';

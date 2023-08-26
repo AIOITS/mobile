@@ -84,7 +84,7 @@ const Soal = ({ nextNavigation, prevNavigation }: Props) => {
       {/* button start */}
       <View
         style={tw(
-          'flex flex-row justify-between w-full items-center absolute bottom-0',
+          'flex flex-row justify-between w-full items-center absolute bottom-3',
         )}>
         <View style={{ width: '47%' }}>
           <ButtonIcon

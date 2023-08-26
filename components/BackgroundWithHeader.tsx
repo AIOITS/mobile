@@ -110,7 +110,7 @@ const BackgroundWithHeader = ({
 
         {/* content start */}
         {!active && (
-          <View style={tw('flex-1 top-0 bottom-0')}>
+          <View style={tw('flex-1 top-0 bottom-3')}>
             <Text style={tw('text-center font-light')}>
               Akun kamu masih dalam proses persetujuan. Harap menunggu paling
               lambat 3 hari untuk hasil validasi data kamu.

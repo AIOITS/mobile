@@ -23,7 +23,7 @@ const HasilUTSIMBaru = () => {
         title="Selamat, anda lulus ujian teori"
         subTitle="Silahkan lanjutkan untuk melakukan tes psikologi"
       />
-      <View style={tw('absolute bottom-0 w-full')}>
+      <View style={tw('absolute bottom-3 w-full')}>
         <ButtonComponent
           buttonTitle="Selanjutnya"
           onNavigationClick={() => navigation.navigate('InstruksiTPSIMBaru')}

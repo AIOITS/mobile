@@ -24,6 +24,11 @@
       "bottom": 0
     }
   },
+  "bottom-3": {
+    "style": {
+      "bottom": 12
+    }
+  },
   "bottom-4": {
     "style": {
       "bottom": 16
@@ -119,6 +124,12 @@
     "style": {
       "marginTop": 4,
       "marginBottom": 4
+    }
+  },
+  "my-10": {
+    "style": {
+      "marginTop": 40,
+      "marginBottom": 40
     }
   },
   "my-14": {
@@ -269,11 +280,6 @@
   "h-24": {
     "style": {
       "height": 96
-    }
-  },
-  "w-1/2": {
-    "style": {
-      "width": "50%"
     }
   },
   "w-10": {
@@ -438,6 +444,14 @@
       "borderLeftWidth": 2
     }
   },
+  "border-4": {
+    "style": {
+      "borderTopWidth": 4,
+      "borderRightWidth": 4,
+      "borderBottomWidth": 4,
+      "borderLeftWidth": 4
+    }
+  },
   "border-b-2": {
     "style": {
       "borderBottomWidth": 2
@@ -471,10 +485,25 @@
       "borderLeftColor": "rgb(0 160 243 / var(--tw-border-opacity))"
     }
   },
+  "border-white": {
+    "style": {
+      "--tw-border-opacity": 1,
+      "borderTopColor": "rgb(255 255 255 / var(--tw-border-opacity))",
+      "borderRightColor": "rgb(255 255 255 / var(--tw-border-opacity))",
+      "borderBottomColor": "rgb(255 255 255 / var(--tw-border-opacity))",
+      "borderLeftColor": "rgb(255 255 255 / var(--tw-border-opacity))"
+    }
+  },
   "bg-breonne-blue": {
     "style": {
       "--tw-bg-opacity": 1,
       "backgroundColor": "rgb(42 85 121 / var(--tw-bg-opacity))"
+    }
+  },
+  "bg-cape-storm": {
+    "style": {
+      "--tw-bg-opacity": 1,
+      "backgroundColor": "rgb(60 72 86 / var(--tw-bg-opacity))"
     }
   },
   "bg-disable": {
@@ -525,6 +554,14 @@
       "paddingRight": 4,
       "paddingBottom": 4,
       "paddingLeft": 4
+    }
+  },
+  "p-2": {
+    "style": {
+      "paddingTop": 8,
+      "paddingRight": 8,
+      "paddingBottom": 8,
+      "paddingLeft": 8
     }
   },
   "p-3": {
@@ -607,6 +644,12 @@
     "style": {
       "paddingTop": 16,
       "paddingBottom": 16
+    }
+  },
+  "py-5": {
+    "style": {
+      "paddingTop": 20,
+      "paddingBottom": 20
     }
   },
   "py-6": {

@@ -62,7 +62,7 @@ const Jadwal = ({ onNavigationClick }: Props) => {
       {/* form end */}
 
       {/* button start */}
-      <View style={tw('absolute bottom-0 w-full')}>
+      <View style={tw('absolute bottom-3 w-full')}>
         <ButtonComponent
           buttonTitle="Selanjutnya"
           onNavigationClick={onNavigationClick}

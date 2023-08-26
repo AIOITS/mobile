@@ -71,7 +71,7 @@ const ConfirmPinjamSTNK = () => {
       {/* calendar end */}
 
       {/* button start */}
-      <View style={[tw('flex flex-row absolute bottom-0'), { gap: 10 }]}>
+      <View style={[tw('flex flex-row absolute bottom-3'), { gap: 10 }]}>
         <View style={{ width: '48%' }}>
           <ButtonComponent
             buttonTitle="Tolak"

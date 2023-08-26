@@ -131,7 +131,7 @@ const Pembayaran = ({ onButtonClick, step, data }: Props) => {
       {/* tutorial end */}
 
       {/* button start */}
-      <View style={tw('absolute bottom-0 w-full')}>
+      <View style={tw('absolute bottom-3 w-full')}>
         <ButtonOutlineComponent
           buttonTitle="Kembali ke beranda"
           onNavigationClick={onButtonClick}

@@ -31,7 +31,7 @@ const InstruksiTPPerpanjangSIM = () => {
       {/* instruksi end */}
 
       {/* button start */}
-      <View style={tw('absolute bottom-0 w-full')}>
+      <View style={tw('absolute bottom-3 w-full')}>
         <ButtonComponent
           buttonTitle="Mulai Tes Psikologi"
           onNavigationClick={() => navigation.navigate('SoalTPPerpanjangSIM')}

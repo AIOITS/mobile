@@ -70,7 +70,7 @@ const AjukanSubsidi = () => {
       {/* dokumen end */}
 
       {/* button start */}
-      <View style={tw('absolute bottom-0 right-0 left-0')}>
+      <View style={tw('absolute bottom-3 right-0 left-0')}>
         <ButtonComponent
           buttonTitle="Ajukan"
           onNavigationClick={() => navigation.navigate('SuccessAjukanSubsidi')}

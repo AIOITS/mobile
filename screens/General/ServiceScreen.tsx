@@ -70,7 +70,7 @@ const ServiceScreen = () => {
         </MenuCard>
         <MenuCard
           title="si-gov"
-          navigateTo="Laka">
+          navigateTo="Government">
           <SIGovernment width={48} />
         </MenuCard>
         <MenuCard

@@ -1,11 +1,16 @@
 import { View, Text } from 'react-native';
 import React from 'react';
+import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 
 const HelpScreen = () => {
   return (
-    <View>
-      <Text>HelpScreen</Text>
-    </View>
+    <BackgroundWithHeader
+      header="Bantuan"
+      subHeader="Bantuan aplikasi"
+      bell
+      main>
+      <Text>Bantuan</Text>
+    </BackgroundWithHeader>
   );
 };
 
