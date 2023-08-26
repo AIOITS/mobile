@@ -1,5 +1,5 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import { View, Text, Alert, ImageBackground, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
@@ -10,6 +10,10 @@ import ButtonIcon from '../../components/Button/ButtonIcon';
 import { Icon } from '@rneui/themed';
 import Instruksi from '../../components/Tes/Instruksi';
 import ButtonComponent from '../../components/Button/ButtonComponent';
+import { CameraNavigationProp } from '../../navigator/Camera/CameraNavigationProp';
+import { useCameraContext } from '../../hooks/Camera/CameraContext';
+import { CameraCapturedPicture } from 'expo-camera';
+import ImageCard from '../../components/Card/ImageCard';
 
 const data = ['Foto KTP', 'Foto Wajah', 'Validasi'];
 
@@ -32,6 +36,22 @@ const FotoKTP = () => {
   const tw = useTailwind();
   const navigation = useNavigation<ActivateNavigationProps>();
   const { title, state } = useStepIndicator(data, 0);
+  const cam_navigation = useNavigation<CameraNavigationProp>();
+  const { cameraHook } = useCameraContext();
+  const { capturedImage, __resetPreview } = cameraHook;
+  const [imageRes, setImageRes] = useState<
+    CameraCapturedPicture | null | undefined
+  >();
+
+  useEffect(() => {
+    if (capturedImage) {
+      setImageRes(capturedImage);
+    }
+
+    return () => {
+      setImageRes(null);
+    };
+  }, [capturedImage]);
 
   return (
     <BackgroundWithHeader
@@ -39,11 +59,12 @@ const FotoKTP = () => {
       backButton
       onBackClick={() => navigation.goBack()}
       main
-      bell
       subHeader="Silahkan foto ktp anda">
       <StepCircleIndicator data={{ title, state }} />
 
       <Instruksi soal={instruksi} />
+
+      {imageRes && <ImageCard image={imageRes} />}
 
       <View
         style={[
@@ -51,6 +72,7 @@ const FotoKTP = () => {
           tw('items-center justify-center w-full mx-auto'),
         ]}>
         <ButtonIcon
+          onButtonClick={() => cam_navigation.navigate('Camera')}
           titleButton="Ambil Foto"
           titleButtonStyle="text-white font-semibold text-sm"
           customButton="bg-primary-light-blue">
@@ -66,7 +88,10 @@ const FotoKTP = () => {
       <View style={tw('absolute bottom-3 right-0 left-0')}>
         <ButtonComponent
           buttonTitle="Lanjutkan"
-          onNavigationClick={() => navigation.navigate('FacePhoto')}
+          onNavigationClick={() => {
+            navigation.navigate('FacePhoto');
+            __resetPreview();
+          }}
         />
       </View>
     </BackgroundWithHeader>

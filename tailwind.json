@@ -84,6 +84,16 @@
       "top": 8
     }
   },
+  "top-3": {
+    "style": {
+      "top": 12
+    }
+  },
+  "right-5": {
+    "style": {
+      "right": 20
+    }
+  },
   "z-10": {
     "style": {
       "zIndex": 10
@@ -580,6 +590,14 @@
       "paddingLeft": 20
     }
   },
+  "p-4": {
+    "style": {
+      "paddingTop": 16,
+      "paddingRight": 16,
+      "paddingBottom": 16,
+      "paddingLeft": 16
+    }
+  },
   "px-2": {
     "style": {
       "paddingLeft": 8,
@@ -668,9 +686,9 @@
       "paddingLeft": 20
     }
   },
-  "pt-8": {
+  "pt-3": {
     "style": {
-      "paddingTop": 32
+      "paddingTop": 12
     }
   },
   "text-left": {

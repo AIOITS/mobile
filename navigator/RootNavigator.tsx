@@ -64,11 +64,13 @@ import FotoWajah from '../screens/Aktivasi/FotoWajah';
 import Validasi from '../screens/Aktivasi/Validasi';
 import SuccessValidasi from '../screens/Aktivasi/SuccessValidasi';
 import Government from '../screens/SI-Gov/Government';
+import CameraScreen from '../screens/Camera/CameraScreen';
+import VideoScreen from '../screens/Camera/VideoScreen';
 
 const RootStack = createNativeStackNavigator();
 
 const RootNavigator = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
 
   return (
     <RootStack.Navigator>
@@ -383,6 +385,18 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="Government"
           component={Government}
+        />
+      </RootStack.Group>
+
+      {/* for camera */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Camera"
+          component={CameraScreen}
+        />
+        <RootStack.Screen
+          name="Video"
+          component={VideoScreen}
         />
       </RootStack.Group>
     </RootStack.Navigator>
