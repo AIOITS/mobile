@@ -4,10 +4,6 @@ Repository for mobile application
 
 # TODO
 
-1. Create dropdown menu
-
-2. Create pembayaran clicked
-
 3. Create datepicker
 
 # How to run this project

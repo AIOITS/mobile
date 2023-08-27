@@ -1,4 +1,11 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
@@ -11,11 +18,32 @@ import * as DocumentPicker from 'expo-document-picker';
 import useFiles from '../../hooks/Files/useFiles';
 import FilesCard from '../../components/Card/FilesCard';
 
+const units = [
+  'Kiloliter',
+  'Hektoliter',
+  'Dekaliter',
+  'Liter',
+  'Desiliter',
+  'Sentiliter',
+  'Mililiter',
+];
+
 const AjukanSubsidi = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
   const [files, setFiles] = useState<DocumentPicker.DocumentPickerResult[]>([]);
   const { __checkPermissions, __selectFile, singleFile } = useFiles();
+  const [dropdown, setDropdown] = useState<boolean>(false);
+  const [unit, setUnit] = useState<string>('Liter');
+
+  const handleDropdown = () => {
+    setDropdown(!dropdown);
+  };
+
+  const handleUnit = (unit: string) => {
+    setUnit(unit);
+    setDropdown(false);
+  };
 
   useEffect(() => {
     if (singleFile) {
@@ -45,7 +73,7 @@ const AjukanSubsidi = () => {
       {/* jumlah subsidi start */}
       <View style={[tw('flex flex-col'), { gap: 8 }]}>
         <Text style={tw('text-cape-storm')}>Jumlah Subsidi</Text>
-        <View style={tw('flex flex-row')}>
+        <View style={tw('flex flex-row justify-between items-center')}>
           <TextInput
             style={[
               tw(
@@ -55,8 +83,46 @@ const AjukanSubsidi = () => {
             ]}
             placeholder="Contoh: 25"
           />
-          {/* TODO: make drop down */}
+          <TouchableOpacity
+            onPress={handleDropdown}
+            style={[
+              tw(
+                'absolute right-0 flex flex-row items-center justify-center px-3 border-l-2 border-disable h-full',
+              ),
+              { gap: 3 },
+            ]}>
+            <Text style={tw('text-cape-storm text-sm')}>{unit}</Text>
+            <Icon
+              name={dropdown ? 'chevron-up' : 'chevron-down'}
+              type="entypo"
+              size={20}
+              color={'#00A0F3'}
+            />
+          </TouchableOpacity>
         </View>
+        {dropdown && (
+          <FlatList
+            nestedScrollEnabled
+            data={units}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => handleUnit(item)}
+                style={[
+                  tw('border-disable px-3 py-2'),
+                  { borderBottomWidth: 1 },
+                ]}>
+                <Text>{item}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            style={[
+              tw(
+                'absolute flex flex-1 top-20 bg-secondary-white w-full rounded-lg border-disable z-10',
+              ),
+              { height: 150, borderWidth: 1 },
+            ]}
+          />
+        )}
       </View>
       {/* jumlah subsidi end */}
 

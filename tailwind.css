@@ -66,8 +66,12 @@
   top: 0.5rem;
 }
 
-.bottom-2 {
-  bottom: 0.5rem;
+.top-5 {
+  top: 1.25rem;
+}
+
+.top-20 {
+  top: 5rem;
 }
 
 .z-10 {
@@ -228,6 +232,10 @@
   height: 6rem;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -358,6 +366,10 @@
 
 .border-t-2 {
   border-top-width: 2px;
+}
+
+.border-solid {
+  border-style: solid;
 }
 
 .border-disable {
@@ -568,16 +580,16 @@
   font-weight: 300;
 }
 
+.font-medium {
+  font-weight: 500;
+}
+
 .font-normal {
   font-weight: 400;
 }
 
 .font-semibold {
   font-weight: 600;
-}
-
-.font-medium {
-  font-weight: 500;
 }
 
 .uppercase {
