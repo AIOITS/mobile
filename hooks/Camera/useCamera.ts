@@ -10,6 +10,7 @@ export interface UseCameraHook {
   capturedImage: CameraCapturedPicture | null | undefined;
   __takePicture: () => Promise<void>;
   __resetPreview: () => void;
+  __resetVideo: () => void;
   previewVisible: boolean;
   cameraRef: React.RefObject<Camera>;
   videoRef: React.RefObject<Video>;
@@ -75,6 +76,11 @@ const useCamera = (): UseCameraHook => {
     setPreviewVisible(false);
   };
 
+  const __resetVideo = () => {
+    setVideoUri(null);
+    setPreviewVisible(false);
+  };
+
   const __takeVideo = async () => {
     if (!cameraRef.current) return;
 
@@ -125,6 +131,7 @@ const useCamera = (): UseCameraHook => {
     capturedImage,
     __takePicture,
     __resetPreview,
+    __resetVideo,
     cameraRef,
     videoRef,
     __takeVideo,

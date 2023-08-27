@@ -84,16 +84,6 @@
       "top": 8
     }
   },
-  "top-3": {
-    "style": {
-      "top": 12
-    }
-  },
-  "right-5": {
-    "style": {
-      "right": 20
-    }
-  },
   "z-10": {
     "style": {
       "zIndex": 10
@@ -588,14 +578,6 @@
       "paddingRight": 20,
       "paddingBottom": 20,
       "paddingLeft": 20
-    }
-  },
-  "p-4": {
-    "style": {
-      "paddingTop": 16,
-      "paddingRight": 16,
-      "paddingBottom": 16,
-      "paddingLeft": 16
     }
   },
   "px-2": {

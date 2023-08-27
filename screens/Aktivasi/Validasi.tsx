@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
@@ -37,8 +37,14 @@ const Validasi = () => {
   const cam_navigation = useNavigation<CameraNavigationProp>();
   const { title, state } = useStepIndicator(data, 2);
   const { cameraHook } = useCameraContext();
-  const { recordingObject, isRecording, videoRef } = cameraHook;
+  const { recordingObject, __resetVideo, videoRef } = cameraHook;
   const [videoStatus, setVideoStatus] = useState({ isPlaying: false });
+
+  useEffect(() => {
+    return () => {
+      __resetVideo();
+    };
+  }, [recordingObject]);
 
   return (
     <BackgroundWithHeader
@@ -86,6 +92,7 @@ const Validasi = () => {
           buttonTitle="Lanjutkan"
           onNavigationClick={() => {
             navigation.navigate('ValidateComplete');
+            __resetVideo();
           }}
         />
       </View>
