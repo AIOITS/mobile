@@ -120,9 +120,6 @@ const useCamera = (): UseCameraHook => {
     };
   }, []);
 
-  console.log(recordingObject);
-  console.log(isRecording);
-
   return {
     startCamera,
     __cameraPermissions: requestCameraPermissions,

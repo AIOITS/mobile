@@ -10,6 +10,7 @@ interface Props {
   buttonStyle?: string;
   onNavigationClick: () => void;
   color?: string;
+  disable?: boolean;
 }
 
 const ButtonComponent = ({
@@ -20,6 +21,7 @@ const ButtonComponent = ({
   onNavigationClick,
   buttonStyle,
   color,
+  disable,
 }: Props) => {
   const tw = useTailwind();
 
@@ -30,9 +32,11 @@ const ButtonComponent = ({
       titleStyle={tw(`${buttonTitleStyle ? buttonTitleStyle : ''}`)}
       buttonStyle={[
         tw(
-          `${color ? color : 'bg-primary-light-blue'} rounded-lg ${
-            height ? height : 'py-2'
-          } ${width ? width : ''} ${buttonStyle ? buttonStyle : ''}`,
+          `${
+            disable ? 'bg-disable' : color ? color : 'bg-primary-light-blue'
+          } rounded-lg ${height ? height : 'py-2'} ${width ? width : ''} ${
+            buttonStyle ? buttonStyle : ''
+          }`,
         ),
       ]}
     />

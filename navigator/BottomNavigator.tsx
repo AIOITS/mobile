@@ -12,6 +12,7 @@ import HelpSVG from '../assets/general/help.svg';
 import ServiceSVG from '../assets/general/service.svg';
 import SettingSVG from '../assets/general/setting.svg';
 import { Icon } from '@rneui/themed';
+import { useTailwind } from 'tailwind-rn';
 
 export type TabStackParamList = {
   Home: undefined;
@@ -33,6 +34,7 @@ export type TabScreenParamList =
 const Tab = createBottomTabNavigator<TabStackParamList>();
 
 const BottomNavigator = () => {
+  const tw = useTailwind();
   const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -81,11 +83,71 @@ const BottomNavigator = () => {
             );
           } else if (route.name == 'Emergency') {
             return (
-              <Icon
-                name="alarm-light"
-                type="material-community"
-                color={focused ? '#00A0F3' : 'gray'}
-              />
+              <View
+                style={[
+                  tw(
+                    'bg-strong-pink rounded-full p-3 absolute border-white border-2 bottom-0',
+                  ),
+                ]}>
+                <Icon
+                  name="alarm-light"
+                  type="material-community"
+                  color={'white'}
+                />
+              </View>
+            );
+          }
+        },
+        tabBarLabel: ({ focused, color }) => {
+          if (route.name == 'Home') {
+            return (
+              <Text
+                style={[
+                  { color: focused ? '#00A0F3' : 'gray' },
+                  tw('text-xs font-medium'),
+                ]}>
+                Home
+              </Text>
+            );
+          } else if (route.name == 'Service') {
+            return (
+              <Text
+                style={[
+                  { color: focused ? '#00A0F3' : 'gray' },
+                  tw('text-xs font-medium'),
+                ]}>
+                Layanan
+              </Text>
+            );
+          } else if (route.name == 'Emergency') {
+            return (
+              <Text
+                style={[
+                  { color: focused ? '#00A0F3' : 'gray' },
+                  tw('text-xs font-medium'),
+                ]}>
+                Emergency
+              </Text>
+            );
+          } else if (route.name == 'Help') {
+            return (
+              <Text
+                style={[
+                  { color: focused ? '#00A0F3' : 'gray' },
+                  tw('text-xs font-medium'),
+                ]}>
+                Bantuan
+              </Text>
+            );
+          } else if (route.name == 'Setting') {
+            return (
+              <Text
+                style={[
+                  { color: focused ? '#00A0F3' : 'gray' },
+                  tw('text-xs font-medium'),
+                ]}>
+                Pengaturan
+              </Text>
             );
           }
         },

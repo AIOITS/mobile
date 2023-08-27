@@ -28,10 +28,11 @@ const ButtonIcon = ({
       onPress={onButtonClick}
       style={[
         tw(
-          `px-4 py-3 rounded-lg ${
+          `px-4 py-3 rounded-lg border-disable ${
             customButton ? customButton : 'bg-secondary-white'
           }`,
         ),
+        { borderWidth: 1 },
       ]}>
       <View
         style={[

@@ -16,9 +16,7 @@ import SIKendaraan from '../../assets/menu/si-kendaraan.svg';
 import MenuCard from '../../components/Card/MenuCard';
 import SIMoneySVG from '../../assets/menu/si-money.svg';
 import SISubsidi from '../../assets/menu/si-subsidi.svg';
-import SILakaSVG from '../../assets/menu/si-laka.svg';
-import SILalinSVG from '../../assets/menu/si-lalin.svg';
-import SIEdukasiSVG from '../../assets/menu/si-edukasi.svg';
+import SIGovernment from '../../assets/menu/si-government.svg';
 import OtherSVG from '../../assets/menu/other.svg';
 import { useNavigation } from '@react-navigation/native';
 import { MoneyNavigationProps } from '../../navigator/Money/MoneyNavigationProp';
@@ -118,19 +116,9 @@ const HomeScreen = () => {
           <SISubsidi width={48} />
         </MenuCard>
         <MenuCard
-          title="si-laka"
-          navigateTo="Laka">
-          <SILakaSVG width={48} />
-        </MenuCard>
-        <MenuCard
-          title="si-lalin"
-          navigateTo="Lalin">
-          <SILalinSVG width={48} />
-        </MenuCard>
-        <MenuCard
-          title="si-edukasi"
-          navigateTo="Edukasi">
-          <SIEdukasiSVG width={48} />
+          title="si-gov"
+          navigateTo="Government">
+          <SIGovernment width={48} />
         </MenuCard>
         <MenuCard
           title="lainnya"

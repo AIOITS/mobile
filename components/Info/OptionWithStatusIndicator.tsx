@@ -8,6 +8,7 @@ interface Props {
   title: string;
   selected?: boolean;
   notdivider?: boolean;
+  onPress?: () => void;
 }
 
 const OptionWithStatusIndicator = ({
@@ -15,11 +16,14 @@ const OptionWithStatusIndicator = ({
   title,
   selected,
   notdivider,
+  onPress,
 }: Props) => {
   const tw = useTailwind();
 
   return (
-    <View style={[tw('flex flex-col'), { gap: 10 }]}>
+    <TouchableOpacity
+      style={[tw('flex flex-col'), { gap: 10 }]}
+      onPress={onPress}>
       <View style={tw('flex flex-row items-center justify-between mx-2')}>
         <View
           style={[
@@ -29,7 +33,7 @@ const OptionWithStatusIndicator = ({
           {children}
           <Text style={tw('text-cape-storm font-semibold')}>{title}</Text>
         </View>
-        <TouchableOpacity
+        <View
           style={[
             { width: 23, height: 23, borderRadius: 23 / 2, borderWidth: 2 },
             tw('border-primary-light-blue items-center justify-center'),
@@ -45,10 +49,10 @@ const OptionWithStatusIndicator = ({
                 tw('bg-primary-light-blue'),
               ]}></View>
           )}
-        </TouchableOpacity>
+        </View>
       </View>
       {!notdivider && <Divider color="gray" />}
-    </View>
+    </TouchableOpacity>
   );
 };
 

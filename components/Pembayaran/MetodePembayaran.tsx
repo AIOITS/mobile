@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../BackgroundWithHeader';
@@ -28,8 +28,16 @@ const MetodePembayaran = ({
   title,
 }: Props) => {
   const tw = useTailwind();
-  const [selected, setSelected] = useState<boolean>(true);
+  const countMethod: number = 6;
   const navigation = useNavigation();
+  const [method, setMethod] = useState<number[]>(Array(countMethod).fill(0));
+
+  const handleMethodClick = (index: number) => () => {
+    setMethod((prevMethod) => {
+      const newMethod = prevMethod.map((value, i) => (i === index ? 1 : 0));
+      return newMethod;
+    });
+  };
 
   return (
     <BackgroundWithHeader
@@ -66,7 +74,10 @@ const MetodePembayaran = ({
           <Text style={tw('text-cape-storm text-base font-semibold')}>
             Si Money
           </Text>
-          <OptionWithStatusIndicator title="Si Money">
+          <OptionWithStatusIndicator
+            onPress={handleMethodClick(0)}
+            selected={method[0] == 1}
+            title="Si Money">
             <SIMoneySVG width={40} />
           </OptionWithStatusIndicator>
         </View>
@@ -77,10 +88,16 @@ const MetodePembayaran = ({
           <Text style={tw('text-cape-storm text-base font-semibold')}>
             Virtual Account
           </Text>
-          <OptionWithStatusIndicator title="BRIVA">
+          <OptionWithStatusIndicator
+            onPress={handleMethodClick(1)}
+            selected={method[1] == 1}
+            title="BRIVA">
             <Image source={require('../../assets/money/briva.png')} />
           </OptionWithStatusIndicator>
-          <OptionWithStatusIndicator title="BNI Virtual Account">
+          <OptionWithStatusIndicator
+            onPress={handleMethodClick(2)}
+            selected={method[2] == 1}
+            title="BNI Virtual Account">
             <Image source={require('../../assets/money/bni.png')} />
           </OptionWithStatusIndicator>
         </View>
@@ -91,13 +108,22 @@ const MetodePembayaran = ({
           <Text style={tw('text-cape-storm text-base font-semibold')}>
             E-Wallet
           </Text>
-          <OptionWithStatusIndicator title="Link Aja">
+          <OptionWithStatusIndicator
+            onPress={handleMethodClick(3)}
+            selected={method[3] == 1}
+            title="Link Aja">
             <Image source={require('../../assets/money/link-aja.png')} />
           </OptionWithStatusIndicator>
-          <OptionWithStatusIndicator title="Gopay">
+          <OptionWithStatusIndicator
+            onPress={handleMethodClick(4)}
+            selected={method[4] == 1}
+            title="Gopay">
             <Image source={require('../../assets/money/gopay.png')} />
           </OptionWithStatusIndicator>
-          <OptionWithStatusIndicator title="OVO">
+          <OptionWithStatusIndicator
+            onPress={handleMethodClick(5)}
+            selected={method[5] == 1}
+            title="OVO">
             <Image source={require('../../assets/money/ovo.png')} />
           </OptionWithStatusIndicator>
         </View>
@@ -108,7 +134,12 @@ const MetodePembayaran = ({
       <View style={tw('mb-5')}>
         <ButtonComponent
           buttonTitle="Bayar"
-          onNavigationClick={onButtonClick}
+          disable={!method.includes(1)}
+          onNavigationClick={() => {
+            if (method.includes(1)) {
+              onButtonClick();
+            }
+          }}
         />
       </View>
     </BackgroundWithHeader>

@@ -1,5 +1,5 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
@@ -7,10 +7,25 @@ import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigatio
 import { Icon } from '@rneui/themed';
 import ButtonComponent from '../../components/Button/ButtonComponent';
 import ButtonIcon from '../../components/Button/ButtonIcon';
+import * as DocumentPicker from 'expo-document-picker';
+import useFiles from '../../hooks/Files/useFiles';
+import FilesCard from '../../components/Card/FilesCard';
 
 const AjukanSubsidi = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
+  const [files, setFiles] = useState<DocumentPicker.DocumentPickerResult[]>([]);
+  const { __checkPermissions, __selectFile, singleFile } = useFiles();
+
+  useEffect(() => {
+    if (singleFile) {
+      setFiles([...files, singleFile]);
+    }
+
+    return () => {
+      setFiles([]);
+    };
+  }, [singleFile]);
 
   return (
     <BackgroundWithHeader
@@ -32,7 +47,12 @@ const AjukanSubsidi = () => {
         <Text style={tw('text-cape-storm')}>Jumlah Subsidi</Text>
         <View style={tw('flex flex-row')}>
           <TextInput
-            style={tw('bg-secondary-white px-4 py-2 text-sm rounded-lg flex-1')}
+            style={[
+              tw(
+                'bg-secondary-white px-4 py-2 text-sm rounded-lg flex-1 border-disable',
+              ),
+              { borderWidth: 1 },
+            ]}
             placeholder="Contoh: 25"
           />
           {/* TODO: make drop down */}
@@ -48,7 +68,12 @@ const AjukanSubsidi = () => {
             multiline={true}
             numberOfLines={4}
             textAlignVertical="top"
-            style={tw('bg-secondary-white px-4 py-3 text-sm rounded-lg flex-1')}
+            style={[
+              tw(
+                'bg-secondary-white px-4 py-3 text-sm rounded-lg flex-1 border-disable',
+              ),
+              { borderWidth: 1 },
+            ]}
             placeholder="Alasan pengajuan penambahan subsidi"
           />
         </View>
@@ -58,7 +83,18 @@ const AjukanSubsidi = () => {
       {/* dokumen start */}
       <View style={[tw('flex flex-col'), { gap: 8 }]}>
         <Text style={tw('text-cape-storm')}>Dokumen pendukung</Text>
-        <ButtonIcon titleButton="Tambahkan file">
+        {files.length > 0 && (
+          <FilesCard
+            files={files}
+            setFiles={setFiles}
+          />
+        )}
+        <ButtonIcon
+          titleButton="Tambahkan file"
+          onButtonClick={() => {
+            __checkPermissions();
+            __selectFile();
+          }}>
           <Icon
             name={'upload'}
             type="font-awesome"

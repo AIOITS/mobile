@@ -82,10 +82,13 @@ const JenisSIMBaru = () => {
 
         <View style={tw('w-full')}>
           <ButtonComponent
+            disable={!isCardClicked.includes(true)}
             buttonTitle="Lanjutkan"
-            onNavigationClick={() =>
-              navigation.navigate('MetodePembayaranSIMBaru')
-            }
+            onNavigationClick={() => {
+              if (isCardClicked.includes(true)) {
+                navigation.navigate('MetodePembayaranSIMBaru');
+              }
+            }}
           />
         </View>
       </View>
