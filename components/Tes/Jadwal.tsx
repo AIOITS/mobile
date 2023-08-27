@@ -9,6 +9,10 @@ import ButtonComponent from '../Button/ButtonComponent';
 import useFiles from '../../hooks/Files/useFiles';
 import * as DocumentPicker from 'expo-document-picker';
 import FilesCard from '../Card/FilesCard';
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
+import { format } from 'date-fns';
 
 interface Props {
   onNavigationClick: () => void;
@@ -19,6 +23,24 @@ const Jadwal = ({ onNavigationClick }: Props) => {
   const [satpas, setSatpas] = useState<string>('');
   const [files, setFiles] = useState<DocumentPicker.DocumentPickerResult[]>([]);
   const { __checkPermissions, __selectFile, singleFile } = useFiles();
+  const [date, setDate] = useState<Date>(new Date());
+  const [showPicker, setShowPicker] = useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<string>('');
+
+  const onDateChange = (event: DateTimePickerEvent) => {
+    const {
+      type,
+      nativeEvent: { timestamp },
+    } = event;
+
+    if (type === 'set' && timestamp !== undefined) {
+      const selected = new Date(timestamp);
+      const formattedDate = format(selected, 'dd/MM/yyyy');
+      setSelectedDate(formattedDate);
+    }
+
+    setShowPicker(false);
+  };
 
   useEffect(() => {
     if (singleFile) {
@@ -47,12 +69,15 @@ const Jadwal = ({ onNavigationClick }: Props) => {
           value={satpas}
           onChangeValue={(value) => setSatpas(value)}
         />
+
+        {/* date start */}
         <View style={[tw('flex flex-col my-2'), { gap: 7 }]}>
           <Text style={tw('')}>Tanggal</Text>
           <IconTextInputField
             right
             placeholder="Pilih tanggal perpanjang SIM">
             <Icon
+              onPress={() => setShowPicker(!showPicker)}
               name="calendar-alt"
               type="font-awesome-5"
               size={20}
@@ -60,6 +85,21 @@ const Jadwal = ({ onNavigationClick }: Props) => {
             />
           </IconTextInputField>
         </View>
+        {showPicker && (
+          <View style={tw('absolute')}>
+            <DateTimePicker
+              onTouchCancel={() => setShowPicker(false)}
+              onTouchStart={() => setShowPicker(false)}
+              mode="date"
+              display="calendar"
+              value={date}
+              onChange={(event) => onDateChange(event)}
+            />
+          </View>
+        )}
+        {/* date end */}
+
+        {/* file start */}
         <View style={[tw('flex flex-col my-2'), { gap: 7 }]}>
           <Text style={tw('text-cape-storm')}>
             Surat keterangan sehat jasmani dan rohani
@@ -84,6 +124,7 @@ const Jadwal = ({ onNavigationClick }: Props) => {
             />
           </ButtonIcon>
         </View>
+        {/* file end */}
       </View>
       {/* form end */}
 

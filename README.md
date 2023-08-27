@@ -2,10 +2,6 @@
 
 Repository for mobile application
 
-# TODO
-
-3. Create datepicker
-
 # How to run this project
 
 1. Open terminal
