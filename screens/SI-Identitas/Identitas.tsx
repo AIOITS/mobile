@@ -8,10 +8,14 @@ import { Icon } from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { IdentitasNavigationProps } from '../../navigator/Identitas/IdentitasNavigationProps';
 import NewCard from '../../components/Card/NewCard';
+import useSIM from '../../hooks/SI-Identitas/useSIM';
+import { useAuthContext } from '../../contexts/Auth/AuthContext';
 
 const Identitas = () => {
   const tw = useTailwind();
   const navigation = useNavigation<IdentitasNavigationProps>();
+  const id = useAuthContext().user?.id;
+  const { loading, error, sim, ktp } = useSIM(id);
 
   return (
     <BackgroundWithHeader
@@ -23,9 +27,15 @@ const Identitas = () => {
       bell>
       <View style={[tw('flex flex-col'), { gap: 10 }]}>
         {/* card item start */}
-        <CardElevation onCardClick={() => navigation.navigate('DetailSim')}>
-          <SmartSimSVG width={'100%'} />
-        </CardElevation>
+        {sim.map((item, index) => (
+          <CardElevation
+            key={item.uid}
+            onCardClick={() =>
+              navigation.navigate('DetailSim', { ktp, sim: item })
+            }>
+            <SmartSimSVG width={'100%'} />
+          </CardElevation>
+        ))}
         {/* card item end */}
 
         {/* add card start */}

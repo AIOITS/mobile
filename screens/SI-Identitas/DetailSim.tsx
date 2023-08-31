@@ -2,12 +2,14 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import PersonSVG from '../../assets/person.svg';
 import { Divider } from '@rneui/themed';
 import ButtonComponent from '../../components/Button/ButtonComponent';
 import { PerpanjangSIMNavigationProp } from '../../navigator/Identitas/PerpanjangSIMNavigationProp';
+import { DetailSIMRouteProp } from '../../navigator/Identitas/IdentitasNavigationProps';
+import handleDate from '../../utils/convertDate';
 
 const data = {
   tgl_berlaku: '21 Januari 2024',
@@ -24,6 +26,28 @@ const data = {
 const DetailSim = () => {
   const tw = useTailwind();
   const navigation = useNavigation<PerpanjangSIMNavigationProp>();
+  const {
+    params: {
+      sim: {
+        uid,
+        nomor_sim,
+        jenis_sim,
+        nama,
+        alamat,
+        rt,
+        rw,
+        kelurahan_desa,
+        kecamatan,
+        kabupaten,
+        pekerjaan,
+        kabupaten_terbit,
+        tanggal_terbit,
+        penerbit,
+        berlaku_sampai,
+      },
+      ktp: { golongan_darah, tanggal_lahir, tempat_lahir },
+    },
+  } = useRoute<DetailSIMRouteProp>();
 
   return (
     <BackgroundWithHeader
@@ -41,7 +65,7 @@ const DetailSim = () => {
         <InfoBlockDisplay
           title="Berlaku Hingga"
           titleStyle="text-xs text-disable"
-          subTitle={data.tgl_berlaku}
+          subTitle={handleDate(berlaku_sampai)}
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
         />
@@ -53,7 +77,7 @@ const DetailSim = () => {
           <InfoBlockDisplay
             title="Nomor SIM"
             titleStyle="text-xs text-disable text-center"
-            subTitle={data.nomor_sim}
+            subTitle={nomor_sim}
             subTitleStyle="text-sm text-cape-storm text-center"
             gap={2}
           />
@@ -61,7 +85,7 @@ const DetailSim = () => {
         <InfoBlockDisplay
           title="Nama Lengkap"
           titleStyle="text-xs text-disable"
-          subTitle={data.nama}
+          subTitle={nama}
           subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />
@@ -69,7 +93,7 @@ const DetailSim = () => {
         <InfoBlockDisplay
           title="Tempat, Tanggal Lahir"
           titleStyle="text-xs text-disable"
-          subTitle={data.tempat_tgl_lahir}
+          subTitle={`${tempat_lahir}, ${handleDate(tanggal_lahir)}`}
           subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />
@@ -77,15 +101,16 @@ const DetailSim = () => {
         <InfoBlockDisplay
           title="Golongan Darah"
           titleStyle="text-xs text-disable"
-          subTitle={data.gol_darah}
+          subTitle={golongan_darah}
           subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />
         <Divider color="gray" />
+        {/* TODO: jenis kelamin belum ditambahkan pada be */}
         <InfoBlockDisplay
           title="Jenis Kelamin"
           titleStyle="text-xs text-disable"
-          subTitle={data.jenis_kelamin}
+          subTitle={'otw'}
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
         />
@@ -93,7 +118,7 @@ const DetailSim = () => {
         <InfoBlockDisplay
           title="Alamat"
           titleStyle="text-xs text-disable"
-          subTitle={data.alamat}
+          subTitle={`${alamat} RT ${rt} RW ${rw} Kel. ${kelurahan_desa} Kec. ${kecamatan} Kab. ${kabupaten}`}
           subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />
@@ -101,7 +126,7 @@ const DetailSim = () => {
         <InfoBlockDisplay
           title="Pekerjaan"
           titleStyle="text-xs text-disable"
-          subTitle={data.pekerjaan}
+          subTitle={pekerjaan}
           subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />
@@ -109,7 +134,7 @@ const DetailSim = () => {
         <InfoBlockDisplay
           title="Polres"
           titleStyle="text-xs text-disable"
-          subTitle={data.polres}
+          subTitle={penerbit}
           subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />

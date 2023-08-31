@@ -16,8 +16,6 @@ const Subsidi = () => {
   const navigation = useNavigation<SubsidiNavigationProps>();
 
   const id = useAuthContext().user?.id;
-
-  // const { loading, error, pengisian } = useHistoryPengisian(id);
   const { loading, error, stnkHistoryPengisian } =
     useHistoryPengisianFromSTNK(id);
 

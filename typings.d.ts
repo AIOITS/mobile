@@ -79,3 +79,42 @@ type STNKDetail = STNKAll & STNKInPengisian;
 type HistoryPengisianFromSTNK = STNKInPengisian & {
   history_pengisian: HistoryPengisian[];
 };
+
+enum JenisSIM {
+  a = 'a',
+  a_umum = 'a_umum',
+  b1 = 'b1',
+  b2 = 'b2',
+  b2_umum = 'b2_umum',
+  c = 'c',
+  d = 'd',
+  e = 'e',
+  f = 'f',
+  g = 'g',
+  i = 'i',
+  x = 'x',
+}
+
+type SIM = {
+  uid: string;
+  nomor_sim: string;
+  jenis_sim: JenisSIM;
+  nama: string;
+  alamat: string;
+  rt: string;
+  rw: string;
+  kelurahan_desa: string;
+  kecamatan: string;
+  kabupaten: string;
+  pekerjaan: string;
+  kabupaten_terbit: string;
+  tanggal_terbit: string;
+  penerbit: string;
+  berlaku_sampai: string;
+};
+
+type KTPInSIM = {
+  tempat_lahir: string;
+  tanggal_lahir: string;
+  golongan_darah: string;
+};
