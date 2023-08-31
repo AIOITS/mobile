@@ -7,18 +7,43 @@ import TableField from '../../components/Table/TableField';
 import { Divider } from '@rneui/themed';
 import ButtonOutlineComponent from '../../components/Button/ButtonOutlineComponent';
 import ButtonComponent from '../../components/Button/ButtonComponent';
-import { useNavigation } from '@react-navigation/native';
-import { KendaraanNavigationProps } from '../../navigator/Kendaraan/KendaraanNavigationProps';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  DetailSTNKRouteProp,
+  KendaraanNavigationProps,
+} from '../../navigator/Kendaraan/KendaraanNavigationProps';
+import handleDate from '../../utils/convertDate';
 
 const DetailSTNK = () => {
   const tw = useTailwind();
   const navigation = useNavigation<KendaraanNavigationProps>();
-  const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+  const {
+    params: {
+      nama_pemilik,
+      berlaku,
+      nomor_mesin,
+      tipe,
+      merk,
+      nomor_rangka,
+      jenis,
+      model,
+      tahun_pembuatan,
+      isi_silinder,
+      warna,
+      bahan_bakar,
+      warna_tnkb,
+      tahun_registrasi,
+      nomor_bpkb,
+      kode_lokasi,
+      nomor_urut_pendaftaran,
+      pkb,
+    },
+  } = useRoute<DetailSTNKRouteProp>();
 
   return (
     <BackgroundWithHeader
-      header="L 1150 CC"
-      subHeader="Honda Vario 150"
+      header={nomor_mesin}
+      subHeader={`${tipe} ${merk} ${nomor_rangka}`}
       backButton
       main
       bell>
@@ -29,14 +54,14 @@ const DetailSTNK = () => {
         <InfoBlockDisplay
           title="Nama Pemilik"
           titleStyle="text-xs text-center text-white font-light"
-          subTitle="Tiara Asa"
+          subTitle={nama_pemilik}
           subTitleStyle="text-center text-lg text-white"
         />
       </View>
       <View style={[tw('flex flex-row justify-between')]}>
         <InfoBlockDisplay
           title="Berlaku sampai"
-          subTitle="25 Agustus 2023"
+          subTitle={handleDate(berlaku)}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-golden text-base"
         />
@@ -48,7 +73,7 @@ const DetailSTNK = () => {
           ]}>
           <InfoBlockDisplay
             title="Status Pajak"
-            subTitle="Belum Lunas"
+            subTitle={pkb.status_pajak ? 'Lunas' : 'Belum Lunas'}
             titleStyle="text-white text-xs"
             subTitleStyle="text-white text-base"
           />
@@ -56,14 +81,14 @@ const DetailSTNK = () => {
       </View>
 
       {/* table start */}
-      <TableField />
+      <TableField pkb={pkb} />
       {/* table end */}
 
       {/* detail start */}
       <View style={[tw('flex flex-col'), { gap: 10 }]}>
         <InfoBlockDisplay
           title="Merk"
-          subTitle="honda"
+          subTitle={merk}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm uppercase text-cape-storm"
           gap={2}
@@ -71,7 +96,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Type"
-          subTitle="Vario 125"
+          subTitle={tipe}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm uppercase text-cape-storm"
           gap={2}
@@ -79,7 +104,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Jenis"
-          subTitle="Sepeda Motor"
+          subTitle={jenis}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -87,7 +112,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Model"
-          subTitle="S.MTR/Scooter"
+          subTitle={model}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -95,7 +120,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Tahun Pembuatan"
-          subTitle="2017"
+          subTitle={tahun_pembuatan}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -103,7 +128,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Isi Silinder"
-          subTitle="00800"
+          subTitle={isi_silinder}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -111,7 +136,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Nomor Rangka/NIK/VIN"
-          subTitle="MF3VRO1SCHL000002"
+          subTitle={nomor_rangka}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -119,7 +144,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Nomor Mesin"
-          subTitle="VR001FMG17000001"
+          subTitle={nomor_mesin}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -127,7 +152,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Warna"
-          subTitle="Abu-Abu"
+          subTitle={warna}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -135,7 +160,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Bahan Bakar"
-          subTitle="Bensin"
+          subTitle={bahan_bakar}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -143,7 +168,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Warna TNKB"
-          subTitle="Hitam"
+          subTitle={warna_tnkb}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -151,7 +176,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Tahun Registrasi"
-          subTitle="2017"
+          subTitle={tahun_registrasi}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -159,7 +184,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Nomor BPKB"
-          subTitle="NO1887457"
+          subTitle={nomor_bpkb}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -167,7 +192,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="Kode Lokasi"
-          subTitle="9D754828885SN"
+          subTitle={kode_lokasi}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}
@@ -175,7 +200,7 @@ const DetailSTNK = () => {
         <Divider color="gray" />
         <InfoBlockDisplay
           title="No. Urut Pendaftaran"
-          subTitle="0003/U52/25U41/"
+          subTitle={nomor_urut_pendaftaran}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-sm text-cape-storm"
           gap={2}

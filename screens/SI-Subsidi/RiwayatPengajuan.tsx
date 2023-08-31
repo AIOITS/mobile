@@ -24,7 +24,6 @@ const RiwayatPengajuan = () => {
   };
 
   const id = useAuthContext().user?.id;
-
   const { loading, error, subsidi } = useAjuanSubsidi(id);
 
   return (

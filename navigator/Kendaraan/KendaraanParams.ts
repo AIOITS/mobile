@@ -1,6 +1,6 @@
 export type KendaraanStackParamList = {
   Kendaraan: undefined;
-  DetailSTNK: undefined;
+  DetailSTNK: STNKandPKB;
   MetodePembayaranPajak: undefined;
   BayarPajak: undefined;
   SuccessBayarPajak: undefined;

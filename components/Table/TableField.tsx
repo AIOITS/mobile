@@ -4,18 +4,91 @@ import { View, Text } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 import { useTailwind } from 'tailwind-rn';
 import CustomCell from './CustomCell';
+import calculate from '../../utils/calculationUtils';
 
-const TableField = () => {
+interface Props {
+  pkb: PKB;
+}
+
+const TableField = ({
+  pkb: {
+    bbknb_pokok,
+    bbknb_sanksi,
+    PKB_pokok,
+    PKB_sanksi,
+    swdkllj_pokok,
+    swdkllj_sanksi,
+    administrasi_stnk_pokok,
+    administrasi_stnk_sanksi,
+    administrasi_tnkb_pokok,
+    administrasi_tnkb_sanksi,
+  },
+}: Props) => {
   const tw = useTailwind();
   const header = ['', 'Pokok', 'Sanksi Adm', 'Jumlah'];
   const data = [
-    [<CustomCell title="BBKNB" />, '0', '0', '0'],
-    [<CustomCell title="PKB" />, '210.000', '0', '210.000'],
-    [<CustomCell title="SWDKLLJ" />, '35.000', '0', '35.000'],
-    [<CustomCell title="Biaya Adm STNK" />, '0', '0', '0'],
-    [<CustomCell title="Biaya Adm TNKB" />, '0', '0', '0'],
+    [
+      <CustomCell title="BBKNB" />,
+      `${bbknb_pokok}`,
+      `${bbknb_sanksi}`,
+      `${calculate(bbknb_pokok, bbknb_sanksi)}`,
+    ],
+    [
+      <CustomCell title="PKB" />,
+      `${PKB_pokok}`,
+      `${PKB_sanksi}`,
+      `${calculate(PKB_pokok, PKB_sanksi)}`,
+    ],
+    [
+      <CustomCell title="SWDKLLJ" />,
+      `${swdkllj_pokok}`,
+      `${swdkllj_sanksi}`,
+      `${calculate(swdkllj_pokok, swdkllj_sanksi)}`,
+    ],
+    [
+      <CustomCell title="Biaya Adm STNK" />,
+      `${administrasi_stnk_pokok}`,
+      `${administrasi_stnk_sanksi}`,
+      `${calculate(administrasi_stnk_pokok, administrasi_stnk_sanksi)}`,
+    ],
+    [
+      <CustomCell title="Biaya Adm TNKB" />,
+      `${administrasi_tnkb_pokok}`,
+      `${administrasi_tnkb_sanksi}`,
+      `${calculate(administrasi_tnkb_pokok, administrasi_tnkb_sanksi)}`,
+    ],
   ];
-  const total = [['Jumlah', '0', '0', '245.000']];
+  const total = [
+    [
+      'Jumlah',
+      `${calculate(
+        bbknb_pokok,
+        PKB_pokok,
+        swdkllj_pokok,
+        administrasi_stnk_pokok,
+        administrasi_tnkb_pokok,
+      )}`,
+      `${calculate(
+        bbknb_sanksi,
+        PKB_sanksi,
+        swdkllj_sanksi,
+        administrasi_stnk_sanksi,
+        administrasi_tnkb_sanksi,
+      )}`,
+      `${calculate(
+        bbknb_sanksi,
+        PKB_sanksi,
+        swdkllj_sanksi,
+        administrasi_stnk_sanksi,
+        administrasi_tnkb_sanksi,
+        bbknb_pokok,
+        PKB_pokok,
+        swdkllj_pokok,
+        administrasi_stnk_pokok,
+        administrasi_tnkb_pokok,
+      )}`,
+    ],
+  ];
 
   return (
     <View style={tw('')}>

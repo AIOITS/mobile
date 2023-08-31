@@ -71,7 +71,6 @@ type STNKAll = {
   nomor_registrasi: string;
   kode_lokasi: string;
   nomor_urut_pendaftaran: string;
-  nomor_pkb: string;
 };
 
 type STNKDetail = STNKAll & STNKInPengisian;
@@ -117,4 +116,23 @@ type KTPInSIM = {
   tempat_lahir: string;
   tanggal_lahir: string;
   golongan_darah: string;
+};
+
+type PKB = {
+  nomor_pkb: string;
+  status_pajak: boolean;
+  bbknb_pokok: number;
+  bbknb_sanksi: number;
+  PKB_pokok: number;
+  PKB_sanksi: number;
+  swdkllj_pokok: number;
+  swdkllj_sanksi: number;
+  administrasi_stnk_pokok: number;
+  administrasi_stnk_sanksi: number;
+  administrasi_tnkb_pokok: number;
+  administrasi_tnkb_sanksi: number;
+};
+
+type STNKandPKB = STNKDetail & {
+  pkb: PKB;
 };

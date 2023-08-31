@@ -26,3 +26,8 @@ export type BayarGantiPlatRouteProp = RouteProp<
   KendaraanStackParamList,
   'BayarGantiPlat'
 >;
+
+export type DetailSTNKRouteProp = RouteProp<
+  KendaraanStackParamList,
+  'DetailSTNK'
+>;
