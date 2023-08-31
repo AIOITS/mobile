@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import useCamera, { UseCameraHook } from './useCamera'; // Adjust the path as needed
+import useCamera, { UseCameraHook } from '../hooks/Camera/useCamera'; // Adjust the path as needed
 
 interface CameraContextType {
   cameraHook: UseCameraHook;

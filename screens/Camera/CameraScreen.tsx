@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import { useTailwind } from 'tailwind-rn';
 import { Icon } from '@rneui/base';
-import { useCameraContext } from '../../hooks/Camera/CameraContext';
+import { useCameraContext } from '../../contexts/CameraContext';
 import { useNavigation } from '@react-navigation/native';
 
 const CameraScreen = () => {

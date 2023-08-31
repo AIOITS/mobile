@@ -5,11 +5,13 @@ import {
   ScrollView,
   Animated,
   PanResponder,
+  TouchableOpacity,
 } from 'react-native';
 import React, { useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import { Icon } from '@rneui/themed';
 import ButtonIcon from '../../components/Button/ButtonIcon';
+import useLocation from '../../hooks/Location/useLocation';
 
 const EmergencyScreen = () => {
   const tw = useTailwind();
@@ -25,6 +27,9 @@ const EmergencyScreen = () => {
       // Perform any cleanup or final actions here if needed
     },
   });
+
+  const { __getLocation, __locationPermissions, locationName, loading } =
+    useLocation();
 
   return (
     <SafeAreaView style={tw('bg-strong-pink flex-1')}>
@@ -50,15 +55,18 @@ const EmergencyScreen = () => {
               ]}>
               <Text style={tw('text-sm font-normal text-white')}>Lokasi</Text>
               <Text style={tw('text-sm font-bold text-white')}>
-                Jl. Teknik Kimia, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur
-                60111
+                {loading ? 'Loading...' : locationName}
               </Text>
             </View>
           </View>
           {/* lokasi end */}
 
           {/* reload start */}
-          <View
+          <TouchableOpacity
+            onPress={() => {
+              __locationPermissions();
+              __getLocation();
+            }}
             style={[
               tw('flex flex-col flex-1 justify-center items-center'),
               { width: 50 },
@@ -72,7 +80,7 @@ const EmergencyScreen = () => {
             <Text style={tw('text-sm font-normal text-white text-center')}>
               Ulangi Cek Lokasi
             </Text>
-          </View>
+          </TouchableOpacity>
           {/* reload end */}
         </View>
         {/* location end */}

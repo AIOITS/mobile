@@ -66,10 +66,6 @@
   top: 0.5rem;
 }
 
-.top-5 {
-  top: 1.25rem;
-}
-
 .top-20 {
   top: 5rem;
 }
@@ -368,10 +364,6 @@
   border-top-width: 2px;
 }
 
-.border-solid {
-  border-style: solid;
-}
-
 .border-disable {
   --tw-border-opacity: 1;
   border-color: rgb(166 171 189 / var(--tw-border-opacity));
@@ -622,6 +614,11 @@
 .text-primary-light-blue {
   --tw-text-opacity: 1;
   color: rgb(0 160 243 / var(--tw-text-opacity));
+}
+
+.text-red {
+  --tw-text-opacity: 1;
+  color: rgb(254 0 0 / var(--tw-text-opacity));
 }
 
 .text-white {

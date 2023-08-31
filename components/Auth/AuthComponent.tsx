@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { useState } from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { useEffect, useState } from 'react';
+import { TouchableOpacity, View, Text, Alert } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
 import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';
 import BackgroundWithHeader from '../BackgroundWithHeader';
@@ -9,6 +9,11 @@ import { Button, Divider } from '@rneui/themed';
 import { AuthScreenParamList } from '../../navigator/Auth/RegisParams';
 import ButtonComponent from '../Button/ButtonComponent';
 import ButtonOutlineComponent from '../Button/ButtonOutlineComponent';
+import register from '../../api/rest/Auth/register';
+import login from '../../api/rest/Auth/login';
+import { useAuthContext } from '../../contexts/Auth/AuthContext';
+import validateEmail from '../../utils/validateEmail';
+import validatePhone from '../../utils/validatePhone';
 
 interface AuthComponentProps {
   header: string;
@@ -33,10 +38,63 @@ const AuthComponent = ({
   const [NIK, setNIK] = useState<string>('');
   const [input, setInput] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const navigation = useNavigation<RegisNavigationProps>();
   const route = useRoute();
   const isEmailActive = route.name === navigateToOne;
   const isPhoneActive = route.name === navigateToTwo;
+  const auth = useAuthContext();
+
+  useEffect(() => {
+    return () => {
+      setInput('');
+      setPassword('');
+      setErrorMessage('');
+    };
+  }, []);
+
+  const handleRegister = async () => {
+    try {
+      const regis = await auth.Register({
+        email: isEmailActive ? input : undefined,
+        phone: isEmailActive ? undefined : input,
+        password,
+        nik: NIK,
+      });
+      if (regis) {
+        setErrorMessage(regis.message);
+      } else {
+        navigation.navigate('OTP');
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message.toString());
+      } else {
+        setErrorMessage('An error occurred during registration.');
+      }
+    }
+  };
+
+  const handleLogin = async () => {
+    try {
+      const user = await auth.SignIn({
+        email: isEmailActive ? input : undefined,
+        phone: isEmailActive ? undefined : input,
+        password,
+      });
+      if (user.statusCode === 200) {
+        navigation.navigate('NotActivated');
+      } else if ('message' in user) {
+        setErrorMessage(user.message);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message.toString());
+      } else {
+        setErrorMessage('An error occurred during login.');
+      }
+    }
+  };
 
   return (
     <BackgroundWithHeader
@@ -86,12 +144,18 @@ const AuthComponent = ({
             onChangeValue={(text) => setNIK(text)}
           />
         )}
+        {errorMessage.includes('NIK') && (
+          <Text style={tw('text-red text-xs')}>{errorMessage}</Text>
+        )}
         <TextInputField
           label={title}
           placeholder={placeholder}
           value={input}
           onChangeValue={(text) => setInput(text)}
         />
+        {errorMessage !== '' && !errorMessage.includes('NIK') && (
+          <Text style={tw('text-red text-xs')}>{errorMessage}</Text>
+        )}
         <TextInputField
           label="Password"
           placeholder="Password"
@@ -107,12 +171,16 @@ const AuthComponent = ({
         {/* button bottom */}
         {register ? (
           <ButtonComponent
-            onNavigationClick={() => navigation.navigate('OTP')}
+            onNavigationClick={() => {
+              handleRegister();
+            }}
             buttonTitle="Buat Akun"
           />
         ) : (
           <ButtonComponent
-            onNavigationClick={() => navigation.navigate('NotActivated')}
+            onNavigationClick={() => {
+              handleLogin();
+            }}
             buttonTitle="Masuk"
           />
         )}
@@ -135,12 +203,16 @@ const AuthComponent = ({
         {register ? (
           <ButtonOutlineComponent
             buttonTitle="Masuk"
-            onNavigationClick={() => navigation.navigate('LoginByEmail')}
+            onNavigationClick={() => {
+              navigation.navigate('LoginByEmail');
+            }}
           />
         ) : (
           <ButtonOutlineComponent
             buttonTitle="Daftar"
-            onNavigationClick={() => navigation.navigate('RegisterByEmail')}
+            onNavigationClick={() => {
+              navigation.navigate('RegisterByEmail');
+            }}
           />
         )}
       </View>

@@ -2,8 +2,11 @@ import { View, Text, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
-import { useNavigation } from '@react-navigation/native';
-import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  RiwayatPengisianRouteProp,
+  SubsidiNavigationProps,
+} from '../../navigator/Subsidi/SubsidiNavigationProps';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import TextInputField from '../../components/Input/TextInputField';
 import { Icon } from '@rneui/themed';
@@ -14,6 +17,8 @@ const RiwayatPengisian = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
   const [search, setSearch] = useState<string>('');
+
+  const { params } = useRoute<RiwayatPengisianRouteProp>();
 
   return (
     <BackgroundWithHeader
@@ -26,15 +31,15 @@ const RiwayatPengisian = () => {
       {/* info start */}
       <View style={tw('flex flex-row justify-between items-center')}>
         <InfoBlockDisplay
-          title="Honda Vario 150"
-          subTitle="L 1150 CC"
+          title={`${params.tipe} ${params.merk} ${params.nomor_rangka}`}
+          subTitle={params.nomor_mesin}
           gap={2}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-cape-storm font-bold text-xl"
         />
         <InfoBlockDisplay
           title="Penggunaan Subsidi"
-          subTitle="25 L"
+          subTitle={params.isi_silinder.toString() + ' L'}
           gap={2}
           titleStyle="text-right text-disable text-xs"
           subTitleStyle="text-right text-cape-storm font-bold text-xl"
@@ -61,20 +66,7 @@ const RiwayatPengisian = () => {
         style={[tw('flex flex-col items-start justify-center'), { gap: 5 }]}>
         <InfoPengisianBox
           month="Oktober"
-          data={[
-            {
-              title: 'SPBU Surabaya Soetomo',
-              date: '10 Oktober 2022',
-              volume: '1.9L',
-              subsidi: true,
-            },
-            {
-              title: 'SPBU Surabaya Soetomo',
-              date: '10 Oktober 2022',
-              volume: '1.9L',
-              subsidi: false,
-            },
-          ]}
+          data={[...params.history_pengisian]}
         />
       </View>
       {/* riwayat end */}

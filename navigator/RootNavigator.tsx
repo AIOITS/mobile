@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import React, { useState, lazy } from 'react';
+import React, { useState, lazy, useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RegisByEmail from '../screens/Regis/RegisByEmail';
 import RegisByPhone from '../screens/Regis/RegisByPhone';
@@ -66,11 +66,23 @@ import SuccessValidasi from '../screens/Aktivasi/SuccessValidasi';
 import Government from '../screens/SI-Gov/Government';
 import CameraScreen from '../screens/Camera/CameraScreen';
 import VideoScreen from '../screens/Camera/VideoScreen';
+import { useAuthContext } from '../contexts/Auth/AuthContext';
 
 const RootStack = createNativeStackNavigator();
 
 const RootNavigator = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const auth = useAuthContext();
+
+  useEffect(() => {
+    auth.CheckToken().then((user_token) => {
+      if (user_token) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, [auth]);
 
   return (
     <RootStack.Navigator>

@@ -8,10 +8,18 @@ import MotorcycleSVG from '../../assets/motorcycle.svg';
 import { useNavigation } from '@react-navigation/native';
 import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
 import CardElevation from '../../components/Card/CardElevation';
+import { useAuthContext } from '../../contexts/Auth/AuthContext';
+import useHistoryPengisianFromSTNK from '../../hooks/SI-Subsidi/useHistoryPengisianFromSTNK';
 
 const Subsidi = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
+
+  const id = useAuthContext().user?.id;
+
+  // const { loading, error, pengisian } = useHistoryPengisian(id);
+  const { loading, error, stnkHistoryPengisian } =
+    useHistoryPengisianFromSTNK(id);
 
   return (
     <BackgroundWithHeader
@@ -41,23 +49,30 @@ const Subsidi = () => {
 
       {/* riwayat start */}
       <View style={tw('flex flex-col justify-center items-stretch')}>
-        <CardElevation
-          cardStyle="flex flex-row justify-between items-stretch w-full px-3 py-4"
-          elevation={2}>
-          <MotorcycleSVG height={100} />
-          <View style={[tw('flex flex-col justify-center'), { gap: 5 }]}>
-            <Text style={tw('text-disable text-xs')}>Honda Vario 125</Text>
-            <Text style={tw('text-cape-storm font-bold text-lg')}>
-              L 1150 CC
-            </Text>
-            <ButtonOutlineComponent
-              buttonTitle="Riwayat Pengisian"
-              onNavigationClick={() => navigation.navigate('RiwayatPengisian')}
-              width={'px-4'}
-              height={'py-2.5'}
-            />
-          </View>
-        </CardElevation>
+        {stnkHistoryPengisian.map((item, index) => (
+          <CardElevation
+            key={index}
+            cardStyle="flex flex-row justify-between items-stretch w-full px-3 py-4"
+            elevation={2}>
+            <MotorcycleSVG height={100} />
+            <View style={[tw('flex flex-col justify-center'), { gap: 5 }]}>
+              <Text style={tw('text-disable text-xs')}>
+                {item.tipe} {item.merk} {item.nomor_rangka}
+              </Text>
+              <Text style={tw('text-cape-storm font-bold text-lg')}>
+                {item.nomor_mesin}
+              </Text>
+              <ButtonOutlineComponent
+                buttonTitle="Riwayat Pengisian"
+                onNavigationClick={() =>
+                  navigation.navigate('RiwayatPengisian', item)
+                }
+                width={'px-4'}
+                height={'py-2.5'}
+              />
+            </View>
+          </CardElevation>
+        ))}
       </View>
       {/* riwayat end */}
     </BackgroundWithHeader>

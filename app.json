@@ -28,7 +28,8 @@
         "foregroundImage": "./assets/logo/logo-blue.png",
         "backgroundColor": "#f1f9fd"
       },
-      "package": "com.nizz14.aioits"
+      "package": "com.nizz14.aioits",
+      "permissions": ["ACCESS_BACKGROUND_LOCATION"]
     },
     "web": {
       "favicon": "./logo/logo-blue.png"

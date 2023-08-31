@@ -16,7 +16,7 @@ import { NotifyNavigationProps } from '../navigator/Menu/Menu';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Camera, CameraType } from 'expo-camera';
 import useCamera from '../hooks/Camera/useCamera';
-import { useCameraContext } from '../hooks/Camera/CameraContext';
+import { useCameraContext } from '../contexts/CameraContext';
 
 interface BackgroundWithHeaderProps {
   header: string;

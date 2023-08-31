@@ -15,7 +15,7 @@ const DetailRiwayatPengajuan = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
   const {
-    params: { tanggal, jumlah, status },
+    params: { alasan, jumlah, status_pengajuan, dokumen_pendukung },
   } = useRoute<DetailRiwayatPengajuanRouteProp>();
 
   const color = (status: string): string => {
@@ -43,8 +43,10 @@ const DetailRiwayatPengajuan = () => {
             Data Ajuan
           </Text>
           <Text
-            style={tw(`text-white text-sm rounded-md p-1 ${color(status)}`)}>
-            {status}
+            style={tw(
+              `text-white text-sm rounded-md p-1 ${color(status_pengajuan)}`,
+            )}>
+            {status_pengajuan}
           </Text>
         </View>
         {/* status end */}
@@ -53,7 +55,7 @@ const DetailRiwayatPengajuan = () => {
         <InfoBlockDisplay
           title="Jumlah Subsidi"
           titleStyle="text-disable text-xs"
-          subTitle={jumlah}
+          subTitle={jumlah.toString() + ' L'}
           subTitleStyle="text-cape-storm font-normal text-sm"
           gap={3}
         />
@@ -63,10 +65,7 @@ const DetailRiwayatPengajuan = () => {
         <InfoBlockDisplay
           title="Alasan"
           titleStyle="text-disable text-xs"
-          subTitle="Saya bekerja sebagai driver ojol di Surabaya. Bulan ini orderan
-          bertambah sehingga subsidi bahan bakar lebih cepat habis dan
-          ditambah lagi kenaikan harga BBM yang belum diimbangi dengan
-          kenaikan harga orderan membuat saya membutuhkan subsidi tambahan"
+          subTitle={alasan}
           subTitleStyle="text-cape-storm font-normal text-sm"
           gap={3}
         />
@@ -75,22 +74,30 @@ const DetailRiwayatPengajuan = () => {
         {/* dokumen start */}
         <View style={[tw('flex flex-col'), { gap: 8 }]}>
           <Text style={tw('text-disable text-xs')}>Dokumen pendukung</Text>
-          <ButtonIcon titleButton="screenshot_profile_ojol.png">
-            <Icon
-              name={'picture-o'}
-              type="font-awesome"
-              size={25}
-              color="#00A0F3"
-            />
-          </ButtonIcon>
-          <ButtonIcon titleButton="surat_keterangan_kerja.pdf">
-            <Icon
-              name={'file-pdf-o'}
-              type="font-awesome"
-              size={25}
-              color="#00A0F3"
-            />
-          </ButtonIcon>
+          {dokumen_pendukung?.map((item, index) => (
+            <View key={index}>
+              {item.includes('pdf') && (
+                <ButtonIcon titleButton={item}>
+                  <Icon
+                    name={'file-pdf-o'}
+                    type="font-awesome"
+                    size={25}
+                    color="#00A0F3"
+                  />
+                </ButtonIcon>
+              )}
+              {item.includes('jpg') && (
+                <ButtonIcon titleButton={item}>
+                  <Icon
+                    name={'picture-o'}
+                    type="font-awesome"
+                    size={25}
+                    color="#00A0F3"
+                  />
+                </ButtonIcon>
+              )}
+            </View>
+          ))}
         </View>
         {/* dokumen end */}
       </View>

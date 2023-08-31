@@ -11,7 +11,7 @@ import { Icon } from '@rneui/themed';
 import Instruksi from '../../components/Tes/Instruksi';
 import ButtonComponent from '../../components/Button/ButtonComponent';
 import { CameraNavigationProp } from '../../navigator/Camera/CameraNavigationProp';
-import { useCameraContext } from '../../hooks/Camera/CameraContext';
+import { useCameraContext } from '../../contexts/CameraContext';
 import { CameraCapturedPicture } from 'expo-camera';
 import ImageCard from '../../components/Card/ImageCard';
 

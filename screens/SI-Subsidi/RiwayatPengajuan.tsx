@@ -1,30 +1,14 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { View, Text } from 'react-native';
+import React, { useEffect } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
 import { useNavigation } from '@react-navigation/native';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import CardElevation from '../../components/Card/CardElevation';
-
-const data = [
-  {
-    tanggal: '11 Oktober 2022',
-    jumlah: '3 L',
-    status: 'diproses',
-  },
-  {
-    tanggal: '7 Agustus 2022',
-    jumlah: '3 L',
-    status: 'ditolak',
-  },
-  {
-    tanggal: '11 Juni 2022',
-    jumlah: '3 L',
-    status: 'disetujui',
-  },
-];
-
+import { useAuthContext } from '../../contexts/Auth/AuthContext';
+import handleDate from '../../utils/convertDate';
+import useAjuanSubsidi from '../../hooks/SI-Subsidi/useAjuanSubsidi';
 const RiwayatPengajuan = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
@@ -39,6 +23,10 @@ const RiwayatPengajuan = () => {
     }
   };
 
+  const id = useAuthContext().user?.id;
+
+  const { loading, error, subsidi } = useAjuanSubsidi(id);
+
   return (
     <BackgroundWithHeader
       header="Riwayat Pengajuan"
@@ -48,15 +36,11 @@ const RiwayatPengajuan = () => {
       onBackClick={() => navigation.goBack()}
       bell>
       <View style={[tw('flex flex-col'), { gap: 10 }]}>
-        {data ? (
-          data.map((item, index) => (
+        {subsidi ? (
+          subsidi.map((item, index) => (
             <CardElevation
               onCardClick={() =>
-                navigation.navigate('DetailRiwayatPengajuan', {
-                  tanggal: item.tanggal,
-                  jumlah: item.jumlah,
-                  status: item.status,
-                })
+                navigation.navigate('DetailRiwayatPengajuan', item)
               }
               key={index}
               cardStyle="flex flex-row justify-between items-center p-3"
@@ -66,7 +50,7 @@ const RiwayatPengajuan = () => {
                   gap={2}
                   title="Tanggal Pengajuan"
                   titleStyle="text-disable text-xs"
-                  subTitle={item.tanggal}
+                  subTitle={handleDate(item.tanggal_pengajuan)}
                   subTitleStyle="text-cape-storm text-base font-semibold"
                 />
               </View>
@@ -74,11 +58,14 @@ const RiwayatPengajuan = () => {
                 gap={2}
                 title="Jumlah"
                 titleStyle="text-disable text-xs"
-                subTitle={item.jumlah}
+                subTitle={item.jumlah.toString() + ' L'}
                 subTitleStyle="text-cape-storm text-base font-semibold"
               />
-              <View style={tw(`rounded-md p-1 ${color(item.status)}`)}>
-                <Text style={tw('text-xs text-white')}>{item.status}</Text>
+              <View
+                style={tw(`rounded-md p-1 ${color(item.status_pengajuan)}`)}>
+                <Text style={tw('text-xs text-white')}>
+                  {item.status_pengajuan}
+                </Text>
               </View>
             </CardElevation>
           ))

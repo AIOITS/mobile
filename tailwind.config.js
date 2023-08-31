@@ -16,6 +16,7 @@ module.exports = {
       golden: '#D5A419',
       'strong-pink': '#AD3B6F',
       'light-green': '#00B595',
+      red: '#FE0000',
     },
   },
   plugins: [],

@@ -1,0 +1,1144 @@
+type Pkb {
+  nomor_pkb: ID!
+  status_pajak: Boolean!
+  bbknb_pokok: Int!
+  bbknb_sanksi: Int!
+  PKB_pokok: Int!
+  PKB_sanksi: Int!
+  swdkllj_pokok: Int!
+  swdkllj_sanksi: Int!
+  administrasi_stnk_pokok: Int!
+  administrasi_stnk_sanksi: Int!
+  administrasi_tnkb_pokok: Int!
+  administrasi_tnkb_sanksi: Int!
+  stnk: Stnk
+}
+
+type Sim {
+  uid: String!
+  nomor_sim: ID!
+  jenis_sim: JenisSim!
+  nama: String!
+  alamat: String!
+  rt: Int!
+  rw: Int!
+  kelurahan_desa: String!
+  kecamatan: String!
+  kabupaten: String!
+  pekerjaan: String!
+  kabupaten_terbit: String!
+  tanggal_terbit: DateTime!
+  penerbit: String!
+  berlaku_sampai: DateTime!
+  nik: String
+  Ktp: Ktp
+}
+
+enum JenisSim {
+  a
+  a_umum
+  b1
+  b2
+  b2_umum
+  c
+  d
+  e
+  f
+  g
+  i
+  x
+}
+
+# A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+scalar DateTime
+
+type KtpCount {
+  sim: Int!
+  stnk: Int!
+}
+
+type Ktp {
+  nik: ID!
+  nama: String!
+  tempat_lahir: String!
+  tanggal_lahir: DateTime!
+  alamat: String!
+  rt: Int!
+  rw: Int!
+  kelurahan_desa: String!
+  kecamatan: String!
+  kabupaten_kota: String!
+  provinsi: String!
+  golongan_darah: GolonganDarah!
+  agama: Agama!
+  status_perkawinan: StatusPerkawinan!
+  pekerjaan: String!
+  kewarganegaraan: String!
+  tanggal_terbit: DateTime!
+  sim: Sim!
+  stnk: [Stnk!]!
+  user: User
+  _count: KtpCount!
+}
+
+enum GolonganDarah {
+  a
+  b
+  ab
+  o
+}
+
+enum Agama {
+  islam
+  kristen
+  katolik
+  budha
+  hindu
+  konghuchu
+  aliran_kepercayaan
+}
+
+enum StatusPerkawinan {
+  belum_kawin
+  kawin
+  cerai_hidup
+  cerai_mati
+}
+
+type StnkCount {
+  history_pengisian: Int!
+}
+
+type Stnk {
+  nomor_stnk: ID!
+  nomor_polisi: String!
+  nama_pemilik: String!
+  nomor_bpkb: String!
+  alamat: String!
+  bahan_bakar: String!
+  berlaku: DateTime!
+  merk: String!
+  tipe: String!
+  jenis: String!
+  model: String!
+  tahun_pembuatan: String!
+  isi_silinder: String!
+  nomor_mesin: String!
+  nomor_rangka: String!
+  warna: String!
+  warna_tnkb: String!
+  tahun_registrasi: String!
+  nomor_registrasi: String!
+  kode_lokasi: String!
+  nomor_urut_pendaftaran: String!
+  nomor_pkb: String!
+  nik: String
+  pkb: Pkb!
+  Ktp: Ktp
+  history_pengisian: [HistoryPengisian!]!
+  _count: StnkCount!
+}
+
+type HistoryPengisian {
+  kategori_pengisian: KategoriPengisian!
+  nama_spbu: String!
+  jumlah: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user_id: Int!
+  nomor_stnk: String!
+  user: User
+  stnk: Stnk!
+}
+
+enum KategoriPengisian {
+  subsidi
+  non_subsidi
+}
+
+type AjuanSubsidi {
+  id: ID!
+  jumlah: Int!
+  alasan: String!
+  dokumen_pendukung: [String!]
+  tanggal_pengajuan: DateTime!
+  status_pengajuan: StatusPengajuanSubsidi!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  userId: Int
+  user: User
+}
+
+enum StatusPengajuanSubsidi {
+  diproses
+  ditolak
+  disetujui
+}
+
+type UserCount {
+  history_pengisian: Int!
+  ajuan_subsidi: Int!
+}
+
+type User {
+  id: ID!
+  nik: String!
+  name: String!
+  email: String
+  phone: String
+  password: String!
+  kuota_subsidi: Float!
+  saldo: Int!
+  role: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  history_pengisian: [HistoryPengisian!]!
+  ajuan_subsidi: [AjuanSubsidi!]!
+  ktp: Ktp!
+  _count: UserCount!
+}
+
+type Query {
+  user(
+    where: UserWhereInput
+    orderBy: [UserOrderByWithRelationInput!]
+    cursor: UserWhereUniqueInput
+    take: Int
+    skip: Int
+    distinct: [UserScalarFieldEnum!]
+  ): [User!]!
+  ktp(
+    where: KtpWhereInput
+    orderBy: [KtpOrderByWithRelationInput!]
+    cursor: KtpWhereUniqueInput
+    take: Int
+    skip: Int
+    distinct: [KtpScalarFieldEnum!]
+  ): [Ktp!]!
+  stnk(
+    where: StnkWhereInput
+    orderBy: [StnkOrderByWithRelationInput!]
+    cursor: StnkWhereUniqueInput
+    take: Int
+    skip: Int
+    distinct: [StnkScalarFieldEnum!]
+  ): [Stnk!]!
+  history_pengisian(
+    where: HistoryPengisianWhereInput
+    orderBy: [HistoryPengisianOrderByWithRelationInput!]
+    cursor: HistoryPengisianWhereUniqueInput
+    take: Int
+    skip: Int
+    distinct: [HistoryPengisianScalarFieldEnum!]
+  ): [HistoryPengisian!]!
+  ajuan_subsidi(
+    where: AjuanSubsidiWhereInput
+    orderBy: [AjuanSubsidiOrderByWithRelationInput!]
+    cursor: AjuanSubsidiWhereUniqueInput
+    take: Int
+    skip: Int
+    distinct: [AjuanSubsidiScalarFieldEnum!]
+  ): [AjuanSubsidi!]!
+  sim(
+    where: SimWhereInput
+    orderBy: [SimOrderByWithRelationInput!]
+    cursor: SimWhereUniqueInput
+    take: Int
+    skip: Int
+    distinct: [SimScalarFieldEnum!]
+  ): [Sim!]!
+  pkb(
+    where: PkbWhereInput
+    orderBy: [PkbOrderByWithRelationInput!]
+    cursor: PkbWhereUniqueInput
+    take: Int
+    skip: Int
+    distinct: [PkbScalarFieldEnum!]
+  ): [Pkb!]!
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: IntFilter
+  nik: StringFilter
+  name: StringFilter
+  email: StringNullableFilter
+  phone: StringNullableFilter
+  password: StringFilter
+  kuota_subsidi: FloatFilter
+  saldo: IntFilter
+  role: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  history_pengisian: HistoryPengisianListRelationFilter
+  ajuan_subsidi: AjuanSubsidiListRelationFilter
+  ktp: KtpRelationFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input FloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatFilter
+}
+
+input NestedFloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input HistoryPengisianListRelationFilter {
+  every: HistoryPengisianWhereInput
+  some: HistoryPengisianWhereInput
+  none: HistoryPengisianWhereInput
+}
+
+input HistoryPengisianWhereInput {
+  AND: [HistoryPengisianWhereInput!]
+  OR: [HistoryPengisianWhereInput!]
+  NOT: [HistoryPengisianWhereInput!]
+  kategori_pengisian: EnumKategoriPengisianFilter
+  nama_spbu: StringFilter
+  jumlah: FloatFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  user_id: IntFilter
+  nomor_stnk: StringFilter
+  user: UserNullableRelationFilter
+  stnk: StnkRelationFilter
+}
+
+input EnumKategoriPengisianFilter {
+  equals: KategoriPengisian
+  in: [KategoriPengisian!]
+  notIn: [KategoriPengisian!]
+  not: NestedEnumKategoriPengisianFilter
+}
+
+input NestedEnumKategoriPengisianFilter {
+  equals: KategoriPengisian
+  in: [KategoriPengisian!]
+  notIn: [KategoriPengisian!]
+  not: NestedEnumKategoriPengisianFilter
+}
+
+input UserNullableRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input StnkRelationFilter {
+  is: StnkWhereInput
+  isNot: StnkWhereInput
+}
+
+input StnkWhereInput {
+  AND: [StnkWhereInput!]
+  OR: [StnkWhereInput!]
+  NOT: [StnkWhereInput!]
+  nomor_stnk: StringFilter
+  nomor_polisi: StringFilter
+  nama_pemilik: StringFilter
+  nomor_bpkb: StringFilter
+  alamat: StringFilter
+  bahan_bakar: StringFilter
+  berlaku: DateTimeFilter
+  merk: StringFilter
+  tipe: StringFilter
+  jenis: StringFilter
+  model: StringFilter
+  tahun_pembuatan: StringFilter
+  isi_silinder: StringFilter
+  nomor_mesin: StringFilter
+  nomor_rangka: StringFilter
+  warna: StringFilter
+  warna_tnkb: StringFilter
+  tahun_registrasi: StringFilter
+  nomor_registrasi: StringFilter
+  kode_lokasi: StringFilter
+  nomor_urut_pendaftaran: StringFilter
+  nomor_pkb: StringFilter
+  nik: StringNullableFilter
+  pkb: PkbRelationFilter
+  Ktp: KtpNullableRelationFilter
+  history_pengisian: HistoryPengisianListRelationFilter
+}
+
+input PkbRelationFilter {
+  is: PkbWhereInput
+  isNot: PkbWhereInput
+}
+
+input PkbWhereInput {
+  AND: [PkbWhereInput!]
+  OR: [PkbWhereInput!]
+  NOT: [PkbWhereInput!]
+  nomor_pkb: StringFilter
+  status_pajak: BoolFilter
+  bbknb_pokok: IntFilter
+  bbknb_sanksi: IntFilter
+  PKB_pokok: IntFilter
+  PKB_sanksi: IntFilter
+  swdkllj_pokok: IntFilter
+  swdkllj_sanksi: IntFilter
+  administrasi_stnk_pokok: IntFilter
+  administrasi_stnk_sanksi: IntFilter
+  administrasi_tnkb_pokok: IntFilter
+  administrasi_tnkb_sanksi: IntFilter
+  stnk: StnkNullableRelationFilter
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input StnkNullableRelationFilter {
+  is: StnkWhereInput
+  isNot: StnkWhereInput
+}
+
+input KtpNullableRelationFilter {
+  is: KtpWhereInput
+  isNot: KtpWhereInput
+}
+
+input KtpWhereInput {
+  AND: [KtpWhereInput!]
+  OR: [KtpWhereInput!]
+  NOT: [KtpWhereInput!]
+  nik: StringFilter
+  nama: StringFilter
+  tempat_lahir: StringFilter
+  tanggal_lahir: DateTimeFilter
+  alamat: StringFilter
+  rt: IntFilter
+  rw: IntFilter
+  kelurahan_desa: StringFilter
+  kecamatan: StringFilter
+  kabupaten_kota: StringFilter
+  provinsi: StringFilter
+  golongan_darah: EnumGolonganDarahFilter
+  agama: EnumAgamaFilter
+  status_perkawinan: EnumStatusPerkawinanFilter
+  pekerjaan: StringFilter
+  kewarganegaraan: StringFilter
+  tanggal_terbit: DateTimeFilter
+  sim: SimListRelationFilter
+  stnk: StnkListRelationFilter
+  user: UserNullableRelationFilter
+}
+
+input EnumGolonganDarahFilter {
+  equals: GolonganDarah
+  in: [GolonganDarah!]
+  notIn: [GolonganDarah!]
+  not: NestedEnumGolonganDarahFilter
+}
+
+input NestedEnumGolonganDarahFilter {
+  equals: GolonganDarah
+  in: [GolonganDarah!]
+  notIn: [GolonganDarah!]
+  not: NestedEnumGolonganDarahFilter
+}
+
+input EnumAgamaFilter {
+  equals: Agama
+  in: [Agama!]
+  notIn: [Agama!]
+  not: NestedEnumAgamaFilter
+}
+
+input NestedEnumAgamaFilter {
+  equals: Agama
+  in: [Agama!]
+  notIn: [Agama!]
+  not: NestedEnumAgamaFilter
+}
+
+input EnumStatusPerkawinanFilter {
+  equals: StatusPerkawinan
+  in: [StatusPerkawinan!]
+  notIn: [StatusPerkawinan!]
+  not: NestedEnumStatusPerkawinanFilter
+}
+
+input NestedEnumStatusPerkawinanFilter {
+  equals: StatusPerkawinan
+  in: [StatusPerkawinan!]
+  notIn: [StatusPerkawinan!]
+  not: NestedEnumStatusPerkawinanFilter
+}
+
+input SimListRelationFilter {
+  every: SimWhereInput
+  some: SimWhereInput
+  none: SimWhereInput
+}
+
+input SimWhereInput {
+  AND: [SimWhereInput!]
+  OR: [SimWhereInput!]
+  NOT: [SimWhereInput!]
+  uid: StringFilter
+  nomor_sim: StringFilter
+  jenis_sim: EnumJenisSimFilter
+  nama: StringFilter
+  alamat: StringFilter
+  rt: IntFilter
+  rw: IntFilter
+  kelurahan_desa: StringFilter
+  kecamatan: StringFilter
+  kabupaten: StringFilter
+  pekerjaan: StringFilter
+  kabupaten_terbit: StringFilter
+  tanggal_terbit: DateTimeFilter
+  penerbit: StringFilter
+  berlaku_sampai: DateTimeFilter
+  nik: StringNullableFilter
+  Ktp: KtpNullableRelationFilter
+}
+
+input EnumJenisSimFilter {
+  equals: JenisSim
+  in: [JenisSim!]
+  notIn: [JenisSim!]
+  not: NestedEnumJenisSimFilter
+}
+
+input NestedEnumJenisSimFilter {
+  equals: JenisSim
+  in: [JenisSim!]
+  notIn: [JenisSim!]
+  not: NestedEnumJenisSimFilter
+}
+
+input StnkListRelationFilter {
+  every: StnkWhereInput
+  some: StnkWhereInput
+  none: StnkWhereInput
+}
+
+input AjuanSubsidiListRelationFilter {
+  every: AjuanSubsidiWhereInput
+  some: AjuanSubsidiWhereInput
+  none: AjuanSubsidiWhereInput
+}
+
+input AjuanSubsidiWhereInput {
+  AND: [AjuanSubsidiWhereInput!]
+  OR: [AjuanSubsidiWhereInput!]
+  NOT: [AjuanSubsidiWhereInput!]
+  id: IntFilter
+  jumlah: IntFilter
+  alasan: StringFilter
+  dokumen_pendukung: StringNullableListFilter
+  tanggal_pengajuan: DateTimeFilter
+  status_pengajuan: EnumStatusPengajuanSubsidiFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  userId: IntNullableFilter
+  user: UserNullableRelationFilter
+}
+
+input StringNullableListFilter {
+  equals: [String!]
+  has: String
+  hasEvery: [String!]
+  hasSome: [String!]
+  isEmpty: Boolean
+}
+
+input EnumStatusPengajuanSubsidiFilter {
+  equals: StatusPengajuanSubsidi
+  in: [StatusPengajuanSubsidi!]
+  notIn: [StatusPengajuanSubsidi!]
+  not: NestedEnumStatusPengajuanSubsidiFilter
+}
+
+input NestedEnumStatusPengajuanSubsidiFilter {
+  equals: StatusPengajuanSubsidi
+  in: [StatusPengajuanSubsidi!]
+  notIn: [StatusPengajuanSubsidi!]
+  not: NestedEnumStatusPengajuanSubsidiFilter
+}
+
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input KtpRelationFilter {
+  is: KtpWhereInput
+  isNot: KtpWhereInput
+}
+
+input UserOrderByWithRelationInput {
+  id: SortOrder
+  nik: SortOrder
+  name: SortOrder
+  email: SortOrderInput
+  phone: SortOrderInput
+  password: SortOrder
+  kuota_subsidi: SortOrder
+  saldo: SortOrder
+  role: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  history_pengisian: HistoryPengisianOrderByRelationAggregateInput
+  ajuan_subsidi: AjuanSubsidiOrderByRelationAggregateInput
+  ktp: KtpOrderByWithRelationInput
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input SortOrderInput {
+  sort: SortOrder!
+  nulls: NullsOrder
+}
+
+enum NullsOrder {
+  first
+  last
+}
+
+input HistoryPengisianOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AjuanSubsidiOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input KtpOrderByWithRelationInput {
+  nik: SortOrder
+  nama: SortOrder
+  tempat_lahir: SortOrder
+  tanggal_lahir: SortOrder
+  alamat: SortOrder
+  rt: SortOrder
+  rw: SortOrder
+  kelurahan_desa: SortOrder
+  kecamatan: SortOrder
+  kabupaten_kota: SortOrder
+  provinsi: SortOrder
+  golongan_darah: SortOrder
+  agama: SortOrder
+  status_perkawinan: SortOrder
+  pekerjaan: SortOrder
+  kewarganegaraan: SortOrder
+  tanggal_terbit: SortOrder
+  sim: SimOrderByRelationAggregateInput
+  stnk: StnkOrderByRelationAggregateInput
+  user: UserOrderByWithRelationInput
+}
+
+input SimOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input StnkOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input UserWhereUniqueInput {
+  id: Int
+  nik: String
+  email: String
+  phone: String
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  name: StringFilter
+  password: StringFilter
+  kuota_subsidi: FloatFilter
+  saldo: IntFilter
+  role: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  history_pengisian: HistoryPengisianListRelationFilter
+  ajuan_subsidi: AjuanSubsidiListRelationFilter
+  ktp: KtpRelationFilter
+}
+
+enum UserScalarFieldEnum {
+  id
+  nik
+  name
+  email
+  phone
+  password
+  kuota_subsidi
+  saldo
+  role
+  createdAt
+  updatedAt
+}
+
+input KtpWhereUniqueInput {
+  nik: String
+  AND: [KtpWhereInput!]
+  OR: [KtpWhereInput!]
+  NOT: [KtpWhereInput!]
+  nama: StringFilter
+  tempat_lahir: StringFilter
+  tanggal_lahir: DateTimeFilter
+  alamat: StringFilter
+  rt: IntFilter
+  rw: IntFilter
+  kelurahan_desa: StringFilter
+  kecamatan: StringFilter
+  kabupaten_kota: StringFilter
+  provinsi: StringFilter
+  golongan_darah: EnumGolonganDarahFilter
+  agama: EnumAgamaFilter
+  status_perkawinan: EnumStatusPerkawinanFilter
+  pekerjaan: StringFilter
+  kewarganegaraan: StringFilter
+  tanggal_terbit: DateTimeFilter
+  sim: SimListRelationFilter
+  stnk: StnkListRelationFilter
+  user: UserNullableRelationFilter
+}
+
+enum KtpScalarFieldEnum {
+  nik
+  nama
+  tempat_lahir
+  tanggal_lahir
+  alamat
+  rt
+  rw
+  kelurahan_desa
+  kecamatan
+  kabupaten_kota
+  provinsi
+  golongan_darah
+  agama
+  status_perkawinan
+  pekerjaan
+  kewarganegaraan
+  tanggal_terbit
+}
+
+input StnkOrderByWithRelationInput {
+  nomor_stnk: SortOrder
+  nomor_polisi: SortOrder
+  nama_pemilik: SortOrder
+  nomor_bpkb: SortOrder
+  alamat: SortOrder
+  bahan_bakar: SortOrder
+  berlaku: SortOrder
+  merk: SortOrder
+  tipe: SortOrder
+  jenis: SortOrder
+  model: SortOrder
+  tahun_pembuatan: SortOrder
+  isi_silinder: SortOrder
+  nomor_mesin: SortOrder
+  nomor_rangka: SortOrder
+  warna: SortOrder
+  warna_tnkb: SortOrder
+  tahun_registrasi: SortOrder
+  nomor_registrasi: SortOrder
+  kode_lokasi: SortOrder
+  nomor_urut_pendaftaran: SortOrder
+  nomor_pkb: SortOrder
+  nik: SortOrderInput
+  pkb: PkbOrderByWithRelationInput
+  Ktp: KtpOrderByWithRelationInput
+  history_pengisian: HistoryPengisianOrderByRelationAggregateInput
+}
+
+input PkbOrderByWithRelationInput {
+  nomor_pkb: SortOrder
+  status_pajak: SortOrder
+  bbknb_pokok: SortOrder
+  bbknb_sanksi: SortOrder
+  PKB_pokok: SortOrder
+  PKB_sanksi: SortOrder
+  swdkllj_pokok: SortOrder
+  swdkllj_sanksi: SortOrder
+  administrasi_stnk_pokok: SortOrder
+  administrasi_stnk_sanksi: SortOrder
+  administrasi_tnkb_pokok: SortOrder
+  administrasi_tnkb_sanksi: SortOrder
+  stnk: StnkOrderByWithRelationInput
+}
+
+input StnkWhereUniqueInput {
+  nomor_stnk: String
+  nomor_polisi: String
+  nomor_pkb: String
+  AND: [StnkWhereInput!]
+  OR: [StnkWhereInput!]
+  NOT: [StnkWhereInput!]
+  nama_pemilik: StringFilter
+  nomor_bpkb: StringFilter
+  alamat: StringFilter
+  bahan_bakar: StringFilter
+  berlaku: DateTimeFilter
+  merk: StringFilter
+  tipe: StringFilter
+  jenis: StringFilter
+  model: StringFilter
+  tahun_pembuatan: StringFilter
+  isi_silinder: StringFilter
+  nomor_mesin: StringFilter
+  nomor_rangka: StringFilter
+  warna: StringFilter
+  warna_tnkb: StringFilter
+  tahun_registrasi: StringFilter
+  nomor_registrasi: StringFilter
+  kode_lokasi: StringFilter
+  nomor_urut_pendaftaran: StringFilter
+  nik: StringNullableFilter
+  pkb: PkbRelationFilter
+  Ktp: KtpNullableRelationFilter
+  history_pengisian: HistoryPengisianListRelationFilter
+}
+
+enum StnkScalarFieldEnum {
+  nomor_stnk
+  nomor_polisi
+  nama_pemilik
+  nomor_bpkb
+  alamat
+  bahan_bakar
+  berlaku
+  merk
+  tipe
+  jenis
+  model
+  tahun_pembuatan
+  isi_silinder
+  nomor_mesin
+  nomor_rangka
+  warna
+  warna_tnkb
+  tahun_registrasi
+  nomor_registrasi
+  kode_lokasi
+  nomor_urut_pendaftaran
+  nomor_pkb
+  nik
+}
+
+input HistoryPengisianOrderByWithRelationInput {
+  kategori_pengisian: SortOrder
+  nama_spbu: SortOrder
+  jumlah: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  user_id: SortOrder
+  nomor_stnk: SortOrder
+  user: UserOrderByWithRelationInput
+  stnk: StnkOrderByWithRelationInput
+}
+
+input HistoryPengisianWhereUniqueInput {
+  kategori_pengisian: KategoriPengisian
+  AND: [HistoryPengisianWhereInput!]
+  OR: [HistoryPengisianWhereInput!]
+  NOT: [HistoryPengisianWhereInput!]
+  nama_spbu: StringFilter
+  jumlah: FloatFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  user_id: IntFilter
+  nomor_stnk: StringFilter
+  user: UserNullableRelationFilter
+  stnk: StnkRelationFilter
+}
+
+enum HistoryPengisianScalarFieldEnum {
+  kategori_pengisian
+  nama_spbu
+  jumlah
+  createdAt
+  updatedAt
+  user_id
+  nomor_stnk
+}
+
+input AjuanSubsidiOrderByWithRelationInput {
+  id: SortOrder
+  jumlah: SortOrder
+  alasan: SortOrder
+  dokumen_pendukung: SortOrder
+  tanggal_pengajuan: SortOrder
+  status_pengajuan: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrderInput
+  user: UserOrderByWithRelationInput
+}
+
+input AjuanSubsidiWhereUniqueInput {
+  id: Int
+  AND: [AjuanSubsidiWhereInput!]
+  OR: [AjuanSubsidiWhereInput!]
+  NOT: [AjuanSubsidiWhereInput!]
+  jumlah: IntFilter
+  alasan: StringFilter
+  dokumen_pendukung: StringNullableListFilter
+  tanggal_pengajuan: DateTimeFilter
+  status_pengajuan: EnumStatusPengajuanSubsidiFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  userId: IntNullableFilter
+  user: UserNullableRelationFilter
+}
+
+enum AjuanSubsidiScalarFieldEnum {
+  id
+  jumlah
+  alasan
+  dokumen_pendukung
+  tanggal_pengajuan
+  status_pengajuan
+  createdAt
+  updatedAt
+  userId
+}
+
+input SimOrderByWithRelationInput {
+  uid: SortOrder
+  nomor_sim: SortOrder
+  jenis_sim: SortOrder
+  nama: SortOrder
+  alamat: SortOrder
+  rt: SortOrder
+  rw: SortOrder
+  kelurahan_desa: SortOrder
+  kecamatan: SortOrder
+  kabupaten: SortOrder
+  pekerjaan: SortOrder
+  kabupaten_terbit: SortOrder
+  tanggal_terbit: SortOrder
+  penerbit: SortOrder
+  berlaku_sampai: SortOrder
+  nik: SortOrderInput
+  Ktp: KtpOrderByWithRelationInput
+}
+
+input SimWhereUniqueInput {
+  uid: String
+  nomor_sim: String
+  AND: [SimWhereInput!]
+  OR: [SimWhereInput!]
+  NOT: [SimWhereInput!]
+  jenis_sim: EnumJenisSimFilter
+  nama: StringFilter
+  alamat: StringFilter
+  rt: IntFilter
+  rw: IntFilter
+  kelurahan_desa: StringFilter
+  kecamatan: StringFilter
+  kabupaten: StringFilter
+  pekerjaan: StringFilter
+  kabupaten_terbit: StringFilter
+  tanggal_terbit: DateTimeFilter
+  penerbit: StringFilter
+  berlaku_sampai: DateTimeFilter
+  nik: StringNullableFilter
+  Ktp: KtpNullableRelationFilter
+}
+
+enum SimScalarFieldEnum {
+  uid
+  nomor_sim
+  jenis_sim
+  nama
+  alamat
+  rt
+  rw
+  kelurahan_desa
+  kecamatan
+  kabupaten
+  pekerjaan
+  kabupaten_terbit
+  tanggal_terbit
+  penerbit
+  berlaku_sampai
+  nik
+}
+
+input PkbWhereUniqueInput {
+  nomor_pkb: String
+  AND: [PkbWhereInput!]
+  OR: [PkbWhereInput!]
+  NOT: [PkbWhereInput!]
+  status_pajak: BoolFilter
+  bbknb_pokok: IntFilter
+  bbknb_sanksi: IntFilter
+  PKB_pokok: IntFilter
+  PKB_sanksi: IntFilter
+  swdkllj_pokok: IntFilter
+  swdkllj_sanksi: IntFilter
+  administrasi_stnk_pokok: IntFilter
+  administrasi_stnk_sanksi: IntFilter
+  administrasi_tnkb_pokok: IntFilter
+  administrasi_tnkb_sanksi: IntFilter
+  stnk: StnkNullableRelationFilter
+}
+
+enum PkbScalarFieldEnum {
+  nomor_pkb
+  status_pajak
+  bbknb_pokok
+  bbknb_sanksi
+  PKB_pokok
+  PKB_sanksi
+  swdkllj_pokok
+  swdkllj_sanksi
+  administrasi_stnk_pokok
+  administrasi_stnk_sanksi
+  administrasi_tnkb_pokok
+  administrasi_tnkb_sanksi
+}

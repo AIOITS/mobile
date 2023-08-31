@@ -2,15 +2,11 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { useTailwind } from 'tailwind-rn';
 import InfoPengisianText from '../Info/InfoPengisianText';
+import handleDate from '../../utils/convertDate';
 
 interface Props {
   month: string;
-  data: {
-    usage: string;
-    title: string;
-    date: string;
-    volume: string;
-  }[];
+  data: HistoryPengisian[];
 }
 
 const InfoPengisianBox = ({ month, data }: Props) => {
@@ -22,10 +18,10 @@ const InfoPengisianBox = ({ month, data }: Props) => {
       {data.map((item, index) => (
         <InfoPengisianText
           key={index}
-          title={item.title}
-          date={item.date}
-          usage={item.usage}
-          volume={item.volume}
+          title={item.nama_spbu}
+          date={handleDate(item.createdAt)}
+          usage={item.kategori_pengisian}
+          volume={item.jumlah.toString() + ' L'}
         />
       ))}
     </View>

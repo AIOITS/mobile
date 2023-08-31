@@ -84,11 +84,6 @@
       "top": 8
     }
   },
-  "top-5": {
-    "style": {
-      "top": 20
-    }
-  },
   "top-20": {
     "style": {
       "top": 80
@@ -482,11 +477,6 @@
       "borderTopWidth": 2
     }
   },
-  "border-solid": {
-    "style": {
-      "borderStyle": "solid"
-    }
-  },
   "border-disable": {
     "style": {
       "--tw-border-opacity": 1,
@@ -812,6 +802,12 @@
     "style": {
       "--tw-text-opacity": 1,
       "color": "rgb(0 160 243 / var(--tw-text-opacity))"
+    }
+  },
+  "text-red": {
+    "style": {
+      "--tw-text-opacity": 1,
+      "color": "rgb(254 0 0 / var(--tw-text-opacity))"
     }
   },
   "text-white": {

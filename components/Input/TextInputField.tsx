@@ -23,7 +23,7 @@ const TextInputField = ({
   labelStyle,
 }: Props) => {
   const tw = useTailwind();
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(true);
 
   return (
     <View style={[tw('my-2'), { gap: gap ? gap : 0 }]}>
@@ -32,6 +32,9 @@ const TextInputField = ({
         <View style={tw('flex flex-row justify-center items-center')}>
           <TextInput
             placeholder={placeholder}
+            value={value}
+            onChangeText={onChangeValue}
+            secureTextEntry={showPassword}
             style={[
               tw(
                 'bg-secondary-white flex-1 border-disable py-2 rounded-lg px-4',
@@ -43,7 +46,7 @@ const TextInputField = ({
             style={tw('absolute right-4')}
             onPress={() => setShowPassword(!showPassword)}>
             <Icon
-              name={showPassword ? 'eye' : 'eye-with-line'}
+              name={showPassword ? 'eye-with-line' : 'eye'}
               type="entypo"
               size={25}
               color="gray"
