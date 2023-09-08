@@ -67,6 +67,7 @@ import Government from '../screens/SI-Gov/Government';
 import CameraScreen from '../screens/Camera/CameraScreen';
 import VideoScreen from '../screens/Camera/VideoScreen';
 import { useAuthContext } from '../contexts/Auth/AuthContext';
+import Loading from '../components/Indicator/Loading';
 
 const RootStack = createNativeStackNavigator();
 
@@ -83,6 +84,10 @@ const RootNavigator = () => {
       }
     });
   }, [auth]);
+
+  if (auth.isLoading) {
+    return <Loading />;
+  }
 
   return (
     <RootStack.Navigator>

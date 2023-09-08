@@ -15,7 +15,7 @@
       ]
     ],
     "splash": {
-      "image": "./assets/logo/splash.png",
+      "image": "./assets/logo/aioits.png",
       "resizeMode": "contain",
       "backgroundColor": "#f1f9fd"
     },
@@ -25,14 +25,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo/logo-blue.png",
+        "foregroundImage": "./assets/logo/logo-aioits.png",
         "backgroundColor": "#f1f9fd"
       },
       "package": "com.nizz14.aioits",
       "permissions": ["ACCESS_BACKGROUND_LOCATION"]
     },
     "web": {
-      "favicon": "./logo/logo-blue.png"
+      "favicon": "./logo/logo-aioits.png"
     },
     "extra": {
       "eas": {

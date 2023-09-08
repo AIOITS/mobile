@@ -36,10 +36,9 @@ const NotifyScreen = () => {
       <View style={[tw('flex flex-col'), { gap: 10 }]}>
         {data ? (
           data.map((item, index) => (
-            <View>
+            <View key={index}>
               <View
-                style={tw('flex flex-row items-center justify-start mr-20')}
-                key={index}>
+                style={tw('flex flex-row items-center justify-start mr-20')}>
                 {item.status == 'bahan-bakar' && (
                   <SISubsidi
                     width={35}

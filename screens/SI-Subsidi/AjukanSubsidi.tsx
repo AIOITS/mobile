@@ -17,6 +17,9 @@ import ButtonIcon from '../../components/Button/ButtonIcon';
 import * as DocumentPicker from 'expo-document-picker';
 import useFiles from '../../hooks/Files/useFiles';
 import FilesCard from '../../components/Card/FilesCard';
+import ajuan_subsidi from '../../api/rest/Subsidi/ajuan-subsidi';
+import { useAuthContext } from '../../contexts/Auth/AuthContext';
+import getCurrentDate from '../../utils/getCurrentDate';
 
 const units = [
   'Kiloliter',
@@ -31,10 +34,13 @@ const units = [
 const AjukanSubsidi = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
-  const [files, setFiles] = useState<DocumentPicker.DocumentPickerResult[]>([]);
   const { __checkPermissions, __selectFile, singleFile } = useFiles();
   const [dropdown, setDropdown] = useState<boolean>(false);
   const [unit, setUnit] = useState<string>('Liter');
+  const [jumlahSubsidi, setJumlahSubsidi] = useState<number>(0);
+  const [alasan, setAlasan] = useState<string>('');
+  const [files, setFiles] = useState<DocumentPicker.DocumentPickerResult[]>([]);
+  const { getToken } = useAuthContext();
 
   const handleDropdown = () => {
     setDropdown(!dropdown);
@@ -43,6 +49,21 @@ const AjukanSubsidi = () => {
   const handleUnit = (unit: string) => {
     setUnit(unit);
     setDropdown(false);
+  };
+
+  const handleAjuanSubsidi = async () => {
+    const token = await getToken();
+    const response = await ajuan_subsidi({
+      alasan: alasan,
+      jumlah: jumlahSubsidi,
+      dokumen_pendukung: files,
+      tanggal_pengajuan: getCurrentDate(),
+      access_token: token as string,
+    });
+
+    if (response.statusCode === 201) {
+      navigation.navigate('SuccessAjukanSubsidi');
+    }
   };
 
   useEffect(() => {
@@ -75,6 +96,7 @@ const AjukanSubsidi = () => {
         <Text style={tw('text-cape-storm')}>Jumlah Subsidi</Text>
         <View style={tw('flex flex-row justify-between items-center')}>
           <TextInput
+            onChange={(e) => setJumlahSubsidi(Number(e.nativeEvent.text))}
             style={[
               tw(
                 'bg-secondary-white px-4 py-2 text-sm rounded-lg flex-1 border-disable',
@@ -128,9 +150,10 @@ const AjukanSubsidi = () => {
 
       {/* alasan start */}
       <View style={[tw('flex flex-col'), { gap: 8 }]}>
-        <Text style={tw('text-cape-storm')}>Jumlah Subsidi</Text>
+        <Text style={tw('text-cape-storm')}>Alasan</Text>
         <View style={tw('flex flex-row')}>
           <TextInput
+            onChange={(e) => setAlasan(e.nativeEvent.text)}
             multiline={true}
             numberOfLines={4}
             textAlignVertical="top"
@@ -175,7 +198,9 @@ const AjukanSubsidi = () => {
       <View style={tw('absolute bottom-3 right-0 left-0')}>
         <ButtonComponent
           buttonTitle="Ajukan"
-          onNavigationClick={() => navigation.navigate('SuccessAjukanSubsidi')}
+          onNavigationClick={() => {
+            handleAjuanSubsidi();
+          }}
         />
       </View>
       {/* button end */}

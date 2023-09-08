@@ -17,6 +17,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Camera, CameraType } from 'expo-camera';
 import useCamera from '../hooks/Camera/useCamera';
 import { useCameraContext } from '../contexts/CameraContext';
+import Loading from './Indicator/Loading';
 
 interface BackgroundWithHeaderProps {
   header: string;
@@ -26,6 +27,7 @@ interface BackgroundWithHeaderProps {
   reverseHeader?: boolean;
   main?: boolean;
   bell?: boolean;
+  loading?: boolean;
   onBackClick?: () => void;
 }
 
@@ -39,12 +41,17 @@ const BackgroundWithHeader = ({
   reverseHeader,
   main,
   bell,
+  loading,
   onBackClick,
 }: BackgroundWithHeaderProps) => {
   const tw = useTailwind();
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
   const navigation = useNavigation<NotifyNavigationProps>();
   const [active, setActive] = useState<boolean>(true);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <SafeAreaView style={tw('bg-white flex-1')}>

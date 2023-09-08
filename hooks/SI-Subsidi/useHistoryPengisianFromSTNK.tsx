@@ -21,6 +21,7 @@ function useHistoryPengisianFromSTNK(userId: number) {
         isi_silinder: item.isi_silinder,
         nomor_mesin: item.nomor_mesin,
         nomor_rangka: item.nomor_rangka,
+        berlaku: item.berlaku,
         history_pengisian: item.history_pengisian.map(
           (item: HistoryPengisian) => ({
             kategori_pengisian: item.kategori_pengisian,

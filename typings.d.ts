@@ -19,6 +19,51 @@ type RegisterSuccessResponse = {
   };
 };
 
+type HistoryPengisianSuccessResponse = {
+  statusCode: number;
+  data: {
+    id: number;
+    kategori_pengisian: string;
+    nama_spbu: string;
+    jumlah: number;
+    createdAt: string;
+    updatedAt: string;
+    user_id: number;
+    nomor_stnk: string;
+  };
+};
+
+type HistoryPengisianInput = {
+  kategori_pengisian: string;
+  nama_spbu: string;
+  jumlah: number;
+  nomor_stnk: string;
+  access_token: string;
+};
+
+type AjuanSubsidiSuccessResponse = {
+  statusCode: number;
+  data: {
+    id: number;
+    jumlah: number;
+    alasan: string;
+    dokumen_pendukung: string[];
+    tanggal_pengajuan: string;
+    status_pengajuan: string;
+    createdAt: string;
+    updatedAt: string;
+    userId: number;
+  };
+};
+
+type AjuanSubsidiInput = {
+  jumlah: number;
+  alasan: string;
+  dokumen_pendukung: DocumentPicker.DocumentPickerResult[];
+  tanggal_pengajuan: string;
+  access_token: string;
+};
+
 type LoginInput = {
   password: string;
   email?: string | undefined;
@@ -37,6 +82,10 @@ type AjuanSubsidi = {
   jumlah: number;
 };
 
+type KTP = {
+  nama: string;
+};
+
 type HistoryPengisian = {
   kategori_pengisian: string;
   nama_spbu: string;
@@ -52,6 +101,7 @@ type STNKInPengisian = {
   isi_silinder: string;
   nomor_mesin: string;
   nomor_rangka: string;
+  berlaku: string;
 };
 
 type STNKAll = {
@@ -135,4 +185,9 @@ type PKB = {
 
 type STNKandPKB = STNKDetail & {
   pkb: PKB;
+};
+
+type STNKandName = STNKInPengisian & {
+  nama: string;
+  berlaku: string;
 };

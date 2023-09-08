@@ -24,7 +24,7 @@ const RiwayatPengajuan = () => {
   };
 
   const id = useAuthContext().user?.id;
-  const { loading, error, subsidi } = useAjuanSubsidi(id);
+  const { loading, error, subsidi } = useAjuanSubsidi(id as number);
 
   return (
     <BackgroundWithHeader
@@ -32,6 +32,7 @@ const RiwayatPengajuan = () => {
       subHeader="Pengajuan Subsidi yang telah dilakukan"
       backButton
       main
+      loading={loading}
       onBackClick={() => navigation.goBack()}
       bell>
       <View style={[tw('flex flex-col'), { gap: 10 }]}>

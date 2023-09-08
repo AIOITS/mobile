@@ -16,13 +16,14 @@ const Kendaraan = () => {
   const tw = useTailwind();
   const navigation = useNavigation<KendaraanNavigationProps>();
   const id = useAuthContext().user?.id;
-  const { loading, error, stnk_pkb } = useSTNKandPKB(id);
+  const { loading, error, stnk_pkb } = useSTNKandPKB(id as number);
 
   return (
     <BackgroundWithHeader
       header="SI Kendaraan"
       subHeader="Surat kendaraan digital"
       backButton
+      loading={loading}
       onBackClick={() => navigation.goBack()}
       main
       bell>

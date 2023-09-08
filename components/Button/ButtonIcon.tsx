@@ -46,7 +46,7 @@ const ButtonIcon = ({
         {!right && children}
         <Text
           style={tw(
-            `${titleButtonStyle ? titleButtonStyle : 'text-cape-storm'}`,
+            `px-4 ${titleButtonStyle ? titleButtonStyle : 'text-cape-storm'}`,
           )}>
           {titleButton}
         </Text>

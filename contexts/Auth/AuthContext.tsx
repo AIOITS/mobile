@@ -24,6 +24,7 @@ interface State {
     password,
   }: RegisterInput) => Promise<void | ErrorResponse>;
   CheckToken: () => Promise<User | null>;
+  getToken: () => Promise<string | null>;
 }
 
 const initialAuthState: State = {
@@ -36,6 +37,7 @@ const initialAuthState: State = {
   SignOut: () => {},
   Register: async () => {},
   CheckToken: async () => null,
+  getToken: async () => null,
 };
 
 interface User {
@@ -172,6 +174,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
         const user = JSON.stringify(decoded_token);
         await AsyncStorage.setItem('user', user);
+        await AsyncStorage.setItem('token', token);
       }
       return user;
     } catch (error) {
@@ -233,9 +236,14 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return user_token as User | null;
   };
 
+  const getToken = async (): Promise<string | null> => {
+    const access_token = await AsyncStorage.getItem('token');
+    return access_token;
+  };
+
   return (
     <AuthContext.Provider
-      value={{ ...state, SignIn, SignOut, Register, CheckToken }}>
+      value={{ ...state, SignIn, SignOut, Register, CheckToken, getToken }}>
       {children}
     </AuthContext.Provider>
   );

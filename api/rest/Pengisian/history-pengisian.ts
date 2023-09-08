@@ -1,27 +1,26 @@
 import axios from 'axios';
 
-const login = async ({
-  password,
-  email,
-  phone,
-}: LoginInput): Promise<RegisterSuccessResponse | ErrorResponse> => {
+const history_pengisian = async ({
+  jumlah,
+  nama_spbu,
+  kategori_pengisian,
+  nomor_stnk,
+  access_token,
+}: HistoryPengisianInput): Promise<
+  HistoryPengisianSuccessResponse | ErrorResponse
+> => {
   try {
-    let data;
-    if (email !== undefined) {
-      data = {
-        password,
-        email,
-      };
-    } else if (phone !== undefined) {
-      data = {
-        password,
-        phone,
-      };
-    }
-    console.log(data);
-
-    const url = 'https://aioits-backend-q6ihv4us2q-uc.a.run.app/auth/login';
-    const response = await axios.post(url, data);
+    const url =
+      'https://aioits-backend-q6ihv4us2q-uc.a.run.app/history-pengisian';
+    const response = await axios.post(url, {
+      jumlah,
+      nama_spbu,
+      kategori_pengisian,
+      nomor_stnk,
+      Headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
 
     if (response.status === 200) {
       return response.data;
@@ -60,4 +59,4 @@ const login = async ({
   }
 };
 
-export default login;
+export default history_pengisian;

@@ -82,9 +82,10 @@ const AuthComponent = ({
         phone: isEmailActive ? undefined : input,
         password,
       });
-      if (user.statusCode === 200) {
-        navigation.navigate('NotActivated');
-      } else if ('message' in user) {
+      // if (user.statusCode === 200) {
+      //   navigation.navigate('NotActivated');
+      // } else
+      if ('message' in user) {
         setErrorMessage(user.message);
       }
     } catch (error) {

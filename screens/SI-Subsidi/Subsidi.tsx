@@ -16,8 +16,9 @@ const Subsidi = () => {
   const navigation = useNavigation<SubsidiNavigationProps>();
 
   const id = useAuthContext().user?.id;
-  const { loading, error, stnkHistoryPengisian } =
-    useHistoryPengisianFromSTNK(id);
+  const { loading, error, stnkHistoryPengisian } = useHistoryPengisianFromSTNK(
+    id as number,
+  );
 
   return (
     <BackgroundWithHeader
@@ -26,6 +27,7 @@ const Subsidi = () => {
       onBackClick={() => navigation.goBack()}
       main
       bell
+      loading={loading}
       subHeader="Pengelolaan subsidi tepat guna">
       {/* button start */}
       <View

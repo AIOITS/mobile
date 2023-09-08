@@ -2,7 +2,7 @@ import {
   View,
   Text,
   ScrollView,
-  Dimensions,
+  FlatList,
   Image,
   TouchableOpacity,
 } from 'react-native';
@@ -20,34 +20,47 @@ import SIGovernment from '../../assets/menu/si-government.svg';
 import OtherSVG from '../../assets/menu/other.svg';
 import { useNavigation } from '@react-navigation/native';
 import { MoneyNavigationProps } from '../../navigator/Money/MoneyNavigationProp';
+import { useAuthContext } from '../../contexts/Auth/AuthContext';
+import useHistoryPengisianFromSTNK from '../../hooks/SI-Subsidi/useHistoryPengisianFromSTNK';
+import handleDate from '../../utils/convertDate';
+import useKTP from '../../hooks/General/useKTP';
 
 const HomeScreen = () => {
   const tw = useTailwind();
   const navigation = useNavigation<MoneyNavigationProps>();
 
+  const id = useAuthContext().user?.id;
+  const {
+    loading: loadingStnkHistory,
+    error: errorStnkHistory,
+    stnkHistoryPengisian,
+  } = useHistoryPengisianFromSTNK(id as number);
+
+  const { loading: loadingKtp, error: errorKtp, ktp } = useKTP(id as number);
+
   return (
     <BackgroundWithHeader
       header="Selamat Datang"
-      subHeader="Tiara Asa"
+      subHeader={`${ktp.nama}`}
       main
       bell
+      loading={loadingKtp || loadingStnkHistory}
       reverseHeader>
       {/* kendaraan start */}
       <ScrollView horizontal={true}>
         <View style={[tw('flex flex-row'), { gap: 10 }]}>
-          <VehicleCard
-            vehicleName="Honda Vario 125"
-            engineSpec="L 1150 CC"
-            reminderDate="Jatuh Tempo"
-            reminderTitle="10 Jan 2023"
-            disabled={true}
-          />
-          <VehicleCard
-            vehicleName="Honda Vario 125"
-            engineSpec="L 1150 CC"
-            reminderDate="Jatuh Tempo"
-            reminderTitle="10 Jan 2023"
-            disabled={true}
+          <FlatList
+            data={stnkHistoryPengisian}
+            renderItem={({ item, index }) => (
+              <VehicleCard
+                vehicleName={`${item.tipe} ${item.merk} ${item.nomor_rangka}`}
+                engineSpec={`${item.nomor_mesin}`}
+                reminderDate="Jatuh Tempo"
+                reminderTitle={`${handleDate(item.berlaku)}`}
+                disabled={true}
+              />
+            )}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </ScrollView>

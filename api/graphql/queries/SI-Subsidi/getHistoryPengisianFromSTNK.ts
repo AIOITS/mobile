@@ -6,6 +6,7 @@ export const GET_HISTORY_PENGISIAN_FROM_STNK = gql`
       ktp {
         stnk {
           merk
+          berlaku
           tipe
           isi_silinder
           nomor_mesin
