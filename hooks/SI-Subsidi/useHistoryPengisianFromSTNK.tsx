@@ -10,8 +10,11 @@ function useHistoryPengisianFromSTNK(userId: number) {
     HistoryPengisianFromSTNK[]
   >([]);
 
+  console.log('masuk hook useHistoryPengisianFromSTNK');
   useEffect(() => {
     if (!data) return;
+
+    console.log(data);
 
     // TODO: masi pre-define
     const stnk_history_pengisian = data.user[0].ktp.stnk.map(
@@ -25,7 +28,7 @@ function useHistoryPengisianFromSTNK(userId: number) {
         history_pengisian: item.history_pengisian.map(
           (item: HistoryPengisian) => ({
             kategori_pengisian: item.kategori_pengisian,
-            nama_spbu: item.nama_spbu,
+            nama_spbu: item.spbu.name,
             jumlah: item.jumlah,
             createdAt: item.createdAt,
             updatedAt: item.updatedAt,

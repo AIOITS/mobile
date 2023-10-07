@@ -9,7 +9,7 @@ const HelpScreen = () => {
       subHeader="Bantuan aplikasi"
       bell
       main>
-      <Text>Bantuan</Text>
+      <Text>Cooming Soon</Text>
     </BackgroundWithHeader>
   );
 };

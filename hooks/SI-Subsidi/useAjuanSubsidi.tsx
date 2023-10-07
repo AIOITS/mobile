@@ -16,7 +16,10 @@ function useAjuanSubsidi(userId: number) {
         status_pengajuan: item.status_pengajuan,
         id: item.id,
         alasan: item.alasan,
-        dokumen_pendukung: item.dokumen_pendukung,
+        dokumen_pendukung: item.dokumen_pendukung.map((dokumen) => ({
+          name: dokumen.name,
+          url: dokumen.url,
+        })),
         tanggal_pengajuan: item.tanggal_pengajuan,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,

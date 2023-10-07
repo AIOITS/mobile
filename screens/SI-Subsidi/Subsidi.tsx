@@ -19,6 +19,8 @@ const Subsidi = () => {
   const { loading, error, stnkHistoryPengisian } = useHistoryPengisianFromSTNK(
     id as number,
   );
+  console.log('stnkHistoryPengisian=========');
+  console.log(stnkHistoryPengisian);
 
   return (
     <BackgroundWithHeader
@@ -48,7 +50,8 @@ const Subsidi = () => {
       {/* button end */}
 
       {/* riwayat start */}
-      <View style={tw('flex flex-col justify-center items-stretch')}>
+      <View
+        style={[tw('flex flex-col justify-center items-stretch'), { gap: 10 }]}>
         {stnkHistoryPengisian.map((item, index) => (
           <CardElevation
             key={index}

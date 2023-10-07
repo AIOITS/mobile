@@ -10,10 +10,12 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import InfoBlockDisplay from '../../components/Info/InfoBlockDisplay';
 import ButtonIcon from '../../components/Button/ButtonIcon';
 import { Icon } from '@rneui/themed';
+import { PdfNavigationStack } from '../../navigator/Pdf/PdfNavigationProp';
 
 const DetailRiwayatPengajuan = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
+  const navigation_pdf = useNavigation<PdfNavigationStack>();
   const {
     params: { alasan, jumlah, status_pengajuan, dokumen_pendukung },
   } = useRoute<DetailRiwayatPengajuanRouteProp>();
@@ -76,8 +78,15 @@ const DetailRiwayatPengajuan = () => {
           <Text style={tw('text-disable text-xs')}>Dokumen pendukung</Text>
           {dokumen_pendukung?.map((item, index) => (
             <View key={index}>
-              {item.includes('pdf') && (
-                <ButtonIcon titleButton={item}>
+              {item.name.includes('pdf') && (
+                <ButtonIcon
+                  titleButton={item.name}
+                  onButtonClick={() =>
+                    navigation_pdf.navigate('Pdf', {
+                      name: item.name,
+                      url: item.url,
+                    })
+                  }>
                   <Icon
                     name={'file-pdf-o'}
                     type="font-awesome"
@@ -86,8 +95,8 @@ const DetailRiwayatPengajuan = () => {
                   />
                 </ButtonIcon>
               )}
-              {item.includes('jpg') && (
-                <ButtonIcon titleButton={item}>
+              {item.name.includes('jpg') && (
+                <ButtonIcon titleButton={item.name}>
                   <Icon
                     name={'picture-o'}
                     type="font-awesome"

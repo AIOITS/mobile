@@ -24,44 +24,37 @@ import { useAuthContext } from '../../contexts/Auth/AuthContext';
 import useHistoryPengisianFromSTNK from '../../hooks/SI-Subsidi/useHistoryPengisianFromSTNK';
 import handleDate from '../../utils/convertDate';
 import useKTP from '../../hooks/General/useKTP';
+import useUserandSTNK from '../../hooks/General/useUserandSTNK';
 
 const HomeScreen = () => {
   const tw = useTailwind();
   const navigation = useNavigation<MoneyNavigationProps>();
 
   const id = useAuthContext().user?.id;
-  const {
-    loading: loadingStnkHistory,
-    error: errorStnkHistory,
-    stnkHistoryPengisian,
-  } = useHistoryPengisianFromSTNK(id as number);
 
-  const { loading: loadingKtp, error: errorKtp, ktp } = useKTP(id as number);
+  const { loading, error, stnk, user } = useUserandSTNK(id as number);
 
   return (
     <BackgroundWithHeader
       header="Selamat Datang"
-      subHeader={`${ktp.nama}`}
+      subHeader={`${user.name}`}
       main
       bell
-      loading={loadingKtp || loadingStnkHistory}
+      loading={loading}
       reverseHeader>
       {/* kendaraan start */}
       <ScrollView horizontal={true}>
         <View style={[tw('flex flex-row'), { gap: 10 }]}>
-          <FlatList
-            data={stnkHistoryPengisian}
-            renderItem={({ item, index }) => (
-              <VehicleCard
-                vehicleName={`${item.tipe} ${item.merk} ${item.nomor_rangka}`}
-                engineSpec={`${item.nomor_mesin}`}
-                reminderDate="Jatuh Tempo"
-                reminderTitle={`${handleDate(item.berlaku)}`}
-                disabled={true}
-              />
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
+          {stnk.map((item, index) => (
+            <VehicleCard
+              key={index}
+              vehicleName={`${item.tipe} ${item.merk} ${item.nomor_rangka}`}
+              engineSpec={`${item.nomor_mesin}`}
+              reminderDate="Jatuh Tempo"
+              reminderTitle={`${handleDate(item.berlaku)}`}
+              disabled={true}
+            />
+          ))}
         </View>
       </ScrollView>
       {/* kendaraan end */}

@@ -68,105 +68,107 @@ import CameraScreen from '../screens/Camera/CameraScreen';
 import VideoScreen from '../screens/Camera/VideoScreen';
 import { useAuthContext } from '../contexts/Auth/AuthContext';
 import Loading from '../components/Indicator/Loading';
+import PdfScreen from '../screens/Pdf/PdfScreen';
 
 const RootStack = createNativeStackNavigator();
 
 const RootNavigator = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [firstScreen, setFirstScreen] = useState<string>('');
   const auth = useAuthContext();
 
   useEffect(() => {
-    auth.CheckToken().then((user_token) => {
+    // setIsLoggedIn(auth.isLoggedIn);
+    const checkUserToken = async () => {
+      const user_token = await auth.CheckToken();
+      console.log(user_token);
       if (user_token) {
         setIsLoggedIn(true);
+        setFirstScreen('Home');
       } else {
         setIsLoggedIn(false);
+        setFirstScreen('RegisterByEmail');
       }
-    });
-  }, [auth]);
+    };
 
-  if (auth.isLoading) {
-    return <Loading />;
-  }
+    checkUserToken();
+  }, []);
 
   return (
-    <RootStack.Navigator>
-      {!isLoggedIn ? (
-        <RootStack.Group screenOptions={{ headerShown: false }}>
-          <RootStack.Screen
-            options={{
-              animation: 'none',
-            }}
-            name="RegisterByEmail"
-            component={RegisByEmail}
-          />
-          <RootStack.Screen
-            options={{
-              animation: 'none',
-            }}
-            name="RegisterByPhone"
-            component={RegisByPhone}
-          />
-          <RootStack.Screen
-            options={{
-              presentation: 'containedModal',
-            }}
-            name="OTP"
-            component={OTPScreen}
-          />
-          <RootStack.Screen
-            options={{
-              presentation: 'containedModal',
-            }}
-            name="RegisterSuccess"
-            component={SuccessScreen}
-          />
-          <RootStack.Screen
-            options={{
-              animation: 'none',
-            }}
-            name="LoginByEmail"
-            component={LoginByEmail}
-          />
-          <RootStack.Screen
-            options={{
-              animation: 'none',
-            }}
-            name="LoginByPhone"
-            component={LoginByPhone}
-          />
-          <RootStack.Screen
-            options={{
-              presentation: 'containedModal',
-            }}
-            name="NotActivated"
-            component={NotActivated}
-          />
-          <RootStack.Screen
-            name="KTPPhoto"
-            component={FotoKTP}
-          />
-          <RootStack.Screen
-            name="FacePhoto"
-            component={FotoWajah}
-          />
-          <RootStack.Screen
-            name="Validate"
-            component={Validasi}
-          />
-          <RootStack.Screen
-            name="ValidateComplete"
-            component={SuccessValidasi}
-          />
-        </RootStack.Group>
-      ) : (
-        <RootStack.Group screenOptions={{ headerShown: false }}>
-          <RootStack.Screen
-            name="Main"
-            component={BottomNavigator}
-          />
-        </RootStack.Group>
-      )}
+    <RootStack.Navigator initialRouteName={firstScreen}>
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          options={{
+            animation: 'none',
+          }}
+          name="RegisterByEmail"
+          component={RegisByEmail}
+        />
+        <RootStack.Screen
+          options={{
+            animation: 'none',
+          }}
+          name="RegisterByPhone"
+          component={RegisByPhone}
+        />
+        <RootStack.Screen
+          options={{
+            presentation: 'containedModal',
+          }}
+          name="OTP"
+          component={OTPScreen}
+        />
+        <RootStack.Screen
+          options={{
+            presentation: 'containedModal',
+          }}
+          name="RegisterSuccess"
+          component={SuccessScreen}
+        />
+        <RootStack.Screen
+          options={{
+            animation: 'none',
+          }}
+          name="LoginByEmail"
+          component={LoginByEmail}
+        />
+        <RootStack.Screen
+          options={{
+            animation: 'none',
+          }}
+          name="LoginByPhone"
+          component={LoginByPhone}
+        />
+        <RootStack.Screen
+          options={{
+            presentation: 'containedModal',
+          }}
+          name="NotActivated"
+          component={NotActivated}
+        />
+        <RootStack.Screen
+          name="KTPPhoto"
+          component={FotoKTP}
+        />
+        <RootStack.Screen
+          name="FacePhoto"
+          component={FotoWajah}
+        />
+        <RootStack.Screen
+          name="Validate"
+          component={Validasi}
+        />
+        <RootStack.Screen
+          name="ValidateComplete"
+          component={SuccessValidasi}
+        />
+      </RootStack.Group>
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Main"
+          component={BottomNavigator}
+        />
+      </RootStack.Group>
       {/* for subsidi */}
       <RootStack.Group screenOptions={{ headerShown: false }}>
         <RootStack.Screen
@@ -416,6 +418,14 @@ const RootNavigator = () => {
           component={VideoScreen}
         />
       </RootStack.Group>
+
+      {/* for pdf */}
+      {/* <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Pdf"
+          component={PdfScreen}
+        />
+      </RootStack.Group> */}
     </RootStack.Navigator>
   );
 };

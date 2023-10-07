@@ -6,7 +6,7 @@ import handleDate from '../../utils/convertDate';
 
 interface Props {
   month: string;
-  data: HistoryPengisian[];
+  data: HistoryPengisian[] | HistoryEmoney[];
 }
 
 const InfoPengisianBox = ({ month, data }: Props) => {
@@ -18,7 +18,11 @@ const InfoPengisianBox = ({ month, data }: Props) => {
       {data.map((item, index) => (
         <InfoPengisianText
           key={index}
-          title={item.nama_spbu}
+          title={
+            'jenis_pengisian' in item
+              ? (item as HistoryPengisian).spbu.name
+              : (item as HistoryEmoney).nama_spbu
+          }
           date={handleDate(item.createdAt)}
           usage={item.kategori_pengisian}
           volume={item.jumlah.toString() + ' L'}

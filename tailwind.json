@@ -257,6 +257,11 @@
       "marginTop": 24
     }
   },
+  "mr-2": {
+    "style": {
+      "marginRight": 8
+    }
+  },
   "block": {
     "style": {
       "display": "block"
@@ -292,6 +297,11 @@
       "height": "100%"
     }
   },
+  "h-4": {
+    "style": {
+      "height": 16
+    }
+  },
   "w-10": {
     "style": {
       "width": 40
@@ -300,6 +310,11 @@
   "w-full": {
     "style": {
       "width": "100%"
+    }
+  },
+  "w-4": {
+    "style": {
+      "width": 16
     }
   },
   "max-w-full": {

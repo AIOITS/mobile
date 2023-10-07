@@ -4,15 +4,18 @@
     "slug": "aioits",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo/icon-aioits.png",
     "userInterfaceStyle": "light",
+    "jsEngine": "hermes",
     "plugins": [
       [
         "expo-camera",
         {
           "cameraPermission": "Allow AIOITS to access your camera."
         }
-      ]
+      ],
+      "@config-plugins/react-native-blob-util",
+      "@config-plugins/react-native-pdf"
     ],
     "splash": {
       "image": "./assets/logo/aioits.png",

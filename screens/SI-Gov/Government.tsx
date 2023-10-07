@@ -19,6 +19,9 @@ import SulawesiSVG from '../../assets/provinsi/sulawesi.svg';
 import MalukuSVG from '../../assets/provinsi/maluku.svg';
 import NusaTenggaraSVG from '../../assets/provinsi/nusa-tenggara.svg';
 import PapuaSVG from '../../assets/provinsi/papua.svg';
+import useHistoryPengisianByDate from '../../hooks/SI-Government/useHistoryPengisianByDate';
+import calculate from '../../utils/calculationUtils';
+import useJenisBahanBakar from '../../hooks/SI-Government/useJenisBahanBakar';
 
 const Government = () => {
   const tw = useTailwind();
@@ -68,12 +71,36 @@ const Government = () => {
     setSelectedItemIndex(index === selectedItemIndex ? null : index);
   };
 
+  const colors_pallete = [
+    (opacity = 1) => `rgba(249, 65, 68, ${opacity})`,
+    (opacity = 1) => `rgba(243, 114, 44, ${opacity})`,
+    (opacity = 1) => `rgba(248, 150, 30, ${opacity})`,
+    (opacity = 1) => `rgba(249, 199, 79, ${opacity})`,
+    (opacity = 1) => `rgba(144, 190, 109, ${opacity})`,
+    (opacity = 1) => `rgba(45, 156, 219, ${opacity})`,
+  ];
+
+  const labels_name = ['Subsidi', 'Non Subsidi'];
+
+  const {
+    loading: loadingHistoryPengisian,
+    error: errorHistoryPengisian,
+    historyPengisianByDate,
+  } = useHistoryPengisianByDate();
+
+  const {
+    loading: loadingBahanBakar,
+    error: errorBahanBakar,
+    jenisBahanBakar,
+  } = useJenisBahanBakar();
+
   return (
     <BackgroundWithHeader
       main
       backButton
       onBackClick={() => navigation.goBack()}
       header="SI Government"
+      loading={loadingHistoryPengisian || loadingBahanBakar}
       subHeader="Sistem pengelolaan data terintegrasi oleh Pemerintah"
       bell>
       {/* penggunaan subsidi start */}
@@ -83,28 +110,26 @@ const Government = () => {
         <BarChart
           withVerticalLabels={false}
           data={{
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            labels: [...jenisBahanBakar.name],
             datasets: [
               {
-                data: [79, 80, 80, 80, 80, 80],
-                colors: [
-                  (opacity = 1) => `rgba(249, 65, 68, ${opacity})`, // Color for January
-                  (opacity = 1) => `rgba(243, 114, 44, ${opacity})`, // Color for February
-                  (opacity = 1) => `rgba(248, 150, 30, ${opacity})`, // Color for March
-                  (opacity = 1) => `rgba(249, 199, 79, ${opacity})`, // Color for April
-                  (opacity = 1) => `rgba(144, 190, 109, ${opacity})`, // Color for May
-                  (opacity = 1) => `rgba(45, 156, 219, ${opacity})`, // Color for June
-                ],
+                data: [...jenisBahanBakar.jumlah],
+                colors: colors_pallete,
                 color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                strokeWidth: 0, // optional, default 3
+                strokeWidth: 0,
                 withDots: false,
               },
             ],
           }}
+          // verticalLabelRotation={-50}
+          yAxisLabel=""
+          yAxisSuffix=" L"
+          // showValuesOnTopOfBars={true}
           fromZero={true}
           flatColor
           showBarTops={false}
-          withInnerLines={true}
+          xLabelsOffset={15}
+          // withInnerLines={true}
           withCustomBarColorFromData={true}
           width={Dimensions.get('window').width - 30}
           height={220}
@@ -120,6 +145,30 @@ const Government = () => {
           }}
         />
         {/* chart end */}
+        <View
+          style={[
+            tw('flex flex-row flex-wrap justify-start items-center'),
+            { gap: 5 },
+          ]}>
+          {jenisBahanBakar.name.map((item, index) => (
+            <View
+              key={index}
+              style={[
+                tw('flex flex-row justify-start items-center'),
+                { minWidth: 150 },
+              ]}>
+              <View
+                style={[
+                  tw('w-4 h-4 rounded-full mr-2'),
+                  { backgroundColor: colors_pallete[index](1) },
+                ]}
+              />
+              <Text style={tw('text-cape-storm font-semibold text-sm')}>
+                {item}
+              </Text>
+            </View>
+          ))}
+        </View>
       </View>
       {/* penggunaan subsidi end */}
 
@@ -130,13 +179,13 @@ const Government = () => {
         <PieChart
           data={[
             {
-              name: 'Seoul',
-              population: 63,
+              name: labels_name[0],
+              jumlah: calculate(...historyPengisianByDate.subsidi),
               color: '#f94144',
             },
             {
-              name: 'Toronto',
-              population: 37,
+              name: labels_name[1],
+              jumlah: calculate(...historyPengisianByDate.non_subsidi),
               color: '#f3722c',
             },
           ]}
@@ -158,11 +207,35 @@ const Government = () => {
           }}
           hasLegend={false}
           center={[(Dimensions.get('window').width - 30) / 4, 0]}
-          accessor="population"
+          accessor="jumlah"
           backgroundColor="transparent"
           paddingLeft="15"
         />
         {/* chart end */}
+        <View
+          style={[
+            tw('flex flex-row flex-wrap justify-start items-center'),
+            { gap: 5 },
+          ]}>
+          {labels_name.map((item, index) => (
+            <View
+              key={index}
+              style={[
+                tw('flex flex-row justify-start items-center'),
+                { minWidth: 150 },
+              ]}>
+              <View
+                style={[
+                  tw('w-4 h-4 rounded-full mr-2'),
+                  { backgroundColor: colors_pallete[index](1) },
+                ]}
+              />
+              <Text style={tw('text-cape-storm font-semibold text-sm')}>
+                {item}
+              </Text>
+            </View>
+          ))}
+        </View>
       </View>
       {/* perbandingan pembelian bbm end */}
 
@@ -172,10 +245,15 @@ const Government = () => {
         {/* chart start */}
         <LineChart
           data={{
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            labels: [...historyPengisianByDate.labels],
             datasets: [
               {
-                data: [20, 45, 28, 80, 99, 43],
+                data: [...historyPengisianByDate.subsidi],
+                strokeWidth: 4,
+                color: (opacity = 1) => `rgba(60, 72, 86, ${opacity})`,
+              },
+              {
+                data: [...historyPengisianByDate.non_subsidi],
                 strokeWidth: 4,
                 color: (opacity = 1) => `rgba(60, 72, 86, ${opacity})`,
               },
@@ -185,7 +263,7 @@ const Government = () => {
           fromZero={true}
           withDots={false}
           width={Dimensions.get('window').width - 30}
-          verticalLabelRotation={-45}
+          verticalLabelRotation={-65}
           height={220}
           chartConfig={{
             backgroundColor: '#f6f9ff',

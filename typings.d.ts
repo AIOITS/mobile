@@ -74,7 +74,10 @@ type AjuanSubsidi = {
   status_pengajuan: string;
   id: string;
   alasan: string;
-  dokumen_pendukung: string[] | undefined;
+  dokumen_pendukung: {
+    name: string;
+    url: string;
+  }[];
   tanggal_pengajuan: string;
   status_pengajuan: string;
   createdAt: string;
@@ -88,11 +91,20 @@ type KTP = {
 
 type HistoryPengisian = {
   kategori_pengisian: string;
-  nama_spbu: string;
+  spbu: {
+    name: string;
+  };
   jumlah: number;
   createdAt: string;
   updatedAt: string;
   nomor_stnk: string;
+};
+
+type HistoryEmoney = {
+  kategori_pengisian: string;
+  nama_spbu: string;
+  createdAt: string;
+  jumlah: string;
 };
 
 type STNKInPengisian = {
@@ -190,4 +202,30 @@ type STNKandPKB = STNKDetail & {
 type STNKandName = STNKInPengisian & {
   nama: string;
   berlaku: string;
+};
+
+type UserData = {
+  name: string;
+  saldo: number;
+  kuota_subsidi: number;
+};
+
+type STNK = {
+  nomor_polisi: string;
+  nomor_mesin: string;
+  berlaku: string;
+  merk: string;
+  tipe: string;
+  nomor_rangka: string;
+};
+
+type HistoryPengisianByDate = {
+  labels: string[];
+  subsidi: number[];
+  non_subsidi: number[];
+};
+
+type JenisBahanBakar = {
+  name: string[];
+  jumlah: number[];
 };

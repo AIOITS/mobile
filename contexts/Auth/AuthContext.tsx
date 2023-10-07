@@ -178,6 +178,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
       return user;
     } catch (error) {
+      console.log('error login');
+      console.log(error);
       dispatch({
         type: AuthAction.SIGN_IN_ERROR,
         payload: { errorMsg: (error as Error).message },
@@ -187,11 +189,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const SignOut = async (): Promise<void> => {
-    console.log('sign out');
     dispatch({ type: AuthAction.SET_LOADING });
     console.log(initialAuthState.isLoggedIn);
     await AsyncStorage.removeItem('user');
+    await AsyncStorage.removeItem('token');
+    console.log('masuk sini gaessss');
     dispatch({ type: AuthAction.SIGN_OUT });
+    // TODO: redirect to login page
   };
 
   const Register = async ({
@@ -227,8 +231,17 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const CheckToken = async (): Promise<User | null> => {
-    const user_token = await AsyncStorage.getItem('user');
-    // console.log(`user token: ${user_token}`);
+    dispatch({ type: AuthAction.SET_LOADING });
+    const user_token: string | null = await AsyncStorage.getItem('user');
+    console.log(`user token: ${user_token}`);
+    if (user_token && 'exp' in JSON.parse(user_token)) {
+      const exp = JSON.parse(user_token).exp;
+      const now = new Date().getTime();
+      if (now > exp * 1000) {
+        console.log('masuk sign out');
+        SignOut();
+      }
+    }
     dispatch({
       type: AuthAction.SET_USER,
       payload: { user: user_token ? JSON.parse(user_token) : null },

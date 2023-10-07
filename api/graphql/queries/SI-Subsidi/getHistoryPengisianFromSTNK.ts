@@ -13,7 +13,9 @@ export const GET_HISTORY_PENGISIAN_FROM_STNK = gql`
           nomor_rangka
           history_pengisian {
             kategori_pengisian
-            nama_spbu
+            spbu {
+              name
+            }
             jumlah
             createdAt
             updatedAt

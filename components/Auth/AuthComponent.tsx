@@ -1,6 +1,12 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import { TouchableOpacity, View, Text, Alert } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import { useTailwind } from 'tailwind-rn';
 import { RegisNavigationProps } from '../../navigator/Auth/RegisNavigationProps';
 import BackgroundWithHeader from '../BackgroundWithHeader';
@@ -14,6 +20,8 @@ import login from '../../api/rest/Auth/login';
 import { useAuthContext } from '../../contexts/Auth/AuthContext';
 import validateEmail from '../../utils/validateEmail';
 import validatePhone from '../../utils/validatePhone';
+import Loading from '../Indicator/Loading';
+import { BottomTabNavProp } from '../../navigator/Menu/Menu';
 
 interface AuthComponentProps {
   header: string;
@@ -40,6 +48,7 @@ const AuthComponent = ({
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigation = useNavigation<RegisNavigationProps>();
+  const menu_navigation = useNavigation<BottomTabNavProp>();
   const route = useRoute();
   const isEmailActive = route.name === navigateToOne;
   const isPhoneActive = route.name === navigateToTwo;
@@ -82,10 +91,10 @@ const AuthComponent = ({
         phone: isEmailActive ? undefined : input,
         password,
       });
-      // if (user.statusCode === 200) {
-      //   navigation.navigate('NotActivated');
-      // } else
-      if ('message' in user) {
+      // TODO: redirect to home screen
+      if (user.statusCode === 200) {
+        menu_navigation.navigate('Main');
+      } else if ('message' in user) {
         setErrorMessage(user.message);
       }
     } catch (error) {
@@ -96,6 +105,10 @@ const AuthComponent = ({
       }
     }
   };
+
+  if (auth.isLoading) {
+    return <Loading />;
+  }
 
   return (
     <BackgroundWithHeader
