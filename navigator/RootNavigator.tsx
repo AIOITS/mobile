@@ -69,6 +69,11 @@ import VideoScreen from '../screens/Camera/VideoScreen';
 import { useAuthContext } from '../contexts/Auth/AuthContext';
 import Loading from '../components/Indicator/Loading';
 import PdfScreen from '../screens/Pdf/PdfScreen';
+import Tilang from '../screens/SI-Tilang/Tilang';
+import Terkini from '../screens/SI-Terkini/Terkini';
+import Lalin from '../screens/SI-Lalin/Lalin';
+import Edukasi from '../screens/SI-Edukasi/Edukasi';
+import Laka from '../screens/SI-Laka/Laka';
 
 const RootStack = createNativeStackNavigator();
 
@@ -416,6 +421,46 @@ const RootNavigator = () => {
         <RootStack.Screen
           name="Video"
           component={VideoScreen}
+        />
+      </RootStack.Group>
+
+      {/* for si-tilang */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Tilang"
+          component={Tilang}
+        />
+      </RootStack.Group>
+
+      {/* for si-terkini */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Terkini"
+          component={Terkini}
+        />
+      </RootStack.Group>
+
+      {/* for si-lalin */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Lalin"
+          component={Lalin}
+        />
+      </RootStack.Group>
+
+      {/* for si-edukasi */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Edukasi"
+          component={Edukasi}
+        />
+      </RootStack.Group>
+
+      {/* for si-laka */}
+      <RootStack.Group screenOptions={{ headerShown: false }}>
+        <RootStack.Screen
+          name="Laka"
+          component={Laka}
         />
       </RootStack.Group>
 

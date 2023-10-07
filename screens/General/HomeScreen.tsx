@@ -70,7 +70,7 @@ const HomeScreen = () => {
           ]}>
           <InfoBlockDisplay
             title="Sisa Subsidi"
-            subTitle="30 Liter"
+            subTitle={`${user.kuota_subsidi.toFixed(2)} Liter`}
             titleStyle="text-disable text-center"
             subTitleStyle="text-cape-storm text-center"
           />
@@ -85,7 +85,7 @@ const HomeScreen = () => {
           ]}>
           <InfoBlockDisplay
             title="Saldo Emoney"
-            subTitle="Rp0"
+            subTitle={`Rp${user.saldo}`}
             titleStyle="text-center text-white"
             subTitleStyle="text-center text-white text-lg"
             info="3j lalu"

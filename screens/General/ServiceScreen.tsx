@@ -50,7 +50,7 @@ const ServiceScreen = () => {
         </MenuCard>
         <MenuCard
           title="si-terkini"
-          navigateTo="Subsidi">
+          navigateTo="Terkini">
           <SITerkini width={48} />
         </MenuCard>
         <MenuCard

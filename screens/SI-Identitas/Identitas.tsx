@@ -15,12 +15,13 @@ const Identitas = () => {
   const tw = useTailwind();
   const navigation = useNavigation<IdentitasNavigationProps>();
   const id = useAuthContext().user?.id;
-  const { loading, error, sim, ktp } = useSIM(id);
+  const { loading, error, sim, ktp } = useSIM(id as number);
 
   return (
     <BackgroundWithHeader
       main
       backButton
+      loading={loading}
       onBackClick={() => navigation.goBack()}
       header="Si Identitas"
       subHeader="Smart SIM Identitas"

@@ -3,6 +3,7 @@ export type MenuParamList = {
   Identitas: undefined;
   Kendaraan: undefined;
   Tilang: undefined;
+  Terkini: undefined;
   Money: undefined;
   Laka: undefined;
   Lalin: undefined;
@@ -16,6 +17,7 @@ export type MenuScreenParamList =
   | 'Identitas'
   | 'Kendaraan'
   | 'Tilang'
+  | 'Terkini'
   | 'Money'
   | 'Laka'
   | 'Lalin'
