@@ -227,6 +227,11 @@
       "marginRight": 4
     }
   },
+  "mr-2": {
+    "style": {
+      "marginRight": 8
+    }
+  },
   "mr-20": {
     "style": {
       "marginRight": 80
@@ -255,11 +260,6 @@
   "mt-6": {
     "style": {
       "marginTop": 24
-    }
-  },
-  "mr-2": {
-    "style": {
-      "marginRight": 8
     }
   },
   "block": {
@@ -292,14 +292,14 @@
       "height": 96
     }
   },
-  "h-full": {
-    "style": {
-      "height": "100%"
-    }
-  },
   "h-4": {
     "style": {
       "height": 16
+    }
+  },
+  "h-full": {
+    "style": {
+      "height": "100%"
     }
   },
   "w-10": {
@@ -307,14 +307,14 @@
       "width": 40
     }
   },
-  "w-full": {
-    "style": {
-      "width": "100%"
-    }
-  },
   "w-4": {
     "style": {
       "width": 16
+    }
+  },
+  "w-full": {
+    "style": {
+      "width": "100%"
     }
   },
   "max-w-full": {

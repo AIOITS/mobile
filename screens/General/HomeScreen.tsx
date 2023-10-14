@@ -48,10 +48,10 @@ const HomeScreen = () => {
           {stnk.map((item, index) => (
             <VehicleCard
               key={index}
-              vehicleName={`${item.tipe} ${item.merk} ${item.nomor_rangka}`}
-              engineSpec={`${item.nomor_mesin}`}
-              reminderDate="Jatuh Tempo"
-              reminderTitle={`${handleDate(item.berlaku)}`}
+              vehicleName={`${item.merk} ${item.model}`}
+              engineSpec={`${item.nomor_polisi}`}
+              reminderTitle="Sisa Subsidi"
+              reminderDate={`${user.kuota_subsidi.toFixed(2)} Liter`}
               disabled={true}
             />
           ))}
@@ -61,7 +61,7 @@ const HomeScreen = () => {
 
       {/* subsidi & saldo start */}
       <View style={tw('flex flex-row items-stretch justify-center h-24 ')}>
-        <View
+        {/* <View
           style={[
             tw(
               'rounded-tl-lg rounded-bl-lg border-primary-light-blue border-l-2 border-t-2 border-b-2 items-center justify-center',
@@ -74,14 +74,12 @@ const HomeScreen = () => {
             titleStyle="text-disable text-center"
             subTitleStyle="text-cape-storm text-center"
           />
-        </View>
+        </View> */}
         <TouchableOpacity
           onPress={() => navigation.navigate('CekSaldo')}
           style={[
-            tw(
-              'bg-primary-light-blue rounded-tr-lg rounded-br-lg justify-center',
-            ),
-            { width: '50%' },
+            tw('bg-primary-light-blue rounded-tr-lg rounded-lg justify-center'),
+            { width: '100%' },
           ]}>
           <InfoBlockDisplay
             title="Saldo Emoney"
@@ -126,11 +124,11 @@ const HomeScreen = () => {
           navigateTo="Government">
           <SIGovernment width={48} />
         </MenuCard>
-        <MenuCard
+        {/* <MenuCard
           title="lainnya"
           navigateTo="Other">
           <OtherSVG width={48} />
-        </MenuCard>
+        </MenuCard> */}
       </View>
       {/* menu end */}
 

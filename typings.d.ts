@@ -110,6 +110,8 @@ type HistoryEmoney = {
 type STNKInPengisian = {
   merk: string;
   tipe: string;
+  nomor_polisi: string;
+  model: string;
   isi_silinder: string;
   nomor_mesin: string;
   nomor_rangka: string;
@@ -216,6 +218,7 @@ type STNK = {
   berlaku: string;
   merk: string;
   tipe: string;
+  model: string;
   nomor_rangka: string;
 };
 

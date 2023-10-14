@@ -24,6 +24,8 @@ function useHistoryPengisianFromSTNK(userId: number) {
         isi_silinder: item.isi_silinder,
         nomor_mesin: item.nomor_mesin,
         nomor_rangka: item.nomor_rangka,
+        nomor_polisi: item.nomor_polisi,
+        model: item.model,
         berlaku: item.berlaku,
         history_pengisian: item.history_pengisian.map(
           (item: HistoryPengisian) => ({

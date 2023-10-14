@@ -9,6 +9,8 @@ interface Props {
   filter?: boolean;
   right?: boolean;
   placeholderStyle?: string;
+  value?: string;
+  onChangeValue?: (text: string) => void;
 }
 
 const IconTextInputField = ({
@@ -17,6 +19,8 @@ const IconTextInputField = ({
   right,
   placeholder,
   placeholderStyle,
+  value,
+  onChangeValue,
 }: Props) => {
   const tw = useTailwind();
 
@@ -24,6 +28,8 @@ const IconTextInputField = ({
     <View style={tw('flex flex-row justify-center items-center')}>
       {!right && <View style={tw('absolute z-10 left-3')}>{children}</View>}
       <TextInput
+        value={value}
+        onChange={(e) => onChangeValue && onChangeValue(e.nativeEvent.text)}
         placeholder={placeholder}
         style={[
           tw(

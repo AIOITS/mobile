@@ -91,6 +91,39 @@ const AjukanSubsidi = () => {
       </Text>
       {/* text end */}
 
+      {/* kendaraan start */}
+      <View style={[tw('flex flex-col'), { gap: 8 }]}>
+        <Text style={tw('text-cape-storm')}>Kendaraan</Text>
+        <View style={tw('flex flex-row justify-between items-center')}>
+          <TextInput
+            onChange={(e) => setJumlahSubsidi(Number(e.nativeEvent.text))}
+            style={[
+              tw(
+                'bg-secondary-white px-4 py-2 text-sm rounded-lg flex-1 border-disable',
+              ),
+              { borderWidth: 1 },
+            ]}
+            placeholder="Contoh: 25"
+          />
+          <TouchableOpacity
+            onPress={handleDropdown}
+            style={[
+              tw(
+                'absolute right-0 flex flex-row items-center justify-center px-3 border-disable h-full',
+              ),
+              { gap: 3 },
+            ]}>
+            <Icon
+              name={dropdown ? 'chevron-up' : 'chevron-down'}
+              type="entypo"
+              size={20}
+              color={'#00A0F3'}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+      {/* kendaraan start */}
+
       {/* jumlah subsidi start */}
       <View style={[tw('flex flex-col'), { gap: 8 }]}>
         <Text style={tw('text-cape-storm')}>Jumlah Subsidi</Text>

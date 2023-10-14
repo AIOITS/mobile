@@ -24,6 +24,7 @@ function useUserandSTNK(userId: number) {
       nomor_polisi: item.nomor_polisi,
       berlaku: item.berlaku,
       merk: item.merk,
+      model: item.model,
       tipe: item.tipe,
       nomor_rangka: item.nomor_rangka,
       nomor_mesin: item.nomor_mesin,

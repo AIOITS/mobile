@@ -53,6 +53,16 @@ const DetailRiwayatPengajuan = () => {
         </View>
         {/* status end */}
 
+        {/* kendaraan start */}
+        <InfoBlockDisplay
+          title="Kendaraan"
+          titleStyle="text-disable text-xs"
+          subTitle="Ini nama kendaraan"
+          subTitleStyle="text-cape-storm font-normal text-sm"
+          gap={3}
+        />
+        {/* kendaraan end */}
+
         {/* jum subsidi start */}
         <InfoBlockDisplay
           title="Jumlah Subsidi"

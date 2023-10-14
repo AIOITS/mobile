@@ -19,8 +19,6 @@ const Subsidi = () => {
   const { loading, error, stnkHistoryPengisian } = useHistoryPengisianFromSTNK(
     id as number,
   );
-  console.log('stnkHistoryPengisian=========');
-  console.log(stnkHistoryPengisian);
 
   return (
     <BackgroundWithHeader
@@ -36,7 +34,9 @@ const Subsidi = () => {
         style={[tw('flex flex-row items-stretch justify-between'), { gap: 5 }]}>
         <ButtonOutlineComponent
           buttonTitle="Riwayat Ajuan"
-          onNavigationClick={() => navigation.navigate('RiwayatPengajuan')}
+          onNavigationClick={() =>
+            navigation.navigate('RiwayatPengajuan', stnkHistoryPengisian)
+          }
           width={'px-7'}
           height={'py-3'}
         />
@@ -60,10 +60,10 @@ const Subsidi = () => {
             <MotorcycleSVG height={100} />
             <View style={[tw('flex flex-col justify-center'), { gap: 5 }]}>
               <Text style={tw('text-disable text-xs')}>
-                {item.tipe} {item.merk} {item.nomor_rangka}
+                {item.merk} {item.model}
               </Text>
               <Text style={tw('text-cape-storm font-bold text-lg')}>
-                {item.nomor_mesin}
+                {item.nomor_polisi}
               </Text>
               <ButtonOutlineComponent
                 buttonTitle="Riwayat Pengisian"

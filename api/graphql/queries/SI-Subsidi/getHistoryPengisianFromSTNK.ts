@@ -10,6 +10,8 @@ export const GET_HISTORY_PENGISIAN_FROM_STNK = gql`
           tipe
           isi_silinder
           nomor_mesin
+          nomor_polisi
+          model
           nomor_rangka
           history_pengisian {
             kategori_pengisian

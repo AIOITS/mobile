@@ -16,3 +16,8 @@ export type RiwayatPengisianRouteProp = RouteProp<
   SubsidiStackParamList,
   'RiwayatPengisian'
 >;
+
+export type RiwayatPengajuanRouteProp = RouteProp<
+  SubsidiStackParamList,
+  'RiwayatPengajuan'
+>;

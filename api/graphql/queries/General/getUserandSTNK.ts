@@ -12,6 +12,7 @@ export const GET_USER_AND_STNK = gql`
           berlaku
           merk
           tipe
+          model
           nama_pemilik
           nomor_rangka
           nomor_mesin

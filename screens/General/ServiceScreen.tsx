@@ -38,31 +38,31 @@ const ServiceScreen = () => {
           navigateTo="Kendaraan">
           <SIKendaraan width={48} />
         </MenuCard>
-        <MenuCard
+        {/* <MenuCard
           title="si-tilang"
           navigateTo="Tilang">
           <SITilangSVG width={48} />
-        </MenuCard>
+        </MenuCard> */}
         <MenuCard
           title="si-subsidi"
           navigateTo="Subsidi">
           <SISubsidi width={48} />
         </MenuCard>
-        <MenuCard
+        {/* <MenuCard
           title="si-terkini"
           navigateTo="Terkini">
           <SITerkini width={48} />
-        </MenuCard>
-        <MenuCard
+        </MenuCard> */}
+        {/* <MenuCard
           title="si-lalin"
           navigateTo="Lalin">
           <SILalinSVG width={48} />
-        </MenuCard>
-        <MenuCard
+        </MenuCard> */}
+        {/* <MenuCard
           title="si-edukasi"
           navigateTo="Edukasi">
           <SIEdukasiSVG width={48} />
-        </MenuCard>
+        </MenuCard> */}
         <MenuCard
           title="si-money"
           navigateTo="Money">
@@ -73,11 +73,11 @@ const ServiceScreen = () => {
           navigateTo="Government">
           <SIGovernment width={48} />
         </MenuCard>
-        <MenuCard
+        {/* <MenuCard
           title="si-laka"
           navigateTo="Laka">
           <SILakaSVG width={48} />
-        </MenuCard>
+        </MenuCard> */}
       </View>
     </BackgroundWithHeader>
   );

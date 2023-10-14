@@ -25,7 +25,11 @@ const InfoPengisianBox = ({ month, data }: Props) => {
           }
           date={handleDate(item.createdAt)}
           usage={item.kategori_pengisian}
-          volume={item.jumlah.toString() + ' L'}
+          volume={
+            typeof item.jumlah === 'number'
+              ? item.jumlah.toFixed(2) + ' L'
+              : item.jumlah + ' L'
+          }
         />
       ))}
     </View>

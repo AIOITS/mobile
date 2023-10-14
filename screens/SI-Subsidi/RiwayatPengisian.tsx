@@ -20,6 +20,13 @@ const RiwayatPengisian = () => {
 
   const { params } = useRoute<RiwayatPengisianRouteProp>();
 
+  let calculate = params.history_pengisian.reduce((a, b) => {
+    return a + b.jumlah;
+  }, 0);
+
+  console.log('calculate===============');
+  console.log(calculate);
+
   return (
     <BackgroundWithHeader
       header="Riwayat Pengisian"
@@ -31,15 +38,15 @@ const RiwayatPengisian = () => {
       {/* info start */}
       <View style={tw('flex flex-row justify-between items-center')}>
         <InfoBlockDisplay
-          title={`${params.tipe} ${params.merk} ${params.nomor_rangka}`}
-          subTitle={params.nomor_mesin}
+          title={`${params.merk} ${params.model}`}
+          subTitle={params.nomor_polisi}
           gap={2}
           titleStyle="text-disable text-xs"
           subTitleStyle="text-cape-storm font-bold text-xl"
         />
         <InfoBlockDisplay
           title="Penggunaan Subsidi"
-          subTitle={params.isi_silinder.toString() + ' L'}
+          subTitle={calculate.toFixed(2) + ' L'}
           gap={2}
           titleStyle="text-right text-disable text-xs"
           subTitleStyle="text-right text-cape-storm font-bold text-xl"
@@ -50,7 +57,6 @@ const RiwayatPengisian = () => {
       {/* search start */}
       <IconTextInputField
         placeholderStyle="text-base"
-        filter
         placeholder="Cari data pengisian">
         <Icon
           name={'search'}
@@ -61,12 +67,49 @@ const RiwayatPengisian = () => {
       </IconTextInputField>
       {/* search end */}
 
+      {/* date start */}
+      <View
+        style={[tw('flex flex-row items-start justify-between'), { gap: 5 }]}>
+        <View style={[{ width: '48%' }]}>
+          <IconTextInputField
+            placeholderStyle="text-base"
+            placeholder="Tanggal Mulai">
+            <Icon
+              name={'search'}
+              type="feather"
+              size={25}
+              color="gray"
+            />
+          </IconTextInputField>
+        </View>
+        <View style={[{ width: '48%' }]}>
+          <IconTextInputField
+            placeholderStyle="text-base"
+            placeholder="Tanggal Mulai">
+            <Icon
+              name={'search'}
+              type="feather"
+              size={25}
+              color="gray"
+            />
+          </IconTextInputField>
+        </View>
+      </View>
+      {/* date end */}
+
       {/* riwayat start */}
       <View
         style={[tw('flex flex-col items-start justify-center'), { gap: 5 }]}>
         <InfoPengisianBox
           month="Oktober"
-          data={[...params.history_pengisian]}
+          data={[
+            ...params.history_pengisian.sort((a, b) => {
+              return (
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+              );
+            }),
+          ]}
         />
       </View>
       {/* riwayat end */}
