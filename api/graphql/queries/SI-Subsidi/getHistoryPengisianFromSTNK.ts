@@ -5,6 +5,7 @@ export const GET_HISTORY_PENGISIAN_FROM_STNK = gql`
     user(where: { id: { equals: $userId } }) {
       ktp {
         stnk {
+          nomor_stnk
           merk
           berlaku
           tipe

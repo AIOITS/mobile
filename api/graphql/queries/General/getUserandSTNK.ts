@@ -5,10 +5,10 @@ export const GET_USER_AND_STNK = gql`
     user(where: { id: { equals: $userId } }) {
       name
       saldo
-      kuota_subsidi
       ktp {
         stnk {
           nomor_polisi
+          kuota_subsidi
           berlaku
           merk
           tipe

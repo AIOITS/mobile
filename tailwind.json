@@ -24,6 +24,11 @@
       "bottom": 0
     }
   },
+  "bottom-10": {
+    "style": {
+      "bottom": 40
+    }
+  },
   "bottom-3": {
     "style": {
       "bottom": 12
@@ -436,11 +441,6 @@
   "rounded-bl-lg": {
     "style": {
       "borderBottomLeftRadius": 8
-    }
-  },
-  "rounded-br-lg": {
-    "style": {
-      "borderBottomRightRadius": 8
     }
   },
   "rounded-tl-lg": {

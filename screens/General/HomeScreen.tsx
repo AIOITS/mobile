@@ -23,7 +23,6 @@ import { MoneyNavigationProps } from '../../navigator/Money/MoneyNavigationProp'
 import { useAuthContext } from '../../contexts/Auth/AuthContext';
 import useHistoryPengisianFromSTNK from '../../hooks/SI-Subsidi/useHistoryPengisianFromSTNK';
 import handleDate from '../../utils/convertDate';
-import useKTP from '../../hooks/General/useKTP';
 import useUserandSTNK from '../../hooks/General/useUserandSTNK';
 
 const HomeScreen = () => {
@@ -51,7 +50,7 @@ const HomeScreen = () => {
               vehicleName={`${item.merk} ${item.model}`}
               engineSpec={`${item.nomor_polisi}`}
               reminderTitle="Sisa Subsidi"
-              reminderDate={`${user.kuota_subsidi.toFixed(2)} Liter`}
+              reminderDate={`${item.kuota_subsidi.toFixed(2)} Liter`}
               disabled={true}
             />
           ))}

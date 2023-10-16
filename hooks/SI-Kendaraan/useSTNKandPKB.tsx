@@ -17,6 +17,7 @@ function useSTNKandPKB(userId: number) {
         merk: item.merk,
         tipe: item.tipe,
         nomor_mesin: item.nomor_mesin,
+        kuota_subsidi: item.kuota_subsidi,
         nomor_rangka: item.nomor_rangka,
         nomor_stnk: item.nomor_stnk,
         nomor_polisi: item.nomor_polisi,

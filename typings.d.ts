@@ -108,6 +108,7 @@ type HistoryEmoney = {
 };
 
 type STNKInPengisian = {
+  nomor_stnk: string;
   merk: string;
   tipe: string;
   nomor_polisi: string;
@@ -119,6 +120,7 @@ type STNKInPengisian = {
 };
 
 type STNKAll = {
+  kuota_subsidi: number;
   nomor_stnk: string;
   nomor_polisi: string;
   nama_pemilik: string;
@@ -209,13 +211,13 @@ type STNKandName = STNKInPengisian & {
 type UserData = {
   name: string;
   saldo: number;
-  kuota_subsidi: number;
 };
 
 type STNK = {
   nomor_polisi: string;
   nomor_mesin: string;
   berlaku: string;
+  kuota_subsidi: number;
   merk: string;
   tipe: string;
   model: string;

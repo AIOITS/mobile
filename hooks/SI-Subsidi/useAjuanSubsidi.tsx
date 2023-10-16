@@ -2,9 +2,9 @@ import { useQuery } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { GET_SUBSIDI_HISTORY } from '../../api/graphql/queries/SI-Subsidi/getSubsidiHistory';
 
-function useAjuanSubsidi(userId: number) {
+function useAjuanSubsidi(nomor_stnk: string) {
   const { loading, error, data } = useQuery(GET_SUBSIDI_HISTORY, {
-    variables: { userId: userId },
+    variables: { nomor_stnk: nomor_stnk },
   });
   const [subsidi, setSubsidi] = useState<AjuanSubsidi[]>([]);
 
@@ -28,7 +28,7 @@ function useAjuanSubsidi(userId: number) {
     );
 
     setSubsidi(subsidi);
-  }, [data, userId]);
+  }, [data, nomor_stnk]);
 
   return { loading, error, subsidi };
 }

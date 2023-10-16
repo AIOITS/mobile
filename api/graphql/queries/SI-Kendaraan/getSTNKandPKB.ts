@@ -7,6 +7,7 @@ export const GET_STNK_AND_PKB = gql`
         nama
         stnk {
           merk
+          kuota_subsidi
           tipe
           nomor_mesin
           nomor_rangka

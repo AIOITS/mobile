@@ -9,7 +9,6 @@ function useUserandSTNK(userId: number) {
   const [userData, setUserData] = useState<UserData>({
     name: '',
     saldo: 0,
-    kuota_subsidi: 0,
   });
   const [STNK, setSTNK] = useState<STNK[]>([]);
 
@@ -18,19 +17,20 @@ function useUserandSTNK(userId: number) {
 
     const name = data.user[0].name;
     const saldo = data.user[0].saldo;
-    const kuota_subsidi = data.user[0].kuota_subsidi;
+    // const kuota_subsidi = data.user[0].kuota_subsidi;
 
     const stnk = data.user[0].ktp.stnk.map((item: STNK) => ({
       nomor_polisi: item.nomor_polisi,
       berlaku: item.berlaku,
       merk: item.merk,
       model: item.model,
+      kuota_subsidi: item.kuota_subsidi,
       tipe: item.tipe,
       nomor_rangka: item.nomor_rangka,
       nomor_mesin: item.nomor_mesin,
     }));
 
-    setUserData({ name, saldo, kuota_subsidi });
+    setUserData({ name, saldo });
     setSTNK(stnk);
   }, [data, userId]);
 

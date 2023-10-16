@@ -21,6 +21,7 @@ function useHistoryPengisianFromSTNK(userId: number) {
       (item: HistoryPengisianFromSTNK) => ({
         merk: item.merk,
         tipe: item.tipe,
+        nomor_stnk: item.nomor_stnk,
         isi_silinder: item.isi_silinder,
         nomor_mesin: item.nomor_mesin,
         nomor_rangka: item.nomor_rangka,

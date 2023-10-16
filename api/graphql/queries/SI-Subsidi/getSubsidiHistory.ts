@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_SUBSIDI_HISTORY = gql`
-  query getAjuanSubsidi($userId: Int!) {
-    ajuan_subsidi(where: { user_id: { equals: $userId } }) {
+  query getAjuanSubsidi($nomor_stnk: String!) {
+    ajuan_subsidi(where: { nomor_stnk: { equals: $nomor_stnk } }) {
       status_pengajuan
       id
       alasan

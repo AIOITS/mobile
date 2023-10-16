@@ -9,16 +9,23 @@ import { useNavigation } from '@react-navigation/native';
 import { MoneyNavigationProps } from '../../navigator/Money/MoneyNavigationProp';
 import SIMoneyCardSVG from '../../assets/kartu/si-money-card.svg';
 import { Icon } from '@rneui/themed';
+import { useAuthContext } from '../../contexts/Auth/AuthContext';
+import useUserandSTNK from '../../hooks/General/useUserandSTNK';
 
 const DashboardSiMoney = () => {
   const tw = useTailwind();
   const navigation = useNavigation<MoneyNavigationProps>();
+
+  const id = useAuthContext().user?.id;
+
+  const { loading, error, user } = useUserandSTNK(id as number);
 
   return (
     <BackgroundWithHeader
       header="SI Money"
       subHeader="Sistem pembayaran cashless"
       bell
+      loading={loading}
       backButton
       onBackClick={() => navigation.goBack()}
       main>
@@ -55,7 +62,7 @@ const DashboardSiMoney = () => {
             Saldo
           </Text>
           <Text style={tw('text-white font-bold text-lg text-center')}>
-            Rp 0
+            {`Rp ${user.saldo}`}
           </Text>
           <Text style={tw('text-white font-light text-xs text-center')}>
             Pengecekan terakhir : 13/10/2022 : 13:45:43

@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import {
@@ -16,6 +16,7 @@ import VehicleCard from '../../components/Card/VehicleCard';
 const RiwayatPengajuan = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
+  const [selected, setSelected] = useState<number>(0);
 
   const color = (status: string): string => {
     if (status === 'diproses') {
@@ -30,7 +31,11 @@ const RiwayatPengajuan = () => {
   const { params } = useRoute<RiwayatPengajuanRouteProp>();
 
   const id = useAuthContext().user?.id;
-  const { loading, error, subsidi } = useAjuanSubsidi(id as number);
+  const { loading, error, subsidi } = useAjuanSubsidi(
+    params[selected].nomor_stnk,
+  );
+
+  console.log(subsidi);
 
   return (
     <BackgroundWithHeader
@@ -52,11 +57,12 @@ const RiwayatPengajuan = () => {
             {params.map((item, index) => (
               <VehicleCard
                 key={index}
-                vehicleName={`${item.tipe} ${item.merk} ${item.nomor_rangka}`}
-                engineSpec={`${item.nomor_mesin}`}
-                reminderDate="Jatuh Tempo"
-                reminderTitle={`${handleDate(item.berlaku)}`}
-                disabled={true}
+                selected={selected === index}
+                onSelected={() => setSelected(index)}
+                vehicleName={`${item.merk} ${item.model}`}
+                engineSpec={`${item.nomor_polisi}`}
+                reminderDate={`${handleDate(item.berlaku)}`}
+                reminderTitle="Jatuh Tempo"
               />
             ))}
           </View>
@@ -64,11 +70,14 @@ const RiwayatPengajuan = () => {
         {/* kendaraan end */}
 
         <View style={[tw('flex flex-col'), { gap: 10 }]}>
-          {subsidi ? (
+          {subsidi.length > 0 ? (
             subsidi.map((item, index) => (
               <CardElevation
                 onCardClick={() =>
-                  navigation.navigate('DetailRiwayatPengajuan', item)
+                  navigation.navigate('DetailRiwayatPengajuan', {
+                    kendaraan: `${params[selected].merk} ${params[selected].model}`,
+                    ...item,
+                  })
                 }
                 key={index}
                 cardStyle="flex flex-row justify-between items-center p-3"
@@ -98,7 +107,9 @@ const RiwayatPengajuan = () => {
               </CardElevation>
             ))
           ) : (
-            <Text>No data</Text>
+            <Text style={tw('text-center text-disable font-bold')}>
+              Belum ada riwayat pengajuan yang dilakukan pada kendaaan ini
+            </Text>
           )}
         </View>
       </View>

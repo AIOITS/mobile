@@ -17,7 +17,7 @@ const DetailRiwayatPengajuan = () => {
   const navigation = useNavigation<SubsidiNavigationProps>();
   const navigation_pdf = useNavigation<PdfNavigationStack>();
   const {
-    params: { alasan, jumlah, status_pengajuan, dokumen_pendukung },
+    params: { alasan, jumlah, status_pengajuan, dokumen_pendukung, kendaraan },
   } = useRoute<DetailRiwayatPengajuanRouteProp>();
 
   const color = (status: string): string => {
@@ -57,7 +57,7 @@ const DetailRiwayatPengajuan = () => {
         <InfoBlockDisplay
           title="Kendaraan"
           titleStyle="text-disable text-xs"
-          subTitle="Ini nama kendaraan"
+          subTitle={kendaraan}
           subTitleStyle="text-cape-storm font-normal text-sm"
           gap={3}
         />
