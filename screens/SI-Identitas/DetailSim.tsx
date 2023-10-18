@@ -45,7 +45,7 @@ const DetailSim = () => {
         penerbit,
         berlaku_sampai,
       },
-      ktp: { golongan_darah, tanggal_lahir, tempat_lahir },
+      ktp: { golongan_darah, tanggal_lahir, tempat_lahir, jenis_kelamin },
     },
   } = useRoute<DetailSIMRouteProp>();
 
@@ -110,8 +110,8 @@ const DetailSim = () => {
         <InfoBlockDisplay
           title="Jenis Kelamin"
           titleStyle="text-xs text-disable"
-          subTitle={'otw'}
-          subTitleStyle="text-sm text-cape-storm"
+          subTitle={jenis_kelamin}
+          subTitleStyle="text-sm text-cape-storm uppercase"
           gap={2}
         />
         <Divider color="gray" />

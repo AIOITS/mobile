@@ -20,6 +20,9 @@ const Subsidi = () => {
     id as number,
   );
 
+  console.log('dataaaaaaaaaaaa');
+  // console.log(stnkHistoryPengisian[0].history_pengisian[0]);
+
   return (
     <BackgroundWithHeader
       header="Si Subsidi"

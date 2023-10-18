@@ -89,7 +89,7 @@ const RootNavigator = () => {
       console.log(user_token);
       if (user_token) {
         setIsLoggedIn(true);
-        setFirstScreen('Home');
+        setFirstScreen('Main');
       } else {
         setIsLoggedIn(false);
         setFirstScreen('RegisterByEmail');

@@ -103,7 +103,9 @@ type HistoryPengisian = {
 
 type HistoryEmoney = {
   kategori_pengisian: string;
-  nama_spbu: string;
+  spbu: {
+    name: string;
+  };
   createdAt: string;
   jumlah: string;
 };

@@ -14,8 +14,6 @@ function useHistoryPengisianFromSTNK(userId: number) {
   useEffect(() => {
     if (!data) return;
 
-    console.log(data);
-
     // TODO: masi pre-define
     const stnk_history_pengisian = data.user[0].ktp.stnk.map(
       (item: HistoryPengisianFromSTNK) => ({
@@ -31,7 +29,9 @@ function useHistoryPengisianFromSTNK(userId: number) {
         history_pengisian: item.history_pengisian.map(
           (item: HistoryPengisian) => ({
             kategori_pengisian: item.kategori_pengisian,
-            nama_spbu: item.spbu.name,
+            spbu: {
+              name: item.spbu.name,
+            },
             jumlah: item.jumlah,
             createdAt: item.createdAt,
             updatedAt: item.updatedAt,
@@ -40,9 +40,6 @@ function useHistoryPengisianFromSTNK(userId: number) {
         ),
       }),
     );
-
-    console.log('in hook stnk_history_pengisian');
-    console.log(stnk_history_pengisian);
 
     setSTNKHistoryPengisian(stnk_history_pengisian);
   }, [data, userId]);

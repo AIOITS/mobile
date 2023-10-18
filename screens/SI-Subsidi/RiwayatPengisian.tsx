@@ -112,8 +112,6 @@ const RiwayatPengisian = () => {
       </View>
       {/* info end */}
 
-      <Text>{search}</Text>
-
       {/* search start */}
       <IconTextInputField
         value={search}
@@ -166,8 +164,14 @@ const RiwayatPengisian = () => {
       {(showStartPicker || showEndPicker) && (
         <View style={tw('absolute')}>
           <DateTimePicker
-            onTouchCancel={() => setShowStartPicker(false)}
-            onTouchStart={() => setShowStartPicker(false)}
+            onTouchCancel={() => {
+              setShowStartPicker(false);
+              setShowEndPicker(false);
+            }}
+            onTouchStart={() => {
+              setShowStartPicker(false);
+              setShowEndPicker(false);
+            }}
             mode="date"
             display="calendar"
             value={date}
@@ -192,24 +196,15 @@ const RiwayatPengisian = () => {
             if (month.toLowerCase().includes(search.toLowerCase())) {
               return month;
             }
-            const dataInMonth = dataByMonth[month];
-            if (
-              dataInMonth.some(
-                (item) =>
-                  item.kategori_pengisian
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  item.jumlah.toString().includes(search),
-              )
-            ) {
-              return month;
-            }
 
-            return false;
+            return month;
           })
           .map((item, index) => (
             <InfoPengisianBox
               key={index}
+              dateStart={selectedStartDate}
+              dateEnd={selectedEndDate}
+              search={search}
               month={item}
               data={dataByMonth[item]}
             />

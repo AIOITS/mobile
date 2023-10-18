@@ -10,7 +10,12 @@ import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
 import { useNavigation } from '@react-navigation/native';
 import { GovNavigationProps } from '../../navigator/Gov/GovNavigationProp';
-import { BarChart, LineChart, PieChart } from 'react-native-chart-kit';
+import {
+  BarChart,
+  LineChart,
+  PieChart,
+  StackedBarChart,
+} from 'react-native-chart-kit';
 import HeaderInfo from '../../components/Info/HeaderInfo';
 import SumatraSVG from '../../assets/provinsi/sumatra.svg';
 import JawaSVG from '../../assets/provinsi/jawa.svg';
@@ -123,7 +128,7 @@ const Government = () => {
           }}
           // verticalLabelRotation={-50}
           yAxisLabel=""
-          yAxisSuffix=" L"
+          yAxisSuffix=""
           // showValuesOnTopOfBars={true}
           fromZero={true}
           flatColor

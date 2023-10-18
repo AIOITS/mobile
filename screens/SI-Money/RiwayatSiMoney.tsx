@@ -41,13 +41,17 @@ const RiwayatSiMoney = () => {
           month="Oktober"
           data={[
             {
-              nama_spbu: 'SPBU Surabaya Soetomo',
+              spbu: {
+                name: 'SPBU Surabaya Soetomo',
+              },
               createdAt: '10 Oktober 2022',
               jumlah: '-Rp70.000',
               kategori_pengisian: 'Beli BBM',
             },
             {
-              nama_spbu: 'SPBU Surabaya Soetomo',
+              spbu: {
+                name: 'SPBU Surabaya Soetomo',
+              },
               createdAt: '10 Oktober 2022',
               jumlah: '+Rp60.000',
               kategori_pengisian: 'top up',
