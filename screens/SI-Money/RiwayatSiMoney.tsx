@@ -11,6 +11,29 @@ import InfoPengisianBox from '../../components/Box/InfoPengisianBox';
 const RiwayatSiMoney = () => {
   const tw = useTailwind();
   const navigation = useNavigation<MoneyNavigationProps>();
+  const monthMap: { [key: string]: number } = {
+    Januari: 0,
+    Februari: 1,
+    Maret: 2,
+    April: 3,
+    Mei: 4,
+    Juni: 5,
+    Juli: 6,
+    Agustus: 7,
+    September: 8,
+    Oktober: 9,
+    November: 10,
+    Desember: 11,
+  };
+
+  const validDate = (inputDate: string) => {
+    const parts = inputDate.split(' ');
+    const day = parseInt(parts[0], 10);
+    const month = monthMap[parts[1]];
+    const year = parseInt(parts[2], 10);
+    const dateObject = new Date(year, month, day);
+    return dateObject;
+  };
 
   return (
     <BackgroundWithHeader
@@ -44,7 +67,7 @@ const RiwayatSiMoney = () => {
               spbu: {
                 name: 'SPBU Surabaya Soetomo',
               },
-              createdAt: '10 Oktober 2022',
+              createdAt: validDate('10 Oktober 2022').toString(),
               jumlah: '-Rp70.000',
               kategori_pengisian: 'Beli BBM',
             },
@@ -52,7 +75,7 @@ const RiwayatSiMoney = () => {
               spbu: {
                 name: 'SPBU Surabaya Soetomo',
               },
-              createdAt: '10 Oktober 2022',
+              createdAt: validDate('10 Oktober 2022').toString(),
               jumlah: '+Rp60.000',
               kategori_pengisian: 'top up',
             },

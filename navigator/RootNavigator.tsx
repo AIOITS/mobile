@@ -74,6 +74,9 @@ import Terkini from '../screens/SI-Terkini/Terkini';
 import Lalin from '../screens/SI-Lalin/Lalin';
 import Edukasi from '../screens/SI-Edukasi/Edukasi';
 import Laka from '../screens/SI-Laka/Laka';
+import { useNavigation } from '@react-navigation/native';
+import { RegisNavigationProps } from './Auth/RegisNavigationProps';
+import { BottomTabNavProp } from './Menu/Menu';
 
 const RootStack = createNativeStackNavigator();
 
@@ -81,18 +84,20 @@ const RootNavigator = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [firstScreen, setFirstScreen] = useState<string>('');
   const auth = useAuthContext();
+  const nav_login = useNavigation<RegisNavigationProps>();
+  const nav_menu = useNavigation<BottomTabNavProp>();
 
   useEffect(() => {
     // setIsLoggedIn(auth.isLoggedIn);
     const checkUserToken = async () => {
       const user_token = await auth.CheckToken();
-      console.log(user_token);
+      console.log('user_token', user_token);
       if (user_token) {
         setIsLoggedIn(true);
-        setFirstScreen('Main');
+        nav_menu.navigate('Main');
       } else {
         setIsLoggedIn(false);
-        setFirstScreen('RegisterByEmail');
+        nav_login.navigate('LoginByEmail');
       }
     };
 

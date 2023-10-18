@@ -215,6 +215,8 @@ type STNKandName = STNKInPengisian & {
 type UserData = {
   name: string;
   saldo: number;
+  nik: string;
+  email: string;
 };
 
 type STNK = {
