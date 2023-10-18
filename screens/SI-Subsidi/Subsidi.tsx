@@ -44,7 +44,17 @@ const Subsidi = () => {
           buttonTitle="Ajukan Subsidi"
           width={'px-7'}
           height={'py-3.5'}
-          onNavigationClick={() => navigation.navigate('AjukanSubsidi')}
+          onNavigationClick={() =>
+            navigation.navigate(
+              'AjukanSubsidi',
+              stnkHistoryPengisian.map((item) => ({
+                nomor_stnk: item.nomor_stnk,
+                nomor_polisi: item.nomor_polisi,
+                merk: item.merk,
+                model: item.model,
+              })),
+            )
+          }
         />
       </View>
       {/* button end */}

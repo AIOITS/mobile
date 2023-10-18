@@ -1,7 +1,12 @@
 export type SubsidiStackParamList = {
   Subsidi: undefined;
   RiwayatPengisian: HistoryPengisianFromSTNK;
-  AjukanSubsidi: undefined;
+  AjukanSubsidi: {
+    nomor_stnk: string;
+    nomor_polisi: string;
+    merk: string;
+    model: string;
+  }[];
   SuccessAjukanSubsidi: undefined;
   RiwayatPengajuan: HistoryPengisianFromSTNK[];
   DetailRiwayatPengajuan: AjuanSubsidi & {

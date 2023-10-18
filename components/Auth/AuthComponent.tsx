@@ -186,14 +186,23 @@ const AuthComponent = ({
         {register ? (
           <ButtonComponent
             onNavigationClick={() => {
-              handleRegister();
+              if (input == '' && password == '' && NIK == '') {
+                setErrorMessage('Mohon isi semua kolom.');
+              } else {
+                handleRegister();
+              }
             }}
             buttonTitle="Buat Akun"
           />
         ) : (
           <ButtonComponent
+            disable={password == '' || input == ''}
             onNavigationClick={() => {
-              handleLogin();
+              if (password == '' || input == '') {
+                setErrorMessage('Mohon isi semua kolom.');
+              } else {
+                handleLogin();
+              }
             }}
             buttonTitle="Masuk"
           />

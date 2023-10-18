@@ -59,6 +59,7 @@ type AjuanSubsidiSuccessResponse = {
 type AjuanSubsidiInput = {
   jumlah: number;
   alasan: string;
+  nomor_stnk: string;
   dokumen_pendukung: DocumentPicker.DocumentPickerResult[];
   tanggal_pengajuan: string;
   access_token: string;
@@ -182,6 +183,7 @@ type KTPInSIM = {
   tempat_lahir: string;
   tanggal_lahir: string;
   golongan_darah: string;
+  jenis_kelamin: string;
 };
 
 type PKB = {

@@ -11,6 +11,7 @@ function useSIM(userId: number) {
     tempat_lahir: '',
     tanggal_lahir: '',
     golongan_darah: '',
+    jenis_kelamin: '',
   });
 
   useEffect(() => {
@@ -39,12 +40,14 @@ function useSIM(userId: number) {
     const tempatLahir = ktp.tempat_lahir;
     const tanggalLahir = ktp.tanggal_lahir;
     const golonganDarah = ktp.golongan_darah;
+    const jenisKelamin = ktp.jenis_kelamin;
 
     setSIM(sim);
     setKTP({
       tempat_lahir: tempatLahir,
       tanggal_lahir: tanggalLahir,
       golongan_darah: golonganDarah,
+      jenis_kelamin: jenisKelamin,
     });
   }, [data, userId]);
 

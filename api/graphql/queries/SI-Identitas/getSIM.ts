@@ -6,6 +6,7 @@ export const GET_SIM = gql`
       ktp {
         tempat_lahir
         tanggal_lahir
+        jenis_kelamin
         golongan_darah
         sim {
           uid

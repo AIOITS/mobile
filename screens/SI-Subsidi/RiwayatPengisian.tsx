@@ -21,9 +21,11 @@ const RiwayatPengisian = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
   const [search, setSearch] = useState<string>('');
-  const [showPicker, setShowPicker] = useState<boolean>(false);
+  const [showStartPicker, setShowStartPicker] = useState<boolean>(false);
+  const [showEndPicker, setShowEndPicker] = useState<boolean>(false);
   const [date, setDate] = useState<Date>(new Date());
-  const [selectedDate, setSelectedDate] = useState<string>('');
+  const [selectedStartDate, setSelectedStartDate] = useState<string>('');
+  const [selectedEndDate, setSelectedEndDate] = useState<string>('');
 
   const { params } = useRoute<RiwayatPengisianRouteProp>();
 
@@ -40,13 +42,17 @@ const RiwayatPengisian = () => {
     if (type === 'set' && timestamp !== undefined) {
       const selected = new Date(timestamp);
       const formattedDate = format(selected, 'dd/MM/yyyy');
-      setSelectedDate(formattedDate);
+      if (showStartPicker) {
+        setSelectedStartDate(formattedDate);
+      } else if (showEndPicker) {
+        setSelectedEndDate(formattedDate);
+      }
     }
 
-    setShowPicker(false);
+    setShowStartPicker(false);
+    setShowEndPicker(false);
   };
 
-  // Group the data by month
   const dataByMonth: { [key: string]: HistoryPengisian[] } =
     params.history_pengisian.reduce((acc, item) => {
       const createdAt = new Date(item.createdAt);
@@ -60,7 +66,6 @@ const RiwayatPengisian = () => {
       return acc;
     }, {});
 
-  // Sort the months based on their order
   const monthMap: string[] = [
     'Januari',
     'Februari',
@@ -107,8 +112,12 @@ const RiwayatPengisian = () => {
       </View>
       {/* info end */}
 
+      <Text>{search}</Text>
+
       {/* search start */}
       <IconTextInputField
+        value={search}
+        onChangeValue={(e) => setSearch(e)}
         placeholderStyle="text-base"
         placeholder="Cari data pengisian">
         <Icon
@@ -126,9 +135,11 @@ const RiwayatPengisian = () => {
         <View style={[{ width: '48%' }]}>
           <IconTextInputField
             right
+            value={selectedStartDate}
+            onChangeValue={(e) => setSelectedStartDate(e)}
             placeholder="Mulai">
             <Icon
-              onPress={() => setShowPicker(!showPicker)}
+              onPress={() => setShowStartPicker(!showStartPicker)}
               name="calendar-alt"
               type="font-awesome-5"
               size={20}
@@ -139,9 +150,11 @@ const RiwayatPengisian = () => {
         <View style={[{ width: '48%' }]}>
           <IconTextInputField
             right
+            value={selectedEndDate}
+            onChangeValue={(e) => setSelectedEndDate(e)}
             placeholder="Akhir">
             <Icon
-              onPress={() => setShowPicker(!showPicker)}
+              onPress={() => setShowEndPicker(!showEndPicker)}
               name="calendar-alt"
               type="font-awesome-5"
               size={20}
@@ -150,11 +163,11 @@ const RiwayatPengisian = () => {
           </IconTextInputField>
         </View>
       </View>
-      {showPicker && (
+      {(showStartPicker || showEndPicker) && (
         <View style={tw('absolute')}>
           <DateTimePicker
-            onTouchCancel={() => setShowPicker(false)}
-            onTouchStart={() => setShowPicker(false)}
+            onTouchCancel={() => setShowStartPicker(false)}
+            onTouchStart={() => setShowStartPicker(false)}
             mode="date"
             display="calendar"
             value={date}
@@ -166,14 +179,46 @@ const RiwayatPengisian = () => {
 
       {/* riwayat start */}
       <View
-        style={[tw('flex flex-col items-start justify-center'), { gap: 5 }]}>
-        {sortedMonths.map((month) => (
-          <InfoPengisianBox
-            key={month}
-            month={month}
-            data={dataByMonth[month]}
-          />
-        ))}
+        style={[
+          tw('flex flex-col items-start justify-center mb-5'),
+          { gap: 5 },
+        ]}>
+        {sortedMonths
+          .filter((month) => {
+            if (search == '') {
+              return month;
+            }
+
+            if (month.toLowerCase().includes(search.toLowerCase())) {
+              return month;
+            }
+            const dataInMonth = dataByMonth[month];
+            if (
+              dataInMonth.some(
+                (item) =>
+                  item.kategori_pengisian
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  item.jumlah.toString().includes(search),
+              )
+            ) {
+              return month;
+            }
+
+            return false;
+          })
+          .map((item, index) => (
+            <InfoPengisianBox
+              key={index}
+              month={item}
+              data={dataByMonth[item]}
+            />
+          ))}
+        {params.history_pengisian.length == 0 && (
+          <Text style={tw('text-center font-semibold text-sm text-cape-storm')}>
+            Tidak ada riwayat pengisian
+          </Text>
+        )}
       </View>
       {/* riwayat end */}
     </BackgroundWithHeader>

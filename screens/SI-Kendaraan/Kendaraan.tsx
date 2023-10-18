@@ -57,7 +57,7 @@ const Kendaraan = () => {
                 <Text
                   style={[
                     { bottom: 33 },
-                    tw('text-xs'),
+                    tw('text-xs font-semibold'),
                   ]}>{`${item.merk} ${item.model}`}</Text>
                 <Text
                   style={[

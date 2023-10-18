@@ -9,8 +9,11 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useTailwind } from 'tailwind-rn';
 import BackgroundWithHeader from '../../components/BackgroundWithHeader';
-import { useNavigation } from '@react-navigation/native';
-import { SubsidiNavigationProps } from '../../navigator/Subsidi/SubsidiNavigationProps';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  AjuanSubsidiRouteProp,
+  SubsidiNavigationProps,
+} from '../../navigator/Subsidi/SubsidiNavigationProps';
 import { Icon } from '@rneui/themed';
 import ButtonComponent from '../../components/Button/ButtonComponent';
 import ButtonIcon from '../../components/Button/ButtonIcon';
@@ -35,20 +38,38 @@ const AjukanSubsidi = () => {
   const tw = useTailwind();
   const navigation = useNavigation<SubsidiNavigationProps>();
   const { __checkPermissions, __selectFile, singleFile } = useFiles();
-  const [dropdown, setDropdown] = useState<boolean>(false);
+  const [dropdownSubsidi, setDropdownSubsidi] = useState<boolean>(false);
   const [unit, setUnit] = useState<string>('Liter');
   const [jumlahSubsidi, setJumlahSubsidi] = useState<number>(0);
   const [alasan, setAlasan] = useState<string>('');
   const [files, setFiles] = useState<DocumentPicker.DocumentPickerResult[]>([]);
   const { getToken } = useAuthContext();
 
-  const handleDropdown = () => {
-    setDropdown(!dropdown);
+  const { params } = useRoute<AjuanSubsidiRouteProp>();
+
+  const [nomorStnk, setNomorStnk] = useState<string>(params[0].nomor_stnk);
+  const [kendaraan, setKendaraan] = useState<string>(
+    `${params[0].merk} ${params[0].model}`,
+  );
+  const [dropdownKendaraan, setDropdownKendaraan] = useState<boolean>(false);
+
+  const handleDropdownSubsidi = () => {
+    setDropdownSubsidi(!dropdownSubsidi);
+  };
+
+  const handleDropdownKendaraan = () => {
+    setDropdownKendaraan(!dropdownKendaraan);
   };
 
   const handleUnit = (unit: string) => {
     setUnit(unit);
-    setDropdown(false);
+    setDropdownSubsidi(false);
+  };
+
+  const handleKendaraan = (id: number) => {
+    setKendaraan(`${params[id].merk} ${params[id].model}`);
+    setNomorStnk(`${params[id].nomor_stnk}`);
+    setDropdownKendaraan(false);
   };
 
   const handleAjuanSubsidi = async () => {
@@ -57,6 +78,7 @@ const AjukanSubsidi = () => {
       alasan: alasan,
       jumlah: jumlahSubsidi,
       dokumen_pendukung: files,
+      nomor_stnk: nomorStnk,
       tanggal_pengajuan: getCurrentDate(),
       access_token: token as string,
     });
@@ -64,6 +86,8 @@ const AjukanSubsidi = () => {
     if (response.statusCode === 201) {
       navigation.navigate('SuccessAjukanSubsidi');
     }
+    console.log('response in ui');
+    console.log(response);
   };
 
   useEffect(() => {
@@ -95,18 +119,17 @@ const AjukanSubsidi = () => {
       <View style={[tw('flex flex-col'), { gap: 8 }]}>
         <Text style={tw('text-cape-storm')}>Kendaraan</Text>
         <View style={tw('flex flex-row justify-between items-center')}>
-          <TextInput
-            onChange={(e) => setJumlahSubsidi(Number(e.nativeEvent.text))}
+          <Text
             style={[
               tw(
-                'bg-secondary-white px-4 py-2 text-sm rounded-lg flex-1 border-disable',
+                'bg-secondary-white px-4 py-3 text-sm rounded-lg flex-1 border-disable',
               ),
               { borderWidth: 1 },
-            ]}
-            placeholder="Contoh: 25"
-          />
+            ]}>
+            {kendaraan}
+          </Text>
           <TouchableOpacity
-            onPress={handleDropdown}
+            onPress={handleDropdownKendaraan}
             style={[
               tw(
                 'absolute right-0 flex flex-row items-center justify-center px-3 border-disable h-full',
@@ -114,13 +137,36 @@ const AjukanSubsidi = () => {
               { gap: 3 },
             ]}>
             <Icon
-              name={dropdown ? 'chevron-up' : 'chevron-down'}
+              name={dropdownKendaraan ? 'chevron-up' : 'chevron-down'}
               type="entypo"
               size={20}
               color={'#00A0F3'}
             />
           </TouchableOpacity>
         </View>
+        {dropdownKendaraan && (
+          <FlatList
+            nestedScrollEnabled
+            data={params}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity
+                onPress={() => handleKendaraan(index)}
+                style={[
+                  tw('border-disable px-3 py-2'),
+                  { borderBottomWidth: 1 },
+                ]}>
+                <Text>{`${item.merk} ${item.model}`}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            style={[
+              tw(
+                'absolute flex flex-1 bg-secondary-white w-full rounded-lg border-disable z-10',
+              ),
+              { borderWidth: 1, top: 72 },
+            ]}
+          />
+        )}
       </View>
       {/* kendaraan start */}
 
@@ -139,7 +185,7 @@ const AjukanSubsidi = () => {
             placeholder="Contoh: 25"
           />
           <TouchableOpacity
-            onPress={handleDropdown}
+            onPress={handleDropdownSubsidi}
             style={[
               tw(
                 'absolute right-0 flex flex-row items-center justify-center px-3 border-l-2 border-disable h-full',
@@ -148,14 +194,14 @@ const AjukanSubsidi = () => {
             ]}>
             <Text style={tw('text-cape-storm text-sm')}>{unit}</Text>
             <Icon
-              name={dropdown ? 'chevron-up' : 'chevron-down'}
+              name={dropdownSubsidi ? 'chevron-up' : 'chevron-down'}
               type="entypo"
               size={20}
               color={'#00A0F3'}
             />
           </TouchableOpacity>
         </View>
-        {dropdown && (
+        {dropdownSubsidi && (
           <FlatList
             nestedScrollEnabled
             data={units}
@@ -172,9 +218,9 @@ const AjukanSubsidi = () => {
             keyExtractor={(item, index) => index.toString()}
             style={[
               tw(
-                'absolute flex flex-1 top-20 bg-secondary-white w-full rounded-lg border-disable z-10',
+                'absolute flex flex-1 bg-secondary-white w-full rounded-lg border-disable z-10',
               ),
-              { height: 150, borderWidth: 1 },
+              { height: 150, borderWidth: 1, top: 72 },
             ]}
           />
         )}
@@ -228,7 +274,7 @@ const AjukanSubsidi = () => {
       {/* dokumen end */}
 
       {/* button start */}
-      <View style={tw('absolute bottom-3 right-0 left-0')}>
+      <View style={tw('mb-5')}>
         <ButtonComponent
           buttonTitle="Ajukan"
           onNavigationClick={() => {

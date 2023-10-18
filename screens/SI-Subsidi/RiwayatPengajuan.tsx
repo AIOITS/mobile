@@ -35,7 +35,12 @@ const RiwayatPengajuan = () => {
     params[selected].nomor_stnk,
   );
 
-  console.log(subsidi);
+  const sortedSubsidi = subsidi.sort((a, b) => {
+    return (
+      new Date(b.tanggal_pengajuan).getTime() -
+      new Date(a.tanggal_pengajuan).getTime()
+    );
+  });
 
   return (
     <BackgroundWithHeader
@@ -71,7 +76,7 @@ const RiwayatPengajuan = () => {
 
         <View style={[tw('flex flex-col'), { gap: 10 }]}>
           {subsidi.length > 0 ? (
-            subsidi.map((item, index) => (
+            sortedSubsidi.map((item, index) => (
               <CardElevation
                 onCardClick={() =>
                   navigation.navigate('DetailRiwayatPengajuan', {
